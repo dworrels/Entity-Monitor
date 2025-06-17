@@ -1,10 +1,56 @@
 import DataTable from "react-data-table-component";
-import Modal from "../../components/Modal"
-import { useState } from "react";
+import Modal from "../../components/Modal";
+import { useState, useEffect } from "react";
+import { Trash2, SquarePen} from "lucide-react";  
+
 
 const RSSFeedsPage = () => {
     const [showModal, setShowModal] = useState(false);
 
+    const handleAddSource = async (source) => {
+        try {
+            const res = await fetch("http://192.168.5.48:8090/api/sources", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(source),
+            });
+            // Refresh the data table after adding a new source
+            if (!res.ok) {
+                throw new Error("Failed to add source");
+            }
+
+            const updatedSources = await res.json();
+            setData(updatedSources);
+        } catch (err) {
+            console.error("Error adding source:", err);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const newSource = {
+            title: formData.get("title"),
+            rssUrl: formData.get("rssUrl"),
+        };
+        handleAddSource(newSource);
+        setShowModal(false);
+    };
+    
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchFeeds = async () => {
+            const res = await fetch("http://192.168.5.48:8090/api/sources");
+            const feeds = await res.json();
+            setData(feeds);
+        };
+        fetchFeeds();
+    }, []);
+
+    
+
+    {/* Data table column titles */}
     const columns = [
         {
             name: "Title",
@@ -15,74 +61,24 @@ const RSSFeedsPage = () => {
             selector: (row) => row.rssUrl,
         },
         {
-            name: "Actions",
+            name:"Actions",
             cell: (row) => (
-                <div>
-                    <button onClick={() => handleEdit(row.id)}>Edit</button>
-                    <button onClick={() => handleDelete(row.id)}>Delete</button>
-                    <button onClick={() => handleAdd(row.id)}>Add</button>
+                <div className="flex gap-2">
+                    <button className="text-blue-500 hover:underline "
+                    onClick={() => handleEdit(row)}
+                    >
+                        <SquarePen />
+                    </button>
+                    <button className="text-red-500 hover:underline"
+                    onClick={() => handleDelete(row.id)}
+                    >
+                        <Trash2 />
+                    </button>
                 </div>
             ),
-        },
-    ];
-
-    const data = [
-        {
-            id: 1,
-            title: "Fox News",
-            rssUrl: "https://moxie.foxnews.com/google-publisher/world.xml",
-        },
-        {
-            id: 2,
-            title: "Feed 2",
-            rssUrl: "RSS Link for Feed 2",
-        },
-        {
-            id: 3,
-            title: "Feed 3",
-            rssUrl: "RSS Link for Feed 3",
-        },
-        {
-            id: 4,
-            title: "Feed 4",
-            rssUrl: "RSS Link for Feed 4",
-        },
-        {
-            id: 5,
-            title: "Feed 5",
-            rssUrl: "RSS Link for Feed 5",
-        },
-        {
-            id: 6,
-            title: "Feed 6",
-            rssUrl: "RSS Link for Feed 6",
-        },
-        {
-            id: 7,
-            title: "Feed 7",
-            rssUrl: "RSS Link for Feed 7",
-        },
-        {
-            id: 8,
-            title: "Feed 8",
-            rssUrl: "RSS Link for Feed 8",
-        },
-        {
-            id: 9,
-            title: "Feed 9",
-            rssUrl: "RSS Link for Feed 9",
-        },
-        {
-            id: 10,
-            title: "Feed 10",
-            rssUrl: "RSS Link for Feed 10",
-        },
-        {
-            id: 11,
-            title: "Feed 11",
-            rssUrl: "RSS Link for Feed 11",
         }
     ];
+
 
     return (
         <div className="flex flex-col gap-y-4">
@@ -90,28 +86,49 @@ const RSSFeedsPage = () => {
                 <h1 className="title">RSS Feeds</h1>
 
                 {/* Add Feed Button */}
-                <button className="flex h-[40px] items-center rounded-lg p-3 bg-blue-500 border-0 border-slate-500 text-slate-100 transition-colors hover:bg-blue-600" onClick={() => setShowModal(true)}>+ Add Feed</button>
+                <button
+                    className="flex h-[40px] items-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600"
+                    onClick={() => setShowModal(true)}
+                >
+                    + Add Feed
+                </button>
 
-                {/* Modal Component */}
-                <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+                {/* Add Feed Modal Component */}
+                <Modal
+                    isVisible={showModal}
+                    onClose={() => setShowModal(false)}
+                >
                     <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-5">Add New RSS Feed</h3>
-                    <form>
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Feed Title</label>
-                            <input type="text" className="border border-gray-300 p-2 rounded w-full" />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">RSS Feed URL</label>
-                            <input type="text" className="border border-gray-300 p-2 rounded w-full" />
-                        </div>
-                        <button type="submit" className="bg-blue-500 text-white p-2 rounded transition-colors hover:bg-blue-600">Add Feed</button>
-                    </form>
-
+                        <h3 className="mb-5 text-xl font-semibold text-gray-900">Add New RSS Feed</h3>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-4">
+                                <label className="mb-2 block text-sm font-medium text-gray-700">Feed Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    className="w-full rounded border border-gray-300 p-2"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="mb-2 block text-sm font-medium text-gray-700">RSS Feed URL</label>
+                                <input
+                                    type="text"
+                                    name="rssUrl"
+                                    className="w-full rounded border border-gray-300 p-2"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="rounded bg-blue-500 p-2 text-white transition-colors hover:bg-blue-600"
+                            >
+                                Add Feed
+                            </button>
+                        </form>
                     </div>
                 </Modal>
-
             </div>
+
+            {/* Data Table Component */}
             <DataTable
                 columns={columns}
                 data={data}
