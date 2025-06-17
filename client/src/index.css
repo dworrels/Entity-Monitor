@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Contains Styling for sidebar components */
+/* Contains styling for sidebar components */
 @layer base {
     body {
         @apply [scrollbar-color:_cbd5e1_transparent];
@@ -23,7 +23,7 @@
     }
 }
 
-/* Contains Styling for header components */
+/* Contains styling for header components */
 .title {
     @apply text-3xl font-semibold text-slate-900 transition-colors;
 }
@@ -32,7 +32,16 @@
     @apply flex h-10 flex-shrink-0 items-center justify-center gap-x-2 rounded-lg p-2 text-slate-400 transition-colors hover:bg-blue-100 hover:text-slate-500;
 }
 
-/* Contains Styling for search bar */
+/* Contains styling for search bar */
 .input {
-    @apply hidden h-10 flex-shrink-0 items-center gap-x-2 rounded-lg border border-slate-300 px-2 text-base text-slate-900 transition-colors has-[input:focus]:border-blue-500 md:flex md:w-auto lg:w-80;
+    @apply hidden h-10 flex-shrink-0 items-center gap-x-2 rounded-lg border border-slate-300 px-2 text-base text-slate-900 transition-colors has-[input:focus]:border-blue-600 md:flex md:w-auto lg:w-80;
 }
+
+/* Button styling */
+
+/* 
+.btn {
+    @apply flex h-[40px] items-center rounded-lg p-3 bg-blue-500 border-0 border-slate-500 text-slate-100 transition-colors hover:bg-blue-600;
+}
+*/
+

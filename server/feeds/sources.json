@@ -1,0 +1,14 @@
+[
+    {
+        "id": "foxnews",
+        "name": "Fox News",
+        "url": "https://moxie.foxnews.com/google-publisher/world.xml"
+
+    },
+    {
+        "id": "espn1",
+        "name": "ESPN Top News",
+        "url": "https://www.espn.com/espn/rss/news"
+
+    }
+]

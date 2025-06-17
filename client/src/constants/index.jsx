@@ -1,5 +1,5 @@
 //lucide react icons
-import { Home, Rss, Plus, Folders } from "lucide-react";
+import { Home, Rss, Bookmark, Folders } from "lucide-react";
 
 
 /* Contains the links for the navbar */
@@ -9,9 +9,9 @@ export const navbarLinks = [
         links: [
             { label: "Home", icon: Home, path: "/" },
             {
-                label: "My Feeds",
+                label: "RSS Feeds",
                 icon: Rss,
-                path: "/myfeeds",
+                path: "/rssfeeds",
             },
             {
                 label: "Projects",
@@ -19,9 +19,9 @@ export const navbarLinks = [
                 path: "/projects",
             },
             {
-                label: "Add Feed",
-                icon: Plus,
-                path: "/addfeed",
+                label: "Favorites",
+                icon: Bookmark,
+                path: "/favorites",
             },
         ],
     },

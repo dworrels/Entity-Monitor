@@ -5,6 +5,7 @@ import Layout from "./routes/layout";
 import DashboardPage from "./routes/dashboard/page";
 
 import ProjectPage from "./routes/projects/page";
+import RSSFeedsPage from "./routes/rssfeeds/page";
 
 /* Main App component that sets up the router and routes */
 function App() {
@@ -18,17 +19,17 @@ function App() {
                     element: <DashboardPage />,
                 },
                 {
-                    path: "MyFeeds",
-                    element: <h1 className="title">My Feeds</h1>,
+                    path: "RSSFeeds",
+                    element: <RSSFeedsPage />,
                 },
                 {
                     path: "Projects",
                     element: <ProjectPage />,
                 },
                 {
-                    path: "AddFeed",
-                    element: <h1 className="title">Add Feed</h1>,
-                }
+                    path: "favorites",
+                    element: <h1 className="title">Favorites</h1>,
+                },
             ],
         },
     ]);

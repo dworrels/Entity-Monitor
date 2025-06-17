@@ -14,7 +14,7 @@ export const Header = ({ collapsed, setCollapsed }) => {
                 <div className="input">
                     <Search
                         size={20}
-                        className="text-slate-300"
+                        className="text-slate-500"
                     />
                     <input
                         type="text"
@@ -22,7 +22,7 @@ export const Header = ({ collapsed, setCollapsed }) => {
                         id="search"
                         // search placeholder
                         placeholder="Search..."
-                        className="w-full bg-transparent text-slate-900 outline-0 placeholder:text-slate-300"
+                        className="w-full bg-transparent text-slate-900 outline-0 placeholder:text-slate-500"
                     />
                 </div>
             </div>
