@@ -6,6 +6,9 @@ import { Trash2, SquarePen} from "lucide-react";
 
 const RSSFeedsPage = () => {
     const [showModal, setShowModal] = useState(false);
+    const [data, setData] = useState([]);
+    const [modalMode, setModalMode] = useState("add");
+    const [editSource, setEditSource] = useState(null);
 
     const handleAddSource = async (source) => {
         try {
@@ -30,14 +33,20 @@ const RSSFeedsPage = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const newSource = {
+            id: editSource?.id || formData.get("title").toLowerCase().replace(/\s+/g, ""),
             title: formData.get("title"),
             rssUrl: formData.get("rssUrl"),
         };
-        handleAddSource(newSource);
+
+        if (editSource) {
+            handleUpdateSource(newSource);
+        } else {
+            handleAddSource(newSource);
+        }
         setShowModal(false);
+        setEditSource(null);
+        e.target.reset();
     };
-    
-    const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchFeeds = async () => {
@@ -48,7 +57,39 @@ const RSSFeedsPage = () => {
         fetchFeeds();
     }, []);
 
-    
+    const handleDelete = async (id) => {
+        const res = await fetch(`http://192.168.5.48:8090/api/sources/${id}`, {
+            method: "DELETE"
+        });
+        
+        if (res.ok) {
+            const updatedSources = await res.json();
+            setData(updatedSources);
+        }
+    };
+
+    const handleEdit = (row) => {
+        setEditSource(row);
+        setModalMode("edit");
+        setShowModal(true);
+    };
+
+    const handleUpdateSource = async (updatedSource) => {
+        const res = await fetch(`http://192.168.5.48:8090/api/sources/${updatedSource.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedSource),
+        });
+
+        if (res.ok) {
+            const updatedList = await res.json();
+            setData(updatedList);
+            setShowModal(false);
+            setEditSource(null);
+        }   else {
+            console.error("Update Failed");
+        }
+    };
 
     {/* Data table column titles */}
     const columns = [
@@ -88,7 +129,11 @@ const RSSFeedsPage = () => {
                 {/* Add Feed Button */}
                 <button
                     className="flex h-[40px] items-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600"
-                    onClick={() => setShowModal(true)}
+                    onClick={() => { 
+                        setShowModal(true)
+                        setModalMode("add");
+                        setEditSource(null);
+                    }}
                 >
                     + Add Feed
                 </button>
@@ -99,13 +144,17 @@ const RSSFeedsPage = () => {
                     onClose={() => setShowModal(false)}
                 >
                     <div className="p-6">
-                        <h3 className="mb-5 text-xl font-semibold text-gray-900">Add New RSS Feed</h3>
+                        <h3 className="mb-5 text-xl font-semibold text-gray-900">
+                            {editSource ? "Edit RSS Feed": "Add New RSS Feed" }
+
+                        </h3>
                         <form onSubmit={handleSubmit}>
                             <div className="mb-4">
                                 <label className="mb-2 block text-sm font-medium text-gray-700">Feed Title</label>
                                 <input
                                     type="text"
                                     name="title"
+                                    defaultValue={editSource?.title || ""}
                                     className="w-full rounded border border-gray-300 p-2"
                                 />
                             </div>
@@ -114,6 +163,7 @@ const RSSFeedsPage = () => {
                                 <input
                                     type="text"
                                     name="rssUrl"
+                                    defaultValue={editSource?.rssUrl || ""}
                                     className="w-full rounded border border-gray-300 p-2"
                                 />
                             </div>
@@ -121,7 +171,8 @@ const RSSFeedsPage = () => {
                                 type="submit"
                                 className="rounded bg-blue-500 p-2 text-white transition-colors hover:bg-blue-600"
                             >
-                                Add Feed
+                                {modalMode === "add" ? "Add Feed" : "Update Feed"}
+                                
                             </button>
                         </form>
                     </div>

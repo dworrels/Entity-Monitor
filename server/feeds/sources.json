@@ -3,10 +3,5 @@
     "title": "Fox News",
     "rssUrl": "https://moxie.foxnews.com/google-publisher/world.xml",
     "id": "foxnews"
-  },
-  {
-    "title": "News",
-    "rssUrl": "https://API.dev.xml",
-    "id": "news"
   }
 ]
