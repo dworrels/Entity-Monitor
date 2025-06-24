@@ -9,14 +9,14 @@ export const navbarLinks = [
         links: [
             { label: "Home", icon: Home, path: "/" },
             {
-                label: "RSS Feeds",
-                icon: Rss,
-                path: "/rssfeeds",
-            },
-            {
                 label: "Projects",
                 icon: Folders,
                 path: "/projects",
+            },
+            {
+                label: "RSS Feeds",
+                icon: Rss,
+                path: "/rssfeeds",
             },
             {
                 label: "Favorites",

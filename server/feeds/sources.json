@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "id": "foxworldnews",
+    "title": "Fox World News",
+    "rssUrl": "https://moxie.foxnews.com/google-publisher/world.xml"
+  },
+  {
+    "id": "cnntopnews",
+    "title": "CNN Top News",
+    "rssUrl": "http://rss.cnn.com/rss/cnn_topstories.rss"
+  },
+  {
+    "id": "espnnews",
+    "title": "ESPN News",
+    "rssUrl": "https://rss.app/feeds/tBIv7e5NxsK8Ao13.xml"
+  },
+  {
+    "id": "bbcworldnews",
+    "title": "BBC World News",
+    "rssUrl": "http://feeds.bbci.co.uk/news/world/rss.xml"
+  },
+  {
+    "id": "theguardian",
+    "title": "The Guardian",
+    "rssUrl": "https://www.theguardian.com/world/rss"
+  },
+  {
+    "id": "nytworldnews",
+    "title": "NYT World News",
+    "rssUrl": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+  },
+  {
+    "id": "yahoonews",
+    "title": "Yahoo News",
+    "rssUrl": "https://news.yahoo.com/rss/mostviewed"
+  },
+  {
+    "id": "cnbctopnews",
+    "title": "CNBC Top News",
+    "rssUrl": "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+  },
+  {
+    "id": "cnetnews",
+    "title": "CNET News",
+    "rssUrl": "https://www.cnet.com/rss/news/"
+  },
+  {
+    "id": "nasabreakingnews",
+    "title": "NASA Breaking News",
+    "rssUrl": "https://www.nasa.gov/rss/dyn/breaking_news.rss"
+  },
+  {
+    "id": "techcrunch",
+    "title": "TechCrunch",
+    "rssUrl": "https://feeds.feedburner.com/TechCrunch"
+  }
+]

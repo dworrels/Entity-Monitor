@@ -1,7 +1,7 @@
 import { ChevronLeft, Search } from "lucide-react";
 import PropTypes from "prop-types";
 
-export const Header = ({ collapsed, setCollapsed }) => {
+export const Header = ({ collapsed, setCollapsed, search, setSearch }) => {
     return (
         <header className="relative z-10 flex h-[60px] items-center justify-between bg-white px-4 shadow-md transition-colors">
             <div className="flex items-center gap-x-3">
@@ -23,6 +23,8 @@ export const Header = ({ collapsed, setCollapsed }) => {
                         // search placeholder
                         placeholder="Search..."
                         className="w-full bg-transparent text-slate-900 outline-0 placeholder:text-slate-500"
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
                     />
                 </div>
             </div>

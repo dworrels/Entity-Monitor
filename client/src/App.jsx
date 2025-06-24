@@ -19,12 +19,12 @@ function App() {
                     element: <DashboardPage />,
                 },
                 {
-                    path: "RSSFeeds",
-                    element: <RSSFeedsPage />,
-                },
-                {
                     path: "Projects",
                     element: <ProjectPage />,
+                },
+                {
+                    path: "RSSFeeds",
+                    element: <RSSFeedsPage />,
                 },
                 {
                     path: "favorites",

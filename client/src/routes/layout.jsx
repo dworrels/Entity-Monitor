@@ -12,8 +12,11 @@ import { useRef, useState, useEffect } from "react";
 const Layout = () => {
     const isDesktopDevice = useMediaQuery("(min-width: 768px)");
     const [collapsed, setCollapsed] = useState(!isDesktopDevice);
+    const [search, setSearch] = useState(""); 
 
     const sidebarRef = useRef(null);
+
+    const scrollContainerRef = useRef(null);
 
     useEffect(() => {
         setCollapsed(!isDesktopDevice);
@@ -41,9 +44,14 @@ const Layout = () => {
                 <Header
                     collapsed={collapsed}
                     setCollapsed={setCollapsed}
+                    search={search}
+                    setSearch={setSearch}
                 />
-                <div className="h-[calc(100vh-60px)] overflow-x-hidden overflow-y-auto p-6">
-                    <Outlet />
+                <div 
+                    ref={scrollContainerRef}
+                    className="h-[calc(100vh-60px)] overflow-x-hidden overflow-y-auto p-6"
+                >
+                    <Outlet context={{search, scrollContainerRef}} />
                 </div>
             </div>
         </div>

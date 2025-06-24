@@ -2,12 +2,15 @@
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_caching import Cache
 import os
 import json
+import feedparser
+
 
 app = Flask(__name__)
 # CORS(app, origins=["http://localhost:5173"])  # The frontend URL
-CORS(app, origins=["http://192.168.5.48:5173"])
+CORS(app, origins=["http://192.168.5.49:5173"])
 
 SOURCE_FILE = os.path.join("feeds", "sources.json")
 
@@ -93,12 +96,39 @@ def update_source(source_id):
 
     return jsonify(sources), 200
 
+# in-memory cache
+cache = Cache(app, config={"CACHE_TYPE": "SimpleCache", "CACHE_DEFAULT_TIMEOUT": 300}) # 5 minutes
+
+# Parse articles for Home page
+@app.route("/api/articles", methods=["GET"])
+@cache.cached(timeout=300) # cache for 5 minutes will take 5 minutes for new sources to load
+def get_articles():
+    if os.path.exists(SOURCE_FILE):
+        with open(SOURCE_FILE, "r") as f:
+            sources = json.load(f)
+
+    else:
+        sources = []
+
+    all_articles = []
+    for source in sources:
+        feed = feedparser.parse(source["rssUrl"])
+        for entry in feed.entries[:5]: #limit to latest 5 per source
+            all_articles.append({
+                "title": entry.title,
+                "link": entry.link,
+                "description": getattr(entry, "description", ""),
+                "source": source["title"],
+                "published": entry.published if "published" in entry else "",
+                "image": entry.get("media_content", [{}])[0].get("url", "")  # handle images
+            })
+    return jsonify(all_articles)
+
 
 # Test if backend is running http://127.0.0.1:8090/
-@app.route("/")
-def index():
-    return "Flask backend is running."
-
+#   @app.route("/")
+#   def index():
+#    return "Flask backend is running."
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=8090)
