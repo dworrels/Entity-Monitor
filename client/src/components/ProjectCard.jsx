@@ -1,8 +1,10 @@
 import { Bell } from 'lucide-react'
 
-const ProjectCard = ({ name, keyword, date}) => {
+const ProjectCard = ({ name, keyword, date, onClick}) => {
     return (
-        <div className="min-w-82 overflow-hidden rounded bg-white shadow-lg hover:opacity-75 hover:shadow">
+        <div className="min-w-82 overflow-hidden rounded bg-white shadow-lg hover:opacity-75 hover:shadow"
+            onClick={onClick}
+        >
             <div className="px-6 py-4">
                 <div className="justify-items-end text-gray-500">
                     <Bell size={20} />

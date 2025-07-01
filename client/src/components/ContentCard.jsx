@@ -1,18 +1,5 @@
 import { formatToEST } from "../utils/formatDateEST";
-
-// converts HTML entities (like &quot;, &apos;, &amp;) into their corresponding characters (", ', &).
-const decodeHtml = (html) => {
-    const txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-};
-
-// Remove HTML Tags such as <p> or <div>
-function stripHtml(html) {
-    const tmp = document.createElement("div");
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || "";
-}
+import { decodeHtml, stripHtml } from "../utils/htmlUtils";
 
 const ContentCard = ({article}) => {
     return (
@@ -44,3 +31,5 @@ const ContentCard = ({article}) => {
 };
 
 export default ContentCard;
+
+

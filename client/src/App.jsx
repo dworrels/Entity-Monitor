@@ -6,6 +6,7 @@ import DashboardPage from "./routes/dashboard/page";
 
 import ProjectPage from "./routes/projects/page";
 import RSSFeedsPage from "./routes/rssfeeds/page";
+import ProjectDetailPage from "./routes/projects/[projectid]";
 
 /* Main App component that sets up the router and routes */
 function App() {
@@ -21,6 +22,10 @@ function App() {
                 {
                     path: "Projects",
                     element: <ProjectPage />,
+                },
+                {
+                    path: "Projects/:projectid",
+                    element: <ProjectDetailPage />,
                 },
                 {
                     path: "RSSFeeds",
