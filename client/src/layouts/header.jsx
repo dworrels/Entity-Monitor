@@ -1,4 +1,4 @@
-import { ChevronLeft, Search } from "lucide-react";
+import { ChevronLeft, Search, X } from "lucide-react";
 import PropTypes from "prop-types";
 
 export const Header = ({ collapsed, setCollapsed, search, setSearch }) => {
@@ -11,10 +11,10 @@ export const Header = ({ collapsed, setCollapsed, search, setSearch }) => {
                 >
                     <ChevronLeft className={collapsed && "rotate-180"}/>
                 </button>
-                <div className="input">
+                <div className="relative w-full max-w-xs">
                     <Search
                         size={20}
-                        className="text-slate-500"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 text-slate-500"
                     />
                     <input
                         type="text"
@@ -22,10 +22,20 @@ export const Header = ({ collapsed, setCollapsed, search, setSearch }) => {
                         id="search"
                         // search placeholder
                         placeholder="Search..."
-                        className="w-full bg-transparent text-slate-900 outline-0 placeholder:text-slate-500"
+                        className="w-full bg-transparent text-slate-900 outline-0 placeholder:text-slate-500 pl-8 pr-8"
                         value={search}
                         onChange={e => setSearch(e.target.value)}
                     />
+                    {search && (
+                        <button
+                            type="button"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-slate-200"
+                            onClick={() => setSearch("")}
+                            aria-label="Clear Search"
+                        >
+                            <X size={16} className="text-slate-500" />
+                        </button>
+                    )}
                 </div>
             </div>
         </header>
@@ -35,5 +45,7 @@ export const Header = ({ collapsed, setCollapsed, search, setSearch }) => {
 Header.propTypes = {
     collapsed: PropTypes.bool,
     setCollapsed: PropTypes.func,
+    search: PropTypes.string,
+    setSearch: PropTypes.func,
 };
 

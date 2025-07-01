@@ -4,16 +4,18 @@ import { useState, useEffect } from "react";
 import { Trash2, SquarePen } from "lucide-react";
 
 const RSSFeedsPage = () => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
     const [showModal, setShowModal] = useState(false);
     const [data, setData] = useState([]);
     const [modalMode, setModalMode] = useState("add");
     const [editSource, setEditSource] = useState(null);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [sourceToDelete, setSourceToDelete] = useState(null);
+    const [search, setSearch] = useState("");
 
     const handleAddSource = async (source) => {
         try {
-            const res = await fetch("http://192.168.5.49:8090/api/sources", {
+            const res = await fetch(`${API_BASE_URL}/api/sources`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(source),
@@ -51,12 +53,12 @@ const RSSFeedsPage = () => {
 
     useEffect(() => {
         const fetchFeeds = async () => {
-            const res = await fetch("http://192.168.5.49:8090/api/sources");
+            const res = await fetch(`${API_BASE_URL}/api/sources`);
             const feeds = await res.json();
             setData(feeds);
         };
         fetchFeeds();
-    }, []);
+    }, [API_BASE_URL]);
 
     const handleEdit = (row) => {
         setEditSource(row);
@@ -65,7 +67,7 @@ const RSSFeedsPage = () => {
     };
 
     const handleUpdateSource = async (updatedSource) => {
-        const res = await fetch(`http://192.168.5.49:8090/api/sources/${updatedSource.id}`, {
+        const res = await fetch(`${API_BASE_URL}/api/sources/${updatedSource.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedSource),
@@ -84,9 +86,9 @@ const RSSFeedsPage = () => {
     const confirmDelete = async () => {
         if (!sourceToDelete) return;
 
-        const res = await fetch(`http://192.168.5.49:8090/api/sources/${sourceToDelete.id}`, {
-            method: "DELETE"
-        }); 
+        const res = await fetch(`${API_BASE_URL}/api/sources/${sourceToDelete.id}`, {
+            method: "DELETE",
+        });
 
         if (res.ok) {
             const updatedSources = await res.json();
@@ -95,12 +97,13 @@ const RSSFeedsPage = () => {
 
         setShowConfirmModal(false);
         setSourceToDelete(null);
-    }
+    };
 
-    
-    {/* Data table column titles */}
+    {
+        /* Data table column titles */
+    }
     const columns = [
-        {   
+        {
             name: "Title",
             selector: (row) => row.title,
             sortable: true,
@@ -121,11 +124,9 @@ const RSSFeedsPage = () => {
                     </button>
                     <button
                         className="text-red-500 hover:underline"
-                        onClick={() => { 
-                            
+                        onClick={() => {
                             setSourceToDelete(row);
                             setShowConfirmModal(true);
-                        
                         }}
                     >
                         <Trash2 />
@@ -135,14 +136,24 @@ const RSSFeedsPage = () => {
         },
     ];
 
+    const filteredData = data.filter(source =>
+        source.title.toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
         <div className="flex flex-col gap-y-4">
-            <div className="flex flex-row gap-x-20">
+            <div className="flex flex-row gap-x-12">
                 <h1 className="title">RSS Feeds</h1>
-                
+                <input 
+                    type="text"
+                    placeholder="Search source title..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                />
+
                 {/* Add Feed Button */}
                 <button
-                    className="w-40 flex h-[40px] items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600"
+                    className="flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600"
                     onClick={() => {
                         setShowModal(true);
                         setModalMode("add");
@@ -151,7 +162,7 @@ const RSSFeedsPage = () => {
                 >
                     + Add Feed
                 </button>
-                
+
                 {/* Add Feed Modal Component */}
                 <Modal
                     isVisible={showModal}
@@ -188,19 +199,23 @@ const RSSFeedsPage = () => {
                     </div>
                 </Modal>
 
-                <Modal isVisible={showConfirmModal} onClose={() => setShowConfirmModal(false)}>
+                {/* Confirm Delete */}
+                <Modal
+                    isVisible={showConfirmModal}
+                    onClose={() => setShowConfirmModal(false)}
+                >
                     <div className="p-6">
-                        <h3 className="text-lg font-semibold mb-4">Are you sure you want to delete?</h3>
+                        <h3 className="mb-4 text-lg font-semibold">Are you sure you want to delete?</h3>
                         <p className="mb-6 text-gray-700">{sourceToDelete?.title}</p>
                         <div className="flex justify-end gap-3">
                             <button
-                            className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
-                            onClick={() => setShowConfirmModal(false)}
+                                className="rounded bg-gray-300 px-4 py-2 text-gray-800"
+                                onClick={() => setShowConfirmModal(false)}
                             >
                                 Cancel
                             </button>
                             <button
-                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
                                 onClick={confirmDelete}
                             >
                                 Yes, Delete
@@ -213,7 +228,7 @@ const RSSFeedsPage = () => {
             {/* Data Table Component */}
             <DataTable
                 columns={columns}
-                data={data}
+                data={filteredData}
                 pagination
                 highlightOnHover
             />

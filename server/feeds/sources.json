@@ -15,16 +15,6 @@
     "rssUrl": "https://rss.app/feeds/tBIv7e5NxsK8Ao13.xml"
   },
   {
-    "id": "bbcworldnews",
-    "title": "BBC World News",
-    "rssUrl": "http://feeds.bbci.co.uk/news/world/rss.xml"
-  },
-  {
-    "id": "theguardian",
-    "title": "The Guardian",
-    "rssUrl": "https://www.theguardian.com/world/rss"
-  },
-  {
     "id": "nytworldnews",
     "title": "NYT World News",
     "rssUrl": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
@@ -33,11 +23,6 @@
     "id": "yahoonews",
     "title": "Yahoo News",
     "rssUrl": "https://news.yahoo.com/rss/mostviewed"
-  },
-  {
-    "id": "cnbctopnews",
-    "title": "CNBC Top News",
-    "rssUrl": "https://www.cnbc.com/id/100003114/device/rss/rss.html"
   },
   {
     "id": "cnetnews",
@@ -53,5 +38,145 @@
     "id": "techcrunch",
     "title": "TechCrunch",
     "rssUrl": "https://feeds.feedburner.com/TechCrunch"
+  },
+  {
+    "id": "wsjworldnews",
+    "title": "WSJ World News",
+    "rssUrl": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews"
+  },
+  {
+    "id": "forbes-business",
+    "title": "Forbes - Business",
+    "rssUrl": "https://www.forbes.com/business/feed/"
+  },
+  {
+    "id": "thewashingtonpost-world",
+    "title": "The Washington Post - World",
+    "rssUrl": "https://feeds.washingtonpost.com/rss/world?itid=lk_inline_manual_31"
+  },
+  {
+    "id": "thewashingtonpost-tech",
+    "title": "The Washington Post - Tech",
+    "rssUrl": "https://feeds.washingtonpost.com/rss/business/technology?itid=lk_inline_manual_29"
+  },
+  {
+    "id": "googlenews",
+    "title": "Google News",
+    "rssUrl": "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US:en"
+  },
+  {
+    "id": "theguardian-ushealth",
+    "title": "The Guardian - US Health",
+    "rssUrl": "https://www.theguardian.com/lifeandstyle/health-and-wellbeing/rss"
+  },
+  {
+    "id": "businessinsider-tech",
+    "title": "Business Insider - Tech",
+    "rssUrl": "https://feeds.businessinsider.com/custom/all"
+  },
+  {
+    "id": "abcnews",
+    "title": "ABC News",
+    "rssUrl": "https://abcnews.go.com/abcnews/usheadlines"
+  },
+  {
+    "id": "theverge",
+    "title": "The Verge",
+    "rssUrl": "https://www.theverge.com/rss/index.xml"
+  },
+  {
+    "id": "marketwatch",
+    "title": "MarketWatch",
+    "rssUrl": "https://feeds.content.dowjones.io/public/rss/mw_topstories"
+  },
+  {
+    "id": "nprnews",
+    "title": "NPR News",
+    "rssUrl": "https://feeds.npr.org/1001/rss.xml"
+  },
+  {
+    "id": "rfe/rl",
+    "title": "RFE/RL",
+    "rssUrl": "https://www.rferl.org/api/zbqiml-vomx-tpeqkmy"
+  },
+  {
+    "id": "haveibeenpwned-breaches",
+    "title": "HaveIBeenPwned - Breaches",
+    "rssUrl": "https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches"
+  },
+  {
+    "id": "itpro",
+    "title": "ITPro",
+    "rssUrl": "https://www.itpro.com/feeds/articletype/news"
+  },
+  {
+    "id": "defenseone",
+    "title": "Defense One",
+    "rssUrl": "https://www.defenseone.com/rss/all/"
+  },
+  {
+    "id": "thediplomat",
+    "title": "The Diplomat",
+    "rssUrl": "https://thediplomat.com/feed/"
+  },
+  {
+    "id": "foreignaffairs",
+    "title": "Foreign Affairs",
+    "rssUrl": "https://www.foreignaffairs.com/feeds/topic/Geopolitics/rss.xml"
+  },
+  {
+    "id": "wired",
+    "title": "Wired",
+    "rssUrl": "https://www.wired.com/feed/rss"
+  },
+  {
+    "id": "mashable",
+    "title": "Mashable",
+    "rssUrl": "https://mashable.com/feeds/rss/all"
+  },
+  {
+    "id": "france24",
+    "title": "France 24",
+    "rssUrl": "https://www.france24.com/en/rss"
+  },
+  {
+    "id": "globalnews",
+    "title": "Global News",
+    "rssUrl": "https://globalnews.ca/world/feed/"
+  },
+  {
+    "id": "time-world",
+    "title": "Time - World",
+    "rssUrl": "https://feeds.feedburner.com/time/world"
+  },
+  {
+    "id": "skynews-world",
+    "title": "Sky News - World",
+    "rssUrl": "https://feeds.skynews.com/feeds/rss/world.xml"
+  },
+  {
+    "id": "vox-world",
+    "title": "Vox - World",
+    "rssUrl": "https://www.vox.com/rss/world-politics/index.xml"
+  },
+  {
+    "id": "sky-sports",
+    "title": "Sky - Sports",
+    "rssUrl": "https://www.skysports.com/rss/12040"
+  },
+  {
+    "id": "foxsports",
+    "title": "Fox Sports",
+    "rssUrl": "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30"
+  },
+  {
+    "id": "bitcoinnews-darknet",
+    "title": "Bitcoin News - Darknet",
+    "rssUrl": "https://news.bitcoin.com/tag/darknet/feed/"
+  },
+  {
+    "id": "cbs-latest",
+    "title": "CBS - Latest",
+    "rssUrl": "https://www.cbsnews.com/latest/rss/main"
   }
 ]
