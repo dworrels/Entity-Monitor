@@ -1,3 +1,5 @@
+import { formatToEST } from "../utils/formatDateEST";
+
 // converts HTML entities (like &quot;, &apos;, &amp;) into their corresponding characters (", ', &).
 const decodeHtml = (html) => {
     const txt = document.createElement("textarea");
@@ -33,9 +35,9 @@ const ContentCard = ({article}) => {
                     {decodeHtml(stripHtml(article.description))}
                 </p>
             </div>
-            <div className="px-6 pt-4 pb-2">
+            <div className="px-6 pt-4 pb-2 flex flex-col item-start gap-1">
                 <span className="full mr-2 mb-2 inline-block rounded bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">{article.source}</span>
-                <span className="full mr-2 mb-2 inline-block rounded bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">{article.published}</span>
+                <span className="full mr-2 mb-2 inline-block rounded bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">{formatToEST(article.published)}</span>
             </div>
         </div>
     );
