@@ -160,11 +160,6 @@
     "rssUrl": "https://www.vox.com/rss/world-politics/index.xml"
   },
   {
-    "id": "sky-sports",
-    "title": "Sky - Sports",
-    "rssUrl": "https://www.skysports.com/rss/12040"
-  },
-  {
     "id": "foxsports",
     "title": "Fox Sports",
     "rssUrl": "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30"
@@ -178,5 +173,10 @@
     "id": "cbs-latest",
     "title": "CBS - Latest",
     "rssUrl": "https://www.cbsnews.com/latest/rss/main"
+  },
+  {
+    "id": "foxbusiness",
+    "title": "Fox Business",
+    "rssUrl": "https://moxie.foxbusiness.com/google-publisher/latest.xml"
   }
 ]

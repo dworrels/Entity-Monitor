@@ -1,12 +1,14 @@
 import ProjectCard from "../../components/ProjectCard";
 import { useState, useEffect } from "react";
 import Modal from "../../components/Modal";
+import { useNavigate } from "react-router-dom";
 
 const ProjectPage = () => {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
     const [showModal, setShowModal] = useState(false);
     const [projects, setProjects] = useState([]);
     const [form, setForm] = useState({name: "", keyword: ""})
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/projects`)
@@ -94,6 +96,7 @@ const ProjectPage = () => {
                         name={project.name}
                         keyword={project.keyword}
                         date={project.date}
+                        onClick={() => navigate(`/Projects/${project.id}`)}
                     />
                 ))}
             </div>
