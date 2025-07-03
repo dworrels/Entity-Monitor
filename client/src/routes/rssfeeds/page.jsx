@@ -144,7 +144,8 @@ const RSSFeedsPage = () => {
         <div className="flex flex-col gap-y-4">
             <div className="flex flex-row gap-x-12">
                 <h1 className="title">RSS Feeds</h1>
-                <input 
+                <input
+                    className="flex h-[40px] w-40 p-1 items-center justify-center rounded-lg border-0 border-slate-500" 
                     type="text"
                     placeholder="Search source title..."
                     value={search}
@@ -153,7 +154,7 @@ const RSSFeedsPage = () => {
 
                 {/* Add Feed Button */}
                 <button
-                    className="flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600"
+                    className="flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600 ml-auto"
                     onClick={() => {
                         setShowModal(true);
                         setModalMode("add");
