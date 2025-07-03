@@ -42,7 +42,7 @@ const ProjectPage = () => {
             <div className="flex flex-row gap-x-20">
                 <h1 className="title">Projects</h1>
                 <button
-                    className="flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600"
+                    className="flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600 ml-auto"
                     onClick={() => {
                         setShowModal(true);
                     }}
@@ -69,7 +69,7 @@ const ProjectPage = () => {
                             </div>
 
                             <div className="mb-4">
-                                <label className="mb-2 block text-sm font-medium text-gray-700">Project Keyword</label>
+                                <label className="mb-2 block text-sm font-medium text-gray-700">Search Query</label>
                                 <input
                                     type="text"
                                     name="keyword"
