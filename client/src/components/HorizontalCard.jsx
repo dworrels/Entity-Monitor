@@ -19,7 +19,7 @@ const HorizontalCard = ({ article }) => (
             >
                 {article.title}
             </a>
-            <p className="mb-2 text-gray-700">{decodeHtml(stripHtml(article.description))}</p>
+            <p className="mb-2 text-gray-700 line-clamp-5">{decodeHtml(stripHtml(article.description))}</p>
             <div className="flex-row flex gap-2 text-sm text-gray-600">
                 <span className="full mr-2 mb-2 inline-block rounded bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">{article.source}</span>
                 <span className="full mr-2 mb-2 inline-block rounded bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">{formatToEST(article.published)}</span>
