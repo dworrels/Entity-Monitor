@@ -287,28 +287,61 @@ def proxy_image():
         print("proxy error:", e)
         return "Error fetching image", 500
 
-INSTAGRAM_JSON = os.path.join("Instagram_data", "instagram.json")
-
 @app.route("/api/instagram/posts", methods=["GET"])
 def get_instagram_posts():
+    username = request.args.get("username")
+    if not username:
+        return jsonify({"error": "Missing username"}), 400
+
     try:
-        with open(INSTAGRAM_JSON, "r") as f:
-            data = json.load(f)
+        url = "https://instagram120.p.rapidapi.com/api/instagram/posts"
+        payload = {
+            "username": username,
+            "maxId": ""
+        }
+        headers = {
+            "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
+            "x-rapidapi-host": "instagram120.p.rapidapi.com",
+            "Content-Type": "application/json"
+        }
+        response = requests.post(url, json=payload, headers=headers, timeout=10)
+        try:
+            data = response.json()
+        except Exception:
+            print("Non-JSON response from Instagram API:", response.text)
+            return jsonify({"error": "Instagram API did not return JSON", "raw": response.text}), 500
+
+        # --- FIX: handle result.edges structure ---
+        edges = data.get("result", {}).get("edges", [])
+        if not isinstance(edges, list):
+            return jsonify({"error": "Unexpected API response", "raw": data}), 500
+
         posts = []
-        for edge in data.get("result", {}).get("edges", []):
+        for edge in edges:
             node = edge.get("node", {})
             caption = node.get("caption", {})
             text = caption.get("text", "")
             taken_at = node.get("taken_at", "")
-            # Get first image url if available
             image_url = ""
-            candidates = node.get("image_versions2", {}).get("candidates", [])
+            first_candidate_url = ""
+            image_versions2 = node.get("image_versions2", {})
+            candidates = image_versions2.get("candidates", []) if isinstance(image_versions2, dict) else []
             if candidates and isinstance(candidates, list):
-                image_url = candidates[0].get("url", "")
+                first_candidate_url = candidates[0].get("url", "")
+                image_url = first_candidate_url
+
+            print({
+                "text": text,
+                "image": image_url,
+                "taken_at": taken_at,
+                "first_url": first_candidate_url
+            })
+
             posts.append({
                 "text": text,
                 "image": image_url,
-                "taken_at": taken_at
+                "taken_at": taken_at,
+                "first_url": first_candidate_url
             })
         return jsonify({"posts": posts})
     except Exception as e:
