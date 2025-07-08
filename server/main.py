@@ -1,16 +1,20 @@
 # interpreter path: /Users/developer/Desktop/Project/server/venv/bin/python
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from flask_caching import Cache
 import os
+import re
 import json
 import feedparser
+import xml.etree.ElementTree as ET
+import requests
 from dateutil import parser as dateparser
 from datetime import datetime, timezone
 from apscheduler.schedulers.background import BackgroundScheduler
 import threading
 from dotenv import load_dotenv
+from io import BytesIO
 
 load_dotenv()
 frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
@@ -124,6 +128,56 @@ def fetch_and_save_articles():
     for source in sources:
         feed = feedparser.parse(source["rssUrl"])
         for entry in feed.entries:
+
+            # Find image URL in various places
+            image_url = ""
+            # try media content
+            if "media_content" in entry and entry.media_content:
+                image_url = entry.media_content[0].get("url", "")
+
+            # if not found try to get image from media:thumbnail
+            if not image_url and "media_thumbnail" in entry and entry.media_thumbnail:
+                # entry.media_thumbnail is a list of dicts
+                image_url = entry.media_thumbnail[0].get("url", "")
+
+            # if not found try to get image from <image> tag (rare case)
+            if not image_url and "image" in entry:
+                # entry.image may be a dict or string
+                if isinstance(entry.image, dict):
+                    image_url = entry.image.get("href", "") or entry.image.get(
+                        "url", ""
+                    )
+                elif isinstance(entry.image, str):
+                    image_url = entry.image
+
+            # Try to extract <image>...</image> from description
+            if not image_url and "description" in entry:
+                match = re.search(r"<image>(.*?)</image>", entry.description)
+                if match:
+                    image_url = match.group(1)
+
+            # try to extract from <image>...</image> tag in summary
+            if not image_url and "summary" in entry:
+                match = re.search(r"<image>(.*?)</image>", entry.summary)
+                if match:
+                    image_url = match.group(1)
+
+            # try to extract <image>...</image> tag in content
+            if not image_url and "content" in entry:
+                for content in entry.content:
+                    if "value" in content:
+                        match = re.search(r"<image>(.*?)</image>", content["value"])
+                        if match:
+                            image_url = match.group(1)
+                            break
+
+            # if still not found try to get image from links with rel="image"
+            if not image_url and "links" in entry:
+                for link in entry.links:
+                    if link.get("rel") == "image" and link.get("href"):
+                        image_url = link.get("href")
+                        break
+
             all_articles.append(
                 {
                     "title": entry.title,
@@ -131,7 +185,7 @@ def fetch_and_save_articles():
                     "description": getattr(entry, "description", ""),
                     "source": source.get("title", ""),
                     "published": entry.published if "published" in entry else "",
-                    "image": entry.get("media_content", [{}])[0].get("url", ""),
+                    "image": image_url,
                 }
             )
 
@@ -216,6 +270,50 @@ def add_project():
         json.dump(projects, f, indent=2)
 
     return jsonify(new_project), 201
+
+
+# Social Media Search API
+
+@app.route("/api/proxy-image")
+def proxy_image():
+    url = request.args.get("url")
+    if not url:
+        return "Missing url", 400
+    try:
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        return send_file(BytesIO(resp.content), mimetype=resp.headers.get("content-type", "image/jpeg"))
+    except Exception as e:
+        print("proxy error:", e)
+        return "Error fetching image", 500
+
+INSTAGRAM_JSON = os.path.join("Instagram_data", "instagram.json")
+
+@app.route("/api/instagram/posts", methods=["GET"])
+def get_instagram_posts():
+    try:
+        with open(INSTAGRAM_JSON, "r") as f:
+            data = json.load(f)
+        posts = []
+        for edge in data.get("result", {}).get("edges", []):
+            node = edge.get("node", {})
+            caption = node.get("caption", {})
+            text = caption.get("text", "")
+            taken_at = node.get("taken_at", "")
+            # Get first image url if available
+            image_url = ""
+            candidates = node.get("image_versions2", {}).get("candidates", [])
+            if candidates and isinstance(candidates, list):
+                image_url = candidates[0].get("url", "")
+            posts.append({
+                "text": text,
+                "image": image_url,
+                "taken_at": taken_at
+            })
+        return jsonify({"posts": posts})
+    except Exception as e:
+        print("error in /api/instagram/posts:", e)
+        return jsonify({"error": str(e)}), 500
 
 
 # Test if backend is running http://127.0.0.1:8090/

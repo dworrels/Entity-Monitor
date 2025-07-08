@@ -60,11 +60,6 @@
     "rssUrl": "https://feeds.washingtonpost.com/rss/business/technology?itid=lk_inline_manual_29"
   },
   {
-    "id": "googlenews",
-    "title": "Google News",
-    "rssUrl": "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US:en"
-  },
-  {
     "id": "theguardian-ushealth",
     "title": "The Guardian - US Health",
     "rssUrl": "https://www.theguardian.com/lifeandstyle/health-and-wellbeing/rss"
@@ -78,11 +73,6 @@
     "id": "abcnews",
     "title": "ABC News",
     "rssUrl": "https://abcnews.go.com/abcnews/usheadlines"
-  },
-  {
-    "id": "theverge",
-    "title": "The Verge",
-    "rssUrl": "https://www.theverge.com/rss/index.xml"
   },
   {
     "id": "marketwatch",
@@ -130,11 +120,6 @@
     "rssUrl": "https://www.wired.com/feed/rss"
   },
   {
-    "id": "mashable",
-    "title": "Mashable",
-    "rssUrl": "https://mashable.com/feeds/rss/all"
-  },
-  {
     "id": "france24",
     "title": "France 24",
     "rssUrl": "https://www.france24.com/en/rss"
@@ -170,13 +155,153 @@
     "rssUrl": "https://news.bitcoin.com/tag/darknet/feed/"
   },
   {
-    "id": "cbs-latest",
-    "title": "CBS - Latest",
-    "rssUrl": "https://www.cbsnews.com/latest/rss/main"
-  },
-  {
     "id": "foxbusiness",
     "title": "Fox Business",
     "rssUrl": "https://moxie.foxbusiness.com/google-publisher/latest.xml"
+  },
+  {
+    "id": "nbc-topnews",
+    "title": "NBC - Top News",
+    "rssUrl": "https://feeds.nbcnews.com/nbcnews/public/news"
+  },
+  {
+    "id": "bbc-worldnews",
+    "title": "BBC - World News",
+    "rssUrl": "https://feeds.bbci.co.uk/news/world/rss.xml"
+  },
+  {
+    "id": "nyt-topstories",
+    "title": "NYT - Top Stories",
+    "rssUrl": ""
+  },
+  {
+    "id": "newyorkpost",
+    "title": "New York Post",
+    "rssUrl": "https://nypost.com/feed/"
+  },
+  {
+    "id": "aljazeera",
+    "title": "Al Jazeera ",
+    "rssUrl": "https://www.aljazeera.com/xml/rss/all.xml"
+  },
+  {
+    "id": "buzzfeed-world",
+    "title": "Buzzfeed - World",
+    "rssUrl": "https://www.buzzfeed.com/world.xml"
+  },
+  {
+    "id": "timesofindia",
+    "title": "Times of India",
+    "rssUrl": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms"
+  },
+  {
+    "id": "russiatoday-world",
+    "title": "Russia Today - World",
+    "rssUrl": "https://www.rt.com/rss/news/"
+  },
+  {
+    "id": "ndtv-world",
+    "title": "NDTV - World",
+    "rssUrl": "https://feeds.feedburner.com/ndtvnews-world-news"
+  },
+  {
+    "id": "themirroruk-world",
+    "title": "The Mirror UK - World",
+    "rssUrl": "https://www.mirror.co.uk/news/world-news/?service=rss"
+  },
+  {
+    "id": "thecipherbrief",
+    "title": "The Cipher Brief",
+    "rssUrl": "https://www.thecipherbrief.com/feeds/feed.rss"
+  },
+  {
+    "id": "baynews9",
+    "title": "Bay News 9",
+    "rssUrl": "https://baynews9.com/services/contentfeed.fl%7ctampa.hero.rss"
+  },
+  {
+    "id": "engadget",
+    "title": "Engadget",
+    "rssUrl": "https://www.engadget.com/rss.xml"
+  },
+  {
+    "id": "truecrimenews",
+    "title": "True Crime News",
+    "rssUrl": "https://feeds.truecrimenews.com/rss/"
+  },
+  {
+    "id": "lawandcrime",
+    "title": "Law and Crime",
+    "rssUrl": "https://lawandcrime.com/feed/"
+  },
+  {
+    "id": "thehackernews",
+    "title": "The Hacker News",
+    "rssUrl": "https://feeds.feedburner.com/TheHackersNews"
+  },
+  {
+    "id": "hackread",
+    "title": "Hackread",
+    "rssUrl": "https://hackread.com/feed/"
+  },
+  {
+    "id": "foxnews-health",
+    "title": "Fox News - Health",
+    "rssUrl": "https://moxie.foxnews.com/google-publisher/health.xml"
+  },
+  {
+    "id": "foxnews-politics",
+    "title": "Fox News - Politics",
+    "rssUrl": "https://moxie.foxnews.com/google-publisher/politics.xml"
+  },
+  {
+    "id": "foxnews-tech",
+    "title": "Fox News - Tech",
+    "rssUrl": "https://moxie.foxnews.com/google-publisher/tech.xml"
+  },
+  {
+    "id": "cnn-africa",
+    "title": "CNN - Africa",
+    "rssUrl": "http://rss.cnn.com/rss/edition_africa.rss"
+  },
+  {
+    "id": "cnn-americas",
+    "title": "CNN - Americas",
+    "rssUrl": "http://rss.cnn.com/rss/edition_americas.rss"
+  },
+  {
+    "id": "cnn-asia",
+    "title": "CNN - Asia",
+    "rssUrl": "http://rss.cnn.com/rss/edition_asia.rss"
+  },
+  {
+    "id": "cnn-europe",
+    "title": "CNN - Europe",
+    "rssUrl": "http://rss.cnn.com/rss/edition_europe.rss"
+  },
+  {
+    "id": "cnn-middleeast",
+    "title": "CNN - Middle East",
+    "rssUrl": "http://rss.cnn.com/rss/edition_meast.rss"
+  },
+  {
+    "id": "cnn-us",
+    "title": "CNN - US",
+    "rssUrl": "http://rss.cnn.com/rss/edition_us.rss"
+  },
+  {
+    "id": "cnn-entertainment",
+    "title": "CNN - Entertainment",
+    "rssUrl": "http://rss.cnn.com/rss/edition_entertainment.rss"
+  },
+  {
+    "id": "cnn-travel",
+    "title": "CNN - Travel",
+    "rssUrl": "http://rss.cnn.com/rss/cnn_travel.rss"
+  },
+  {
+    "id": "cnn-sport",
+    "title": "CNN - Sport",
+    "rssUrl": "http://rss.cnn.com/rss/edition_sport.rss"
   }
 ]

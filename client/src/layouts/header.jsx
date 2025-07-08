@@ -1,4 +1,4 @@
-import { ChevronLeft, Search, X } from "lucide-react";
+{/*import { ChevronLeft, Search, X } from "lucide-react";
 import PropTypes from "prop-types";
 
 export const Header = ({ collapsed, setCollapsed, search, setSearch }) => {
@@ -48,4 +48,4 @@ Header.propTypes = {
     search: PropTypes.string,
     setSearch: PropTypes.func,
 };
-
+*/}
