@@ -42,13 +42,14 @@ const ProjectDetailPage = () => {
             .finally(() => setLoading(false));
     }, [projectid]);
 
+    
     const handleSocialSearch = (e) => {
     e.preventDefault();
     setSocialLoading(true);
 
     let url = "";
     if (selectedSite === "instagram") {
-        url = `${API_BASE_URL}/api/instagram/posts`;
+        url = `${API_BASE_URL}/api/instagram/posts?username=${encodeURIComponent(socialSearch)}`;
     } else {
         url = `${API_BASE_URL}/api/social?site=${selectedSite}&username=${encodeURIComponent(socialSearch)}`;
     }
@@ -60,6 +61,7 @@ const ProjectDetailPage = () => {
         })
         .finally(() => setSocialLoading(false));
 };
+
 
     if (loading) return <div>Loading...</div>;
     if (!project) return <div>Project not found</div>;

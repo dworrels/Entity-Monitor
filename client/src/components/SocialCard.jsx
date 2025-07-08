@@ -3,8 +3,14 @@ import { formatToEST } from "../utils/formatDateEST";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SocialCard = ({ post }) => {
-    const isInstagram = post.image && post.image.includes("instagram.fdps9-1.fna.fbcdn.net");
-    const imageSrc = isInstagram
+    
+    const shouldProxy =
+        post.image &&
+        (post.image.includes("instagram.") ||
+         post.image.includes("cdninstagram") ||
+         post.image.startsWith("https://scontent"));
+
+    const imageSrc = shouldProxy
         ? `${API_BASE_URL}/api/proxy-image?url=${encodeURIComponent(post.image)}`
         : post.image;
 
