@@ -272,8 +272,7 @@ def add_project():
     return jsonify(new_project), 201
 
 
-# Social Media Search API
-
+# Instagram API
 @app.route("/api/proxy-image")
 def proxy_image():
     url = request.args.get("url")
@@ -348,6 +347,61 @@ def get_instagram_posts():
         print("error in /api/instagram/posts:", e)
         return jsonify({"error": str(e)}), 500
 
+# X API 
+@app.route("/api/x/posts", methods=["GET"])
+def get_x_posts():
+    username = request.args.get("username")
+    if not username:
+        return jsonify({"error": "Missing username"}), 400
+    
+    try:
+        url = "https://twitter-api45.p.rapidapi.com/usermedia.php"
+        querystring = {"screenname": username}
+        headers = {
+            "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
+            "x-rapidapi-host": "twitter-api45.p.rapidapi.com"
+        }
+        response = requests.get(url, headers = headers, params=querystring, timeout=10)
+        try:
+            data = response.json()
+        except Exception:
+            print("Non-JSON respnse from X API:", response.text)
+            return jsonify({"error": "X API did not return JSON", "raw": response.text}), 500
+        
+        timeline = data.get("timeline", [])
+        posts = []
+        for item in timeline:
+            text = item.get("text", "")
+            taken_at = item.get("created_at", "")
+            media_url = ""
+
+            media = item.get("media", {})
+            if "photo" in media and isinstance(media["photo"], list) and media["photo"]:
+                media_url = media["photo"][0].get("media_url_https") or media["photo"][0].get("media_url", "")
+
+            elif "video" in media and isinstance(media["video"], list) and media["video"]:
+                media_url = media["video"][0].get("media_url_https") or media["video"][0].get("media_url", "")
+
+            print({
+                "text": text,
+                "image": media_url,
+                "taken_at": taken_at,
+                "first_url": media_url,
+            })
+
+            posts.append({
+                "text": text,
+                "image": media_url,
+                "taken_at": taken_at,
+                "first_url": media_url,
+                "username": username,
+                "link": f"https://x.com/{username}/status/{item.get('tweet_id', '')}"
+            })
+
+        return jsonify({"posts": posts})
+    except Exception as e:
+        print("error in /api/x/posts:", e)
+        return jsonify({"error": str(e)}), 500
 
 # Test if backend is running http://127.0.0.1:8090/
 #   @app.route("/")
