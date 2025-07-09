@@ -18,7 +18,7 @@ const SocialCard = ({ post }) => {
         <div className="max-w-sm max-h-[620px] flex flex-col overflow-hidden rounded bg-white shadow-lg">
             {imageSrc && (
                 <img 
-                    className="w-full h-50 object-cover"
+                    className="w-full h-96 object-cover object-top"
                     src={imageSrc}
                     alt="social post"
                 />

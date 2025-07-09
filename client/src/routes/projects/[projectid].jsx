@@ -50,6 +50,8 @@ const ProjectDetailPage = () => {
     let url = "";
     if (selectedSite === "instagram") {
         url = `${API_BASE_URL}/api/instagram/posts?username=${encodeURIComponent(socialSearch)}`;
+    } else if (selectedSite === "x") {
+        url = `${API_BASE_URL}/api/x/posts?username=${encodeURIComponent(socialSearch)}`;
     } else {
         url = `${API_BASE_URL}/api/social?site=${selectedSite}&username=${encodeURIComponent(socialSearch)}`;
     }
@@ -110,6 +112,7 @@ const ProjectDetailPage = () => {
                 </button>
             </div>
 
+            {/* Articles tab content */}
             {activeTab === "articles" && (
                 <>
                     <div className="mb-4 flex items-center">
@@ -144,7 +147,7 @@ const ProjectDetailPage = () => {
                 </>
             )}
 
-            {/* Tabs content */}
+            {/* Social Media tab content */}
             {activeTab === "social" && (
                 <div>
                     <form
