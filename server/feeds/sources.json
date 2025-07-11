@@ -220,11 +220,6 @@
     "rssUrl": "https://baynews9.com/services/contentfeed.fl%7ctampa.hero.rss"
   },
   {
-    "id": "engadget",
-    "title": "Engadget",
-    "rssUrl": "https://www.engadget.com/rss.xml"
-  },
-  {
     "id": "truecrimenews",
     "title": "True Crime News",
     "rssUrl": "https://feeds.truecrimenews.com/rss/"
@@ -303,5 +298,105 @@
     "id": "cnn-sport",
     "title": "CNN - Sport",
     "rssUrl": "http://rss.cnn.com/rss/edition_sport.rss"
+  },
+  {
+    "id": "gizmodo",
+    "title": "Gizmodo",
+    "rssUrl": "https://gizmodo.com/feed"
+  },
+  {
+    "id": "abcactionnews",
+    "title": "ABC Action News",
+    "rssUrl": "https://www.abcactionnews.com/news.rss"
+  },
+  {
+    "id": "orlandosentinel",
+    "title": "Orlando Sentinel",
+    "rssUrl": "https://www.orlandosentinel.com/feed/"
+  },
+  {
+    "id": "entrepreneur-latest",
+    "title": "Entrepreneur - latest",
+    "rssUrl": "https://www.entrepreneur.com/latest.rss"
+  },
+  {
+    "id": "fastcompany",
+    "title": "Fast Company",
+    "rssUrl": "https://www.fastcompany.com/latest/rss?truncated=true"
+  },
+  {
+    "id": "perezhilton",
+    "title": "Perez Hilton",
+    "rssUrl": "https://perezhilton.com/feed/"
+  },
+  {
+    "id": "gq",
+    "title": "GQ",
+    "rssUrl": "https://www.gq.com/feed/rss"
+  },
+  {
+    "id": "arstechnica",
+    "title": "Arstechnica",
+    "rssUrl": "https://arstechnica.com/tag/self-driving-cars/feed/"
+  },
+  {
+    "id": "etonline",
+    "title": "Etonline",
+    "rssUrl": "https://www.etonline.com/news/rss"
+  },
+  {
+    "id": "reddit-r/news",
+    "title": "Reddit - r/news",
+    "rssUrl": "https://www.reddit.com/r/news/.rss"
+  },
+  {
+    "id": "departmentofdefense",
+    "title": "Department of Defense",
+    "rssUrl": "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=800&Site=945&max=10"
+  },
+  {
+    "id": "cbs-world",
+    "title": "CBS - World",
+    "rssUrl": "https://www.cbsnews.com/latest/rss/world"
+  },
+  {
+    "id": "cbs-us",
+    "title": "CBS - US",
+    "rssUrl": "https://www.cbsnews.com/latest/rss/us"
+  },
+  {
+    "id": "cbs-politics",
+    "title": "CBS - Politics",
+    "rssUrl": "https://www.cbsnews.com/latest/rss/politics"
+  },
+  {
+    "id": "cbs-health",
+    "title": "CBS - Health",
+    "rssUrl": "https://www.cbsnews.com/latest/rss/health"
+  },
+  {
+    "id": "cbs-crime",
+    "title": "CBS - Crime",
+    "rssUrl": "https://www.cbsnews.com/latest/rss/crime"
+  },
+  {
+    "id": "theverge",
+    "title": "The Verge",
+    "rssUrl": "https://www.theverge.com/rss/index.xml"
+  },
+  {
+    "id": "wtopnews",
+    "title": "WTOP News",
+    "rssUrl": "https://wtop.com/government/white-house/feed/"
+  },
+  {
+    "id": "cnbc-world",
+    "title": "CNBC - World",
+    "rssUrl": "https://www.cnbc.com/id/100727362/device/rss/rss.html"
+  },
+  {
+    "id": "time-world",
+    "title": "TIME - World",
+    "rssUrl": "https://feeds.feedburner.com/time/world"
   }
 ]

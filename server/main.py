@@ -9,12 +9,15 @@ import json
 import feedparser
 import xml.etree.ElementTree as ET
 import requests
+import tldextract
 from dateutil import parser as dateparser
 from datetime import datetime, timezone
 from apscheduler.schedulers.background import BackgroundScheduler
 import threading
 from dotenv import load_dotenv
 from io import BytesIO
+
+brandfetch_api_key = os.environ.get("BRANDFETCH_API_KEY")
 
 load_dotenv()
 frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
@@ -115,9 +118,24 @@ cache = Cache(
     app, config={"CACHE_TYPE": "SimpleCache", "CACHE_DEFAULT_TIMEOUT": 300}
 )  # 5 minutes
 
+def get_brandfetch_logo(domain, api_key):
+    try:
+        url = f"https://api.brandfetch.io/v2/search/{domain}"
+        headers = {"Authorization": f"Bearer {api_key}"}
+        resp = requests.get(url, headers=headers, timeout=5)
+        if resp.status_code == 200:
+            data = resp.json()
+            # Brandfetch /v2/search returns a list of brands with an "icon" field
+            if data and isinstance(data, list) and "icon" in data[0]:
+                return data[0]["icon"]
+        return ""
+    except Exception as e:
+        print(f"Brandfetch error for {domain}: {e}")
+        return ""
 
 # Background refresh
 def fetch_and_save_articles():
+    print("FETCHING ARTICLES...")
     if os.path.exists(SOURCE_FILE):
         with open(SOURCE_FILE, "r") as f:
             sources = json.load(f)
@@ -126,68 +144,79 @@ def fetch_and_save_articles():
 
     all_articles = []
     for source in sources:
-        feed = feedparser.parse(source["rssUrl"])
-        for entry in feed.entries:
+        try:
+            feed = feedparser.parse(source["rssUrl"])
+            for entry in feed.entries:
+        
+                # Find image URL in various places
+                image_url = ""
+                # try media content
+                if "media_content" in entry and entry.media_content:
+                    image_url = entry.media_content[0].get("url", "")
 
-            # Find image URL in various places
-            image_url = ""
-            # try media content
-            if "media_content" in entry and entry.media_content:
-                image_url = entry.media_content[0].get("url", "")
+                # if not found try to get image from media:thumbnail
+                if not image_url and "media_thumbnail" in entry and entry.media_thumbnail:
+                    # entry.media_thumbnail is a list of dicts
+                    image_url = entry.media_thumbnail[0].get("url", "")
 
-            # if not found try to get image from media:thumbnail
-            if not image_url and "media_thumbnail" in entry and entry.media_thumbnail:
-                # entry.media_thumbnail is a list of dicts
-                image_url = entry.media_thumbnail[0].get("url", "")
+                # if not found try to get image from <image> tag (rare case)
+                if not image_url and "image" in entry:
+                    # entry.image may be a dict or string
+                    if isinstance(entry.image, dict):
+                        image_url = entry.image.get("href", "") or entry.image.get(
+                            "url", ""
+                        )
+                    elif isinstance(entry.image, str):
+                        image_url = entry.image
 
-            # if not found try to get image from <image> tag (rare case)
-            if not image_url and "image" in entry:
-                # entry.image may be a dict or string
-                if isinstance(entry.image, dict):
-                    image_url = entry.image.get("href", "") or entry.image.get(
-                        "url", ""
-                    )
-                elif isinstance(entry.image, str):
-                    image_url = entry.image
+                # Try to extract <image>...</image> from description
+                if not image_url and "description" in entry:
+                    match = re.search(r"<image>(.*?)</image>", entry.description)
+                    if match:
+                        image_url = match.group(1)
 
-            # Try to extract <image>...</image> from description
-            if not image_url and "description" in entry:
-                match = re.search(r"<image>(.*?)</image>", entry.description)
-                if match:
-                    image_url = match.group(1)
+                # try to extract from <image>...</image> tag in summary
+                if not image_url and "summary" in entry:
+                    match = re.search(r"<image>(.*?)</image>", entry.summary)
+                    if match:
+                        image_url = match.group(1)
 
-            # try to extract from <image>...</image> tag in summary
-            if not image_url and "summary" in entry:
-                match = re.search(r"<image>(.*?)</image>", entry.summary)
-                if match:
-                    image_url = match.group(1)
+                # try to extract <image>...</image> tag in content
+                if not image_url and "content" in entry:
+                    for content in entry.content:
+                        if "value" in content:
+                            match = re.search(r"<image>(.*?)</image>", content["value"])
+                            if match:
+                                image_url = match.group(1)
+                                break
 
-            # try to extract <image>...</image> tag in content
-            if not image_url and "content" in entry:
-                for content in entry.content:
-                    if "value" in content:
-                        match = re.search(r"<image>(.*?)</image>", content["value"])
-                        if match:
-                            image_url = match.group(1)
+                # if still not found try to get image from links with rel="image"
+                if not image_url and "links" in entry:
+                    for link in entry.links:
+                        if link.get("rel") == "image" and link.get("href"):
+                            image_url = link.get("href")
                             break
 
-            # if still not found try to get image from links with rel="image"
-            if not image_url and "links" in entry:
-                for link in entry.links:
-                    if link.get("rel") == "image" and link.get("href"):
-                        image_url = link.get("href")
-                        break
+                if not image_url:
+                    ext = tldextract.extract(entry.link)
+                    domain = f"{ext.domain}.{ext.suffix}"
+                    image_url = get_brandfetch_logo(domain, brandfetch_api_key)
+                    if not image_url:
+                        image_url = "https://placehold.co/160x90?text=No+Image"
 
-            all_articles.append(
-                {
-                    "title": entry.title,
-                    "link": entry.link,
-                    "description": getattr(entry, "description", ""),
-                    "source": source.get("title", ""),
-                    "published": entry.published if "published" in entry else "",
-                    "image": image_url,
-                }
-            )
+                all_articles.append(
+                    {
+                        "title": entry.title,
+                        "link": entry.link,
+                        "description": getattr(entry, "description", ""),
+                        "source": source.get("title", ""),
+                        "published": entry.published if "published" in entry else "",
+                        "image": image_url,
+                    }
+                )
+        except Exception as e:
+            print(f"Error parsing feed {source['rssUrl']}: {e}")
+            continue
 
     def parse_date_safe(date_str):
         try:
@@ -202,10 +231,18 @@ def fetch_and_save_articles():
             pass
         return datetime(1970, 1, 1, tzinfo=timezone.utc)
 
-    all_articles.sort(key=lambda x: parse_date_safe(x["published"]), reverse=True)
+    # Remove duplicates based on link
+    unique_articles = []
+    seen_links = set()
+    for article in all_articles:
+        if article["link"] not in seen_links:
+            unique_articles.append(article)
+            seen_links.add(article["link"])
+
+    unique_articles.sort(key=lambda x: parse_date_safe(x["published"]), reverse=True)
 
     with open(ARTICLES_FILE, "w") as f:
-        json.dump(all_articles, f, indent=2)
+        json.dump(unique_articles, f, indent=2)
 
 
 # Parse articles for Home page
@@ -329,17 +366,16 @@ def get_instagram_posts():
                 first_candidate_url = candidates[0].get("url", "")
                 image_url = first_candidate_url
 
-            print({
-                "text": text,
-                "image": image_url,
-                "taken_at": taken_at,
-                "first_url": first_candidate_url
-            })
+            taken_at_str = ""
+            if isinstance(taken_at, int) or (isinstance(taken_at, str) and taken_at.isdigit()):
+                taken_at_str = datetime.utcfromtimestamp(int(taken_at)).isoformat() + "Z"
+            else:
+                taken_at_str = taken_at
 
             posts.append({
                 "text": text,
                 "image": image_url,
-                "taken_at": taken_at,
+                "taken_at": taken_at_str,
                 "first_url": first_candidate_url
             })
         return jsonify({"posts": posts})
@@ -401,6 +437,50 @@ def get_x_posts():
         return jsonify({"posts": posts})
     except Exception as e:
         print("error in /api/x/posts:", e)
+        return jsonify({"error": str(e)}), 500
+
+# Reddit API 
+@app.route("/api/reddit", methods=["GET"])
+def get_reddit():
+    query = request.args.get("query", "")
+    subreddit = request.args.get("subreddit", "")
+    if not query:
+        return jsonify({"error": "Missing query"}), 400
+        
+    url = "https://reddit3.p.rapidapi.com/v1/reddit/search"
+
+    querystring = {
+        "search": query,
+        "filter": "posts",
+        "timefilter": "all",
+        "sortType": "relevance"
+    }
+
+    if subreddit:
+        querystring["subreddit"] = subreddit
+
+    headers = {
+        "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
+        "x-rapidapi-host": "reddit3.p.rapidapi.com"
+    }
+
+    try: 
+        resp = requests.get(url, headers=headers, params=querystring, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        posts = []
+            
+        for post in data.get("body", []):
+            posts.append({
+                "title": post.get("title"),
+                "subreddit": post.get("subreddit"),
+                "user": post.get("author"),
+                "selftext": post.get("selftext"),
+                "permalink": f"https://reddit.com{post.get('permalink', '')}"
+            })
+        return jsonify({"posts": posts})
+    except Exception as e:
+        print("Reddit API error:", e)
         return jsonify({"error": str(e)}), 500
 
 # Test if backend is running http://127.0.0.1:8090/
