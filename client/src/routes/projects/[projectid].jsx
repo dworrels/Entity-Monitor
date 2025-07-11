@@ -5,6 +5,7 @@ import ContentCard from "../../components/ContentCard";
 import HorizontalCard from "../../components/HorizontalCard";
 import { Settings, Search } from "lucide-react";
 import SocialCard from "../../components/SocialCard";
+import ForumsCard from "../../components/ForumsCard";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -21,6 +22,8 @@ const ProjectDetailPage = () => {
     const [loading, setLoading] = useState(true);
     const [listView, setListView] = useState(false);
     const [activeTab, setActiveTab] = useState("articles");
+    const [redditResults, setRedditResults] = useState([]);
+    const [redditLoading, setRedditLoading] = useState(false);
 
     // social tab state
     const [socialSearch, setSocialSearch] = useState("");
@@ -41,6 +44,16 @@ const ProjectDetailPage = () => {
             .then((data) => setArticles(data))
             .finally(() => setLoading(false));
     }, [projectid]);
+
+    useEffect(() => {
+        if (activeTab === "forums" && project?.keyword) {
+            setRedditLoading(true);
+            fetch(`${API_BASE_URL}/api/reddit?query=${encodeURIComponent(project.keyword)}`)
+                .then(res => res.json())
+                .then(data => setRedditResults(data.posts || []))
+                .finally(() => setRedditLoading(false))
+        }
+    }, [activeTab, project?.keyword]);
 
     
     const handleSocialSearch = (e) => {
@@ -204,7 +217,16 @@ const ProjectDetailPage = () => {
             )}
             {activeTab === "forums" && (
                 <div>
-                    <div className="mt-8 text-gray-500">Forums content here</div>
+                    {redditLoading && <div>Loading Reddit posts...</div>}
+                    {!redditLoading && redditResults.length == 0 && (
+                        <div>No Reddit posts found for this query.</div>
+                    )}
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {redditResults.map((post, idx) => (
+                            <ForumsCard key={idx} post={post} />
+                        ))}
+
+                    </div>
                 </div>
             )}
             {activeTab === "reports" && (
