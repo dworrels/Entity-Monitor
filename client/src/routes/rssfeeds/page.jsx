@@ -117,7 +117,7 @@ const RSSFeedsPage = () => {
             cell: (row) => (
                 <div className="flex gap-2">
                     <button
-                        className="text-blue-500 hover:underline"
+                        className="text-gray-600 hover:underline"
                         onClick={() => handleEdit(row)}
                     >
                         <SquarePen />

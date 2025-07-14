@@ -458,5 +458,20 @@
     "id": "foreignpolicymagazine",
     "title": "Foreign Policy Magazine",
     "rssUrl": "https://foreignpolicy.com/feed/"
+  },
+  {
+    "id": "investing.com",
+    "title": "Investing.com",
+    "rssUrl": "https://www.investing.com/rss/news.rss"
+  },
+  {
+    "id": "financialtimes",
+    "title": "Financial Times",
+    "rssUrl": "https://www.ft.com/rss/home"
+  },
+  {
+    "id": "fortune",
+    "title": "Fortune",
+    "rssUrl": "https://fortune.com/feed/fortune-feeds/?id=3230629"
   }
 ]

@@ -2,12 +2,10 @@
 
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
-from flask_caching import Cache
 import os
 import re
 import json
 import feedparser
-import xml.etree.ElementTree as ET
 import requests
 import tldextract
 from dateutil import parser as dateparser
@@ -16,6 +14,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import threading
 from dotenv import load_dotenv
 from io import BytesIO
+from lxml import etree
 
 brandfetch_api_key = os.environ.get("BRANDFETCH_API_KEY")
 
@@ -113,10 +112,6 @@ def update_source(source_id):
     return jsonify(sources), 200
 
 
-# in-memory cache
-cache = Cache(
-    app, config={"CACHE_TYPE": "SimpleCache", "CACHE_DEFAULT_TIMEOUT": 300}
-)  # 5 minutes
 
 def get_brandfetch_logo(domain, api_key):
     try:
@@ -138,6 +133,12 @@ def get_brandfetch_logo(domain, api_key):
     except Exception as e:
         print(f"Brandfetch error for {domain}: {e}")
         return ""
+
+# clean CBS images
+def clean_cbs_image_url(url: str) -> str:
+    if "cbsnewsstatic.com" in url:
+        return re.sub(r"thumbnail/\d+x\d+/", "", url)
+    return url
 
 # Get image from feed entry or Brandfetch
 def find_article_image(entry, source, brandfetch_api_key):
@@ -182,11 +183,23 @@ def find_article_image(entry, source, brandfetch_api_key):
                     image_url = match.group(1)
                     break
 
+    # enclosure tag
+    if not image_url and "enclosures" in entry and entry.enclosures:
+        image_url = entry.enclosures[0].get("url", "") or entry.enclosures[0].get("href", "")
+
     # Fallback: parse raw XML for <image> tag
-    if not image_url and hasattr(entry, "xml"):
-        match = re.search(r"<image>(.*?)</image>", entry.xml)
-        if match:
-            image_url = match.group(1)
+    if not image_url and "rssUrl" in source:
+        rss_url = source["rssUrl"]
+        response = requests.get(rss_url)
+        parser = etree.XMLParser(recover=True)
+        root = etree.fromstring(response.content, parser=parser)
+        for item in root.findall(".//item"):
+            # Match the entry's link to the item's link in the XML
+            if item.findtext("link") == entry.link:
+                image_url = item.findtext("image")
+                if image_url:
+                    break
+        
 
     # Brandfetch fallback
     if not image_url:
@@ -195,6 +208,9 @@ def find_article_image(entry, source, brandfetch_api_key):
         image_url = get_brandfetch_logo(domain, brandfetch_api_key)
         if not image_url:
             image_url = "https://placehold.co/160x90?text=No+Image"
+
+    # Clean specific known patterns
+    image_url = clean_cbs_image_url(image_url)
 
     return image_url
 
@@ -255,7 +271,6 @@ def fetch_and_save_articles():
     with open(ARTICLES_FILE, "w") as f:
         json.dump(unique_articles, f, indent=2)
 
-
 # Parse articles for Home page
 @app.route("/api/articles", methods=["GET"])
 def get_articles():
@@ -268,7 +283,6 @@ def get_articles():
     return jsonify(articles)
 
     # Sort latest feeds by date published
-
 
 def parse_date_safe(date_str):
     try:
