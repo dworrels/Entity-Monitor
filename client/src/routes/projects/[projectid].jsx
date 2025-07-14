@@ -31,6 +31,11 @@ const ProjectDetailPage = () => {
     const [socialResults, setSocialResults] = useState([]);
     const [socialLoading, setSocialLoading] = useState(false);
 
+    // forums search
+    const [forumsSearch, setForumsSearch] = useState(project?.keyword || "");
+    const [forumsSubreddit, setForumsSubreddit] = useState("");
+    const [forumsSearched, setForumsSearched] = useState(false);
+
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/projects`)
             .then((res) => res.json())
@@ -44,18 +49,8 @@ const ProjectDetailPage = () => {
             .then((data) => setArticles(data))
             .finally(() => setLoading(false));
     }, [projectid]);
-
-    useEffect(() => {
-        if (activeTab === "forums" && project?.keyword) {
-            setRedditLoading(true);
-            fetch(`${API_BASE_URL}/api/reddit?query=${encodeURIComponent(project.keyword)}`)
-                .then(res => res.json())
-                .then(data => setRedditResults(data.posts || []))
-                .finally(() => setRedditLoading(false))
-        }
-    }, [activeTab, project?.keyword]);
-
     
+    // Start of social tab
     const handleSocialSearch = (e) => {
     e.preventDefault();
     setSocialLoading(true);
@@ -76,6 +71,26 @@ const ProjectDetailPage = () => {
         })
         .finally(() => setSocialLoading(false));
 };
+
+    // Start of forums tab
+    useEffect(() => {
+        setForumsSearch(project?.keyword || "");
+
+    }, [project]);
+
+    const handleForumsSearch = (e) => {
+        e.preventDefault();
+        setRedditLoading(true);
+        setForumsSearched(true);
+        let url = `${API_BASE_URL}/api/reddit?query=${encodeURIComponent(forumsSearch)}`;
+        if (forumsSubreddit) { 
+            url += `&subreddit=${encodeURIComponent(forumsSubreddit)}`;
+        }
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setRedditResults(data.posts || []))
+            .finally(() => setRedditLoading(false));
+    };
 
 
     if (loading) return <div>Loading...</div>;
@@ -156,7 +171,7 @@ const ProjectDetailPage = () => {
                         </div>
                     )}
 
-                    {filteredArticles.length === 0 && <div>NO articles match this project's keyword.</div>}
+                    {filteredArticles.length === 0 && <div>No articles match this project's keyword.</div>}
                 </>
             )}
 
@@ -217,15 +232,39 @@ const ProjectDetailPage = () => {
             )}
             {activeTab === "forums" && (
                 <div>
+                    <form
+                        className="mb-6 flex items-center gap-2"
+                        onSubmit={handleForumsSearch}
+                    >
+                        <div className="relative flex-1">
+                            <Search 
+                                className="absolute top-1/2 left-2 -translate-y-1/2 text-slate-400"
+                                size={18}
+                            />
+                        </div>
+                            <input 
+                                type="text"
+                                className="w-full rounded border border-slate-300 py-2 pl-8"
+                                placeholder="Search Reddit..."
+                                value={forumsSearch}
+                                onChange={(e) => setForumsSubreddit(e.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                className="rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
+                                disabled={redditLoading}
+                            >
+                                {redditLoading ? "Searching..." : "Search"}
+                            </button>
+                    </form>
                     {redditLoading && <div>Loading Reddit posts...</div>}
-                    {!redditLoading && redditResults.length == 0 && (
+                    {!redditLoading && forumsSearched&& redditResults.length === 0 && (
                         <div>No Reddit posts found for this query.</div>
                     )}
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {redditResults.map((post, idx) => (
                             <ForumsCard key={idx} post={post} />
                         ))}
-
                     </div>
                 </div>
             )}

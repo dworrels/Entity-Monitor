@@ -31,7 +31,7 @@ const ProjectPage = () => {
         })
             .then(res => res.json())
             .then(newProject => {
-                setProjects([...projects, newProject]);
+                setProjects([newProject, ...projects]);
                 setForm({ name: "", keyword: ""});
                 setShowModal(false);
             });

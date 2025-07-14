@@ -1,6 +1,8 @@
+import { useState, useRef } from "react";
 import { Bell, Ellipsis } from "lucide-react";
 
-const ProjectCard = ({ name, keyword, date, onClick }) => {
+const ProjectCard = ({ name, keyword, date, onClick, onEdit, onDelete }) => {
+    
     return (
         <div
             className="min-w-82 overflow-hidden rounded bg-white shadow-lg hover:opacity-75 hover:shadow"
