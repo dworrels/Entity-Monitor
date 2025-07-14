@@ -1,4 +1,4 @@
-import React from "react";
+import { X } from "lucide-react";
 
 function Modal({ isVisible, onClose, children }) {
     if (!isVisible) return null;
@@ -19,7 +19,7 @@ function Modal({ isVisible, onClose, children }) {
                         className="absolute top-2 right-2 text-xl text-gray-500"
                         onClick={() => onClose()}
                     >
-                        X
+                        <X />
                     </button>
                     {children}
                 </div>
