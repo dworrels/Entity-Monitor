@@ -10,11 +10,6 @@
     "rssUrl": "http://rss.cnn.com/rss/cnn_topstories.rss"
   },
   {
-    "id": "espnnews",
-    "title": "ESPN News",
-    "rssUrl": "https://rss.app/feeds/tBIv7e5NxsK8Ao13.xml"
-  },
-  {
     "id": "nytworldnews",
     "title": "NYT World News",
     "rssUrl": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
@@ -115,11 +110,6 @@
     "rssUrl": "https://www.foreignaffairs.com/feeds/topic/Geopolitics/rss.xml"
   },
   {
-    "id": "wired",
-    "title": "Wired",
-    "rssUrl": "https://www.wired.com/feed/rss"
-  },
-  {
     "id": "france24",
     "title": "France 24",
     "rssUrl": "https://www.france24.com/en/rss"
@@ -145,11 +135,6 @@
     "rssUrl": "https://www.vox.com/rss/world-politics/index.xml"
   },
   {
-    "id": "foxsports",
-    "title": "Fox Sports",
-    "rssUrl": "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30"
-  },
-  {
     "id": "bitcoinnews-darknet",
     "title": "Bitcoin News - Darknet",
     "rssUrl": "https://news.bitcoin.com/tag/darknet/feed/"
@@ -173,11 +158,6 @@
     "id": "nyt-topstories",
     "title": "NYT - Top Stories",
     "rssUrl": ""
-  },
-  {
-    "id": "newyorkpost",
-    "title": "New York Post",
-    "rssUrl": "https://nypost.com/feed/"
   },
   {
     "id": "aljazeera",
@@ -295,11 +275,6 @@
     "rssUrl": "http://rss.cnn.com/rss/cnn_travel.rss"
   },
   {
-    "id": "cnn-sport",
-    "title": "CNN - Sport",
-    "rssUrl": "http://rss.cnn.com/rss/edition_sport.rss"
-  },
-  {
     "id": "gizmodo",
     "title": "Gizmodo",
     "rssUrl": "https://gizmodo.com/feed"
@@ -315,11 +290,6 @@
     "rssUrl": "https://www.orlandosentinel.com/feed/"
   },
   {
-    "id": "entrepreneur-latest",
-    "title": "Entrepreneur - latest",
-    "rssUrl": "https://www.entrepreneur.com/latest.rss"
-  },
-  {
     "id": "fastcompany",
     "title": "Fast Company",
     "rssUrl": "https://www.fastcompany.com/latest/rss?truncated=true"
@@ -328,11 +298,6 @@
     "id": "perezhilton",
     "title": "Perez Hilton",
     "rssUrl": "https://perezhilton.com/feed/"
-  },
-  {
-    "id": "gq",
-    "title": "GQ",
-    "rssUrl": "https://www.gq.com/feed/rss"
   },
   {
     "id": "arstechnica",
@@ -398,5 +363,100 @@
     "id": "time-world",
     "title": "TIME - World",
     "rssUrl": "https://feeds.feedburner.com/time/world"
+  },
+  {
+    "id": "newyorkpost-world",
+    "title": "New York Post - World",
+    "rssUrl": "nypost.com/world-news/feed"
+  },
+  {
+    "id": "newyorkpost-business",
+    "title": "New York Post - Business",
+    "rssUrl": "nypost.com/business/feed"
+  },
+  {
+    "id": "wired-business",
+    "title": "Wired - Business ",
+    "rssUrl": "https://www.wired.com/feed/category/business/latest/rss"
+  },
+  {
+    "id": "wired-science",
+    "title": "Wired - Science",
+    "rssUrl": "https://www.wired.com/feed/category/science/latest/rss"
+  },
+  {
+    "id": "wired-politics",
+    "title": "Wired - Politics",
+    "rssUrl": "https://www.wired.com/category/politics/feed"
+  },
+  {
+    "id": "wired-security",
+    "title": "Wired - Security",
+    "rssUrl": "https://www.wired.com/feed/category/security/latest/rss"
+  },
+  {
+    "id": "quartz",
+    "title": "Quartz ",
+    "rssUrl": "https://qz.com/rss"
+  },
+  {
+    "id": "washingtontimes",
+    "title": "Washington Times",
+    "rssUrl": "https://www.washingtontimes.com/rss/headlines/news"
+  },
+  {
+    "id": "nbc-newyork",
+    "title": "NBC - New York",
+    "rssUrl": "https://www.nbcnewyork.com/?rss=y"
+  },
+  {
+    "id": "boston.com",
+    "title": "Boston.com",
+    "rssUrl": "https://www.boston.com/feed/"
+  },
+  {
+    "id": "ktla",
+    "title": "KTLA",
+    "rssUrl": "https://ktla.com/feed/"
+  },
+  {
+    "id": "abc13houston",
+    "title": "ABC13 Houston",
+    "rssUrl": "https://abc13.com/feed/"
+  },
+  {
+    "id": "kxannews",
+    "title": "KXAN News",
+    "rssUrl": "https://www.kxan.com/feed/"
+  },
+  {
+    "id": "nbc-chicago",
+    "title": "NBC - Chicago",
+    "rssUrl": "https://www.nbcchicago.com/?rss=y"
+  },
+  {
+    "id": "fox31-denver",
+    "title": "FOX31 - Denver",
+    "rssUrl": "https://kdvr.com/feed/"
+  },
+  {
+    "id": "thenation-politics",
+    "title": "The Nation - Politics",
+    "rssUrl": "https://www.thenation.com/subject/politics/feed/"
+  },
+  {
+    "id": "propublica",
+    "title": "ProPublica",
+    "rssUrl": "https://www.propublica.org/feeds/propublica/main"
+  },
+  {
+    "id": "slate-newsandpolitics",
+    "title": "Slate - News and Politics",
+    "rssUrl": "https://slate.com/feeds/news-and-politics.rss"
+  },
+  {
+    "id": "foreignpolicymagazine",
+    "title": "Foreign Policy Magazine",
+    "rssUrl": "https://foreignpolicy.com/feed/"
   }
 ]

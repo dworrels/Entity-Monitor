@@ -126,12 +126,77 @@ def get_brandfetch_logo(domain, api_key):
         if resp.status_code == 200:
             data = resp.json()
             # Brandfetch /v2/search returns a list of brands with an "icon" field
-            if data and isinstance(data, list) and "icon" in data[0]:
-                return data[0]["icon"]
+            if data and isinstance(data, list):
+                logos = data[0].get("logos", [])
+                for logo in logos:
+                    for fmt in logo.get("formats", []):
+                        if fmt.get("format") == "svg" and fmt.get("src"):
+                            return fmt["src"]
+                if "icon" in data[0]:        
+                    return data[0]["icon"]
         return ""
     except Exception as e:
         print(f"Brandfetch error for {domain}: {e}")
         return ""
+
+# Get image from feed entry or Brandfetch
+def find_article_image(entry, source, brandfetch_api_key):
+    image_url = ""
+
+    # Try media content
+    if "media_content" in entry and entry.media_content:
+        image_url = entry.media_content[0].get("url", "")
+
+    # Try media_thumbnail
+    if not image_url and "media_thumbnail" in entry and entry.media_thumbnail:
+        image_url = entry.media_thumbnail[0].get("url", "")
+
+    # Try <image> tag (attribute or key)
+    if not image_url:
+        if hasattr(entry, "image"):
+            if isinstance(entry.image, dict):
+                image_url = entry.image.get("href", "") or entry.image.get("url", "")
+            elif isinstance(entry.image, str):
+                image_url = entry.image
+        elif "image" in entry:
+            image_url = entry["image"]
+
+    # Try <image>...</image> in description
+    if not image_url and "description" in entry:
+        match = re.search(r"<image>(.*?)</image>", entry.description)
+        if match:
+            image_url = match.group(1)
+
+    # Try <img src="..."> in description
+    if not image_url and "description" in entry:
+        match = re.search(r'<img[^>]+src="([^"]+)"', entry["description"])
+        if match:
+            image_url = match.group(1)
+
+    # Try <img src="..."> in content:encoded
+    if not image_url and "content" in entry:
+        for content_item in entry.content:
+            if "value" in content_item:
+                match = re.search(r'<img[^>]+src="([^"]+)"', content_item["value"])
+                if match:
+                    image_url = match.group(1)
+                    break
+
+    # Fallback: parse raw XML for <image> tag
+    if not image_url and hasattr(entry, "xml"):
+        match = re.search(r"<image>(.*?)</image>", entry.xml)
+        if match:
+            image_url = match.group(1)
+
+    # Brandfetch fallback
+    if not image_url:
+        ext = tldextract.extract(entry.link)
+        domain = f"{ext.domain}.{ext.suffix}"
+        image_url = get_brandfetch_logo(domain, brandfetch_api_key)
+        if not image_url:
+            image_url = "https://placehold.co/160x90?text=No+Image"
+
+    return image_url
 
 # Background refresh
 def fetch_and_save_articles():
@@ -146,64 +211,9 @@ def fetch_and_save_articles():
     for source in sources:
         try:
             feed = feedparser.parse(source["rssUrl"])
+            # ...existing code...
             for entry in feed.entries:
-        
-                # Find image URL in various places
-                image_url = ""
-                # try media content
-                if "media_content" in entry and entry.media_content:
-                    image_url = entry.media_content[0].get("url", "")
-
-                # if not found try to get image from media:thumbnail
-                if not image_url and "media_thumbnail" in entry and entry.media_thumbnail:
-                    # entry.media_thumbnail is a list of dicts
-                    image_url = entry.media_thumbnail[0].get("url", "")
-
-                # if not found try to get image from <image> tag (rare case)
-                if not image_url and "image" in entry:
-                    # entry.image may be a dict or string
-                    if isinstance(entry.image, dict):
-                        image_url = entry.image.get("href", "") or entry.image.get(
-                            "url", ""
-                        )
-                    elif isinstance(entry.image, str):
-                        image_url = entry.image
-
-                # Try to extract <image>...</image> from description
-                if not image_url and "description" in entry:
-                    match = re.search(r"<image>(.*?)</image>", entry.description)
-                    if match:
-                        image_url = match.group(1)
-
-                # try to extract from <image>...</image> tag in summary
-                if not image_url and "summary" in entry:
-                    match = re.search(r"<image>(.*?)</image>", entry.summary)
-                    if match:
-                        image_url = match.group(1)
-
-                # try to extract <image>...</image> tag in content
-                if not image_url and "content" in entry:
-                    for content in entry.content:
-                        if "value" in content:
-                            match = re.search(r"<image>(.*?)</image>", content["value"])
-                            if match:
-                                image_url = match.group(1)
-                                break
-
-                # if still not found try to get image from links with rel="image"
-                if not image_url and "links" in entry:
-                    for link in entry.links:
-                        if link.get("rel") == "image" and link.get("href"):
-                            image_url = link.get("href")
-                            break
-
-                if not image_url:
-                    ext = tldextract.extract(entry.link)
-                    domain = f"{ext.domain}.{ext.suffix}"
-                    image_url = get_brandfetch_logo(domain, brandfetch_api_key)
-                    if not image_url:
-                        image_url = "https://placehold.co/160x90?text=No+Image"
-
+                image_url = find_article_image(entry, source, brandfetch_api_key)
                 all_articles.append(
                     {
                         "title": entry.title,
@@ -214,6 +224,7 @@ def fetch_and_save_articles():
                         "image": image_url,
                     }
                 )
+# ...existing code...
         except Exception as e:
             print(f"Error parsing feed {source['rssUrl']}: {e}")
             continue
@@ -283,6 +294,8 @@ def get_projects():
 
     else:
         projects = []
+
+    projects.sort(key=lambda x: int(x.get("id", 0)), reverse=True)
     return jsonify(projects), 200
 
 
@@ -307,7 +320,6 @@ def add_project():
         json.dump(projects, f, indent=2)
 
     return jsonify(new_project), 201
-
 
 # Instagram API
 @app.route("/api/proxy-image")
