@@ -7,7 +7,9 @@ import re
 import json
 import feedparser
 import requests
+import time
 import tldextract
+import concurrent.futures
 from dateutil import parser as dateparser
 from datetime import datetime, timezone
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -214,8 +216,35 @@ def find_article_image(entry, source, brandfetch_api_key):
 
     return image_url
 
+def fetch_feed(source):
+    try:
+        # write and count feeds being fetched
+        print(f"Fetching: {source.get('title', source.get('rssUrl', 'Unknown Feed'))}") 
+        start = time.time()
+        feed = feedparser.parse(source["rssUrl"])
+        elapsed = time.time() - start
+        if elapsed > 5:
+            print(f"WARNING Slow Feed ({elapsed:.2f}s): {source['title']} - {source['rssUrl']}")
+        articles = []
+        for entry in feed.entries:
+            image_url = find_article_image(entry, source, brandfetch_api_key)
+            articles.append({
+                "title": entry.title,
+                "link": entry.link,
+                "description": getattr(entry, "description", ""),
+                "source": source.get("title", ""),
+                "published": entry.published if "published" in entry else "",
+                "image": image_url,
+            })
+        return articles
+    except Exception as e:
+        print(f"Error parsing feed {source['rssUrl']}: {e}")
+        return []
+
+
 # Background refresh
 def fetch_and_save_articles():
+    start = time.time()
     print("FETCHING ARTICLES...")
     if os.path.exists(SOURCE_FILE):
         with open(SOURCE_FILE, "r") as f:
@@ -224,26 +253,11 @@ def fetch_and_save_articles():
         sources = []
 
     all_articles = []
-    for source in sources:
-        try:
-            feed = feedparser.parse(source["rssUrl"])
-            # ...existing code...
-            for entry in feed.entries:
-                image_url = find_article_image(entry, source, brandfetch_api_key)
-                all_articles.append(
-                    {
-                        "title": entry.title,
-                        "link": entry.link,
-                        "description": getattr(entry, "description", ""),
-                        "source": source.get("title", ""),
-                        "published": entry.published if "published" in entry else "",
-                        "image": image_url,
-                    }
-                )
-# ...existing code...
-        except Exception as e:
-            print(f"Error parsing feed {source['rssUrl']}: {e}")
-            continue
+    
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        results = list(executor.map(fetch_feed, sources))
+        for articles in results:
+            all_articles.extend(articles)
 
     def parse_date_safe(date_str):
         try:
@@ -257,6 +271,8 @@ def fetch_and_save_articles():
         except Exception:
             pass
         return datetime(1970, 1, 1, tzinfo=timezone.utc)
+    # print all articles with published date
+    print(f"All dates parsed")
 
     # Remove duplicates based on link
     unique_articles = []
@@ -267,9 +283,11 @@ def fetch_and_save_articles():
             seen_links.add(article["link"])
 
     unique_articles.sort(key=lambda x: parse_date_safe(x["published"]), reverse=True)
+    print(f"all articles deduplicated")
 
     with open(ARTICLES_FILE, "w") as f:
         json.dump(unique_articles, f, indent=2)
+    print(f"Finished fetching articles in {time.time() - start:.2f} seconds")
 
 # Parse articles for Home page
 @app.route("/api/articles", methods=["GET"])
@@ -509,16 +527,16 @@ def get_reddit():
         print("Reddit API error:", e)
         return jsonify({"error": str(e)}), 500
 
+# Run Flask app and scheduler
+if __name__ == "__main__":
+    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
+        threading.Thread(target=fetch_and_save_articles).start()
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(fetch_and_save_articles, "interval", minutes=15)
+        scheduler.start()
+    app.run(host="0.0.0.0", debug=True, port=8090)
+
 # Test if backend is running http://127.0.0.1:8090/
 #   @app.route("/")
 #   def index():
 #    return "Flask backend is running."
-
-scheduler = BackgroundScheduler()
-scheduler.add_job(fetch_and_save_articles, "interval", minutes=10)
-scheduler.start()
-
-threading.Thread(target=fetch_and_save_articles).start()
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True, port=8090)
