@@ -45,11 +45,6 @@
     "rssUrl": "https://www.forbes.com/business/feed/"
   },
   {
-    "id": "thewashingtonpost-world",
-    "title": "The Washington Post - World",
-    "rssUrl": "https://feeds.washingtonpost.com/rss/world?itid=lk_inline_manual_31"
-  },
-  {
     "id": "thewashingtonpost-tech",
     "title": "The Washington Post - Tech",
     "rssUrl": "https://feeds.washingtonpost.com/rss/business/technology?itid=lk_inline_manual_29"
@@ -155,13 +150,8 @@
     "rssUrl": "https://feeds.bbci.co.uk/news/world/rss.xml"
   },
   {
-    "id": "nyt-topstories",
-    "title": "NYT - Top Stories",
-    "rssUrl": ""
-  },
-  {
     "id": "aljazeera",
-    "title": "Al Jazeera ",
+    "title": "Al Jazeera",
     "rssUrl": "https://www.aljazeera.com/xml/rss/all.xml"
   },
   {
@@ -367,12 +357,12 @@
   {
     "id": "newyorkpost-world",
     "title": "New York Post - World",
-    "rssUrl": "nypost.com/world-news/feed"
+    "rssUrl": "https://nypost.com/world-news/feed"
   },
   {
     "id": "newyorkpost-business",
     "title": "New York Post - Business",
-    "rssUrl": "nypost.com/business/feed"
+    "rssUrl": "https://nypost.com/business/feed"
   },
   {
     "id": "wired-business",
