@@ -1,467 +1,467 @@
 [
   {
-    "id": "foxworldnews",
+    "id": "1",
     "title": "Fox World News",
     "rssUrl": "https://moxie.foxnews.com/google-publisher/world.xml"
   },
   {
-    "id": "cnntopnews",
+    "id": "2",
     "title": "CNN Top News",
     "rssUrl": "http://rss.cnn.com/rss/cnn_topstories.rss"
   },
   {
-    "id": "nytworldnews",
+    "id": "3",
     "title": "NYT World News",
     "rssUrl": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
   },
   {
-    "id": "yahoonews",
+    "id": "4",
     "title": "Yahoo News",
     "rssUrl": "https://news.yahoo.com/rss/mostviewed"
   },
   {
-    "id": "cnetnews",
+    "id": "5",
     "title": "CNET News",
     "rssUrl": "https://www.cnet.com/rss/news/"
   },
   {
-    "id": "nasabreakingnews",
+    "id": "6",
     "title": "NASA Breaking News",
     "rssUrl": "https://www.nasa.gov/rss/dyn/breaking_news.rss"
   },
   {
-    "id": "techcrunch",
+    "id": "7",
     "title": "TechCrunch",
     "rssUrl": "https://feeds.feedburner.com/TechCrunch"
   },
   {
-    "id": "wsjworldnews",
+    "id": "8",
     "title": "WSJ World News",
     "rssUrl": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews"
   },
   {
-    "id": "forbes-business",
+    "id": "9",
     "title": "Forbes - Business",
     "rssUrl": "https://www.forbes.com/business/feed/"
   },
   {
-    "id": "thewashingtonpost-tech",
+    "id": "10",
     "title": "The Washington Post - Tech",
     "rssUrl": "https://feeds.washingtonpost.com/rss/business/technology?itid=lk_inline_manual_29"
   },
   {
-    "id": "theguardian-ushealth",
+    "id": "11",
     "title": "The Guardian - US Health",
     "rssUrl": "https://www.theguardian.com/lifeandstyle/health-and-wellbeing/rss"
   },
   {
-    "id": "businessinsider-tech",
+    "id": "12",
     "title": "Business Insider - Tech",
     "rssUrl": "https://feeds.businessinsider.com/custom/all"
   },
   {
-    "id": "abcnews",
+    "id": "13",
     "title": "ABC News",
     "rssUrl": "https://abcnews.go.com/abcnews/usheadlines"
   },
   {
-    "id": "marketwatch",
+    "id": "14",
     "title": "MarketWatch",
     "rssUrl": "https://feeds.content.dowjones.io/public/rss/mw_topstories"
   },
   {
-    "id": "nprnews",
+    "id": "15",
     "title": "NPR News",
     "rssUrl": "https://feeds.npr.org/1001/rss.xml"
   },
   {
-    "id": "rfe/rl",
+    "id": "16",
     "title": "RFE/RL",
     "rssUrl": "https://www.rferl.org/api/zbqiml-vomx-tpeqkmy"
   },
   {
-    "id": "haveibeenpwned-breaches",
+    "id": "17",
     "title": "HaveIBeenPwned - Breaches",
     "rssUrl": "https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches"
   },
   {
-    "id": "itpro",
+    "id": "18",
     "title": "ITPro",
     "rssUrl": "https://www.itpro.com/feeds/articletype/news"
   },
   {
-    "id": "defenseone",
+    "id": "19",
     "title": "Defense One",
     "rssUrl": "https://www.defenseone.com/rss/all/"
   },
   {
-    "id": "thediplomat",
+    "id": "20",
     "title": "The Diplomat",
     "rssUrl": "https://thediplomat.com/feed/"
   },
   {
-    "id": "foreignaffairs",
+    "id": "21",
     "title": "Foreign Affairs",
     "rssUrl": "https://www.foreignaffairs.com/feeds/topic/Geopolitics/rss.xml"
   },
   {
-    "id": "france24",
+    "id": "22",
     "title": "France 24",
     "rssUrl": "https://www.france24.com/en/rss"
   },
   {
-    "id": "globalnews",
+    "id": "23",
     "title": "Global News",
     "rssUrl": "https://globalnews.ca/world/feed/"
   },
   {
-    "id": "time-world",
+    "id": "24",
     "title": "Time - World",
     "rssUrl": "https://feeds.feedburner.com/time/world"
   },
   {
-    "id": "skynews-world",
+    "id": "25",
     "title": "Sky News - World",
     "rssUrl": "https://feeds.skynews.com/feeds/rss/world.xml"
   },
   {
-    "id": "vox-world",
+    "id": "26",
     "title": "Vox - World",
     "rssUrl": "https://www.vox.com/rss/world-politics/index.xml"
   },
   {
-    "id": "bitcoinnews-darknet",
+    "id": "27",
     "title": "Bitcoin News - Darknet",
     "rssUrl": "https://news.bitcoin.com/tag/darknet/feed/"
   },
   {
-    "id": "foxbusiness",
+    "id": "28",
     "title": "Fox Business",
     "rssUrl": "https://moxie.foxbusiness.com/google-publisher/latest.xml"
   },
   {
-    "id": "nbc-topnews",
+    "id": "29",
     "title": "NBC - Top News",
     "rssUrl": "https://feeds.nbcnews.com/nbcnews/public/news"
   },
   {
-    "id": "bbc-worldnews",
+    "id": "30",
     "title": "BBC - World News",
     "rssUrl": "https://feeds.bbci.co.uk/news/world/rss.xml"
   },
   {
-    "id": "aljazeera",
+    "id": "31",
     "title": "Al Jazeera",
     "rssUrl": "https://www.aljazeera.com/xml/rss/all.xml"
   },
   {
-    "id": "buzzfeed-world",
+    "id": "32",
     "title": "Buzzfeed - World",
     "rssUrl": "https://www.buzzfeed.com/world.xml"
   },
   {
-    "id": "timesofindia",
+    "id": "33",
     "title": "Times of India",
     "rssUrl": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms"
   },
   {
-    "id": "russiatoday-world",
+    "id": "34",
     "title": "Russia Today - World",
     "rssUrl": "https://www.rt.com/rss/news/"
   },
   {
-    "id": "ndtv-world",
+    "id": "35",
     "title": "NDTV - World",
     "rssUrl": "https://feeds.feedburner.com/ndtvnews-world-news"
   },
   {
-    "id": "themirroruk-world",
+    "id": "36",
     "title": "The Mirror UK - World",
     "rssUrl": "https://www.mirror.co.uk/news/world-news/?service=rss"
   },
   {
-    "id": "thecipherbrief",
+    "id": "37",
     "title": "The Cipher Brief",
     "rssUrl": "https://www.thecipherbrief.com/feeds/feed.rss"
   },
   {
-    "id": "baynews9",
+    "id": "38",
     "title": "Bay News 9",
     "rssUrl": "https://baynews9.com/services/contentfeed.fl%7ctampa.hero.rss"
   },
   {
-    "id": "truecrimenews",
+    "id": "39",
     "title": "True Crime News",
     "rssUrl": "https://feeds.truecrimenews.com/rss/"
   },
   {
-    "id": "lawandcrime",
+    "id": "40",
     "title": "Law and Crime",
     "rssUrl": "https://lawandcrime.com/feed/"
   },
   {
-    "id": "thehackernews",
+    "id": "41",
     "title": "The Hacker News",
     "rssUrl": "https://feeds.feedburner.com/TheHackersNews"
   },
   {
-    "id": "hackread",
+    "id": "42",
     "title": "Hackread",
     "rssUrl": "https://hackread.com/feed/"
   },
   {
-    "id": "foxnews-health",
+    "id": "43",
     "title": "Fox News - Health",
     "rssUrl": "https://moxie.foxnews.com/google-publisher/health.xml"
   },
   {
-    "id": "foxnews-politics",
+    "id": "44",
     "title": "Fox News - Politics",
     "rssUrl": "https://moxie.foxnews.com/google-publisher/politics.xml"
   },
   {
-    "id": "foxnews-tech",
+    "id": "45",
     "title": "Fox News - Tech",
     "rssUrl": "https://moxie.foxnews.com/google-publisher/tech.xml"
   },
   {
-    "id": "cnn-africa",
+    "id": "46",
     "title": "CNN - Africa",
     "rssUrl": "http://rss.cnn.com/rss/edition_africa.rss"
   },
   {
-    "id": "cnn-americas",
+    "id": "47",
     "title": "CNN - Americas",
     "rssUrl": "http://rss.cnn.com/rss/edition_americas.rss"
   },
   {
-    "id": "cnn-asia",
+    "id": "48",
     "title": "CNN - Asia",
     "rssUrl": "http://rss.cnn.com/rss/edition_asia.rss"
   },
   {
-    "id": "cnn-europe",
+    "id": "49",
     "title": "CNN - Europe",
     "rssUrl": "http://rss.cnn.com/rss/edition_europe.rss"
   },
   {
-    "id": "cnn-middleeast",
+    "id": "50",
     "title": "CNN - Middle East",
     "rssUrl": "http://rss.cnn.com/rss/edition_meast.rss"
   },
   {
-    "id": "cnn-us",
+    "id": "51",
     "title": "CNN - US",
     "rssUrl": "http://rss.cnn.com/rss/edition_us.rss"
   },
   {
-    "id": "cnn-entertainment",
+    "id": "52",
     "title": "CNN - Entertainment",
     "rssUrl": "http://rss.cnn.com/rss/edition_entertainment.rss"
   },
   {
-    "id": "cnn-travel",
+    "id": "53",
     "title": "CNN - Travel",
     "rssUrl": "http://rss.cnn.com/rss/cnn_travel.rss"
   },
   {
-    "id": "gizmodo",
+    "id": "54",
     "title": "Gizmodo",
     "rssUrl": "https://gizmodo.com/feed"
   },
   {
-    "id": "abcactionnews",
+    "id": "55",
     "title": "ABC Action News",
     "rssUrl": "https://www.abcactionnews.com/news.rss"
   },
   {
-    "id": "orlandosentinel",
+    "id": "56",
     "title": "Orlando Sentinel",
     "rssUrl": "https://www.orlandosentinel.com/feed/"
   },
   {
-    "id": "fastcompany",
+    "id": "57",
     "title": "Fast Company",
     "rssUrl": "https://www.fastcompany.com/latest/rss?truncated=true"
   },
   {
-    "id": "perezhilton",
+    "id": "58",
     "title": "Perez Hilton",
     "rssUrl": "https://perezhilton.com/feed/"
   },
   {
-    "id": "arstechnica",
+    "id": "59",
     "title": "Arstechnica",
     "rssUrl": "https://arstechnica.com/tag/self-driving-cars/feed/"
   },
   {
-    "id": "etonline",
+    "id": "60",
     "title": "Etonline",
     "rssUrl": "https://www.etonline.com/news/rss"
   },
   {
-    "id": "reddit-r/news",
+    "id": "61",
     "title": "Reddit - r/news",
     "rssUrl": "https://www.reddit.com/r/news/.rss"
   },
   {
-    "id": "departmentofdefense",
+    "id": "62",
     "title": "Department of Defense",
     "rssUrl": "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=800&Site=945&max=10"
   },
   {
-    "id": "cbs-world",
+    "id": "63",
     "title": "CBS - World",
     "rssUrl": "https://www.cbsnews.com/latest/rss/world"
   },
   {
-    "id": "cbs-us",
+    "id": "64",
     "title": "CBS - US",
     "rssUrl": "https://www.cbsnews.com/latest/rss/us"
   },
   {
-    "id": "cbs-politics",
+    "id": "65",
     "title": "CBS - Politics",
     "rssUrl": "https://www.cbsnews.com/latest/rss/politics"
   },
   {
-    "id": "cbs-health",
+    "id": "66",
     "title": "CBS - Health",
     "rssUrl": "https://www.cbsnews.com/latest/rss/health"
   },
   {
-    "id": "cbs-crime",
+    "id": "67",
     "title": "CBS - Crime",
     "rssUrl": "https://www.cbsnews.com/latest/rss/crime"
   },
   {
-    "id": "theverge",
+    "id": "68",
     "title": "The Verge",
     "rssUrl": "https://www.theverge.com/rss/index.xml"
   },
   {
-    "id": "wtopnews",
+    "id": "69",
     "title": "WTOP News",
     "rssUrl": "https://wtop.com/government/white-house/feed/"
   },
   {
-    "id": "cnbc-world",
+    "id": "70",
     "title": "CNBC - World",
     "rssUrl": "https://www.cnbc.com/id/100727362/device/rss/rss.html"
   },
   {
-    "id": "time-world",
+    "id": "71",
     "title": "TIME - World",
     "rssUrl": "https://feeds.feedburner.com/time/world"
   },
   {
-    "id": "newyorkpost-world",
+    "id": "72",
     "title": "New York Post - World",
     "rssUrl": "https://nypost.com/world-news/feed"
   },
   {
-    "id": "newyorkpost-business",
+    "id": "73",
     "title": "New York Post - Business",
     "rssUrl": "https://nypost.com/business/feed"
   },
   {
-    "id": "wired-business",
+    "id": "74",
     "title": "Wired - Business ",
     "rssUrl": "https://www.wired.com/feed/category/business/latest/rss"
   },
   {
-    "id": "wired-science",
+    "id": "75",
     "title": "Wired - Science",
     "rssUrl": "https://www.wired.com/feed/category/science/latest/rss"
   },
   {
-    "id": "wired-politics",
+    "id": "76",
     "title": "Wired - Politics",
     "rssUrl": "https://www.wired.com/category/politics/feed"
   },
   {
-    "id": "wired-security",
+    "id": "77",
     "title": "Wired - Security",
     "rssUrl": "https://www.wired.com/feed/category/security/latest/rss"
   },
   {
-    "id": "quartz",
+    "id": "78",
     "title": "Quartz ",
     "rssUrl": "https://qz.com/rss"
   },
   {
-    "id": "washingtontimes",
+    "id": "79",
     "title": "Washington Times",
     "rssUrl": "https://www.washingtontimes.com/rss/headlines/news"
   },
   {
-    "id": "nbc-newyork",
+    "id": "80",
     "title": "NBC - New York",
     "rssUrl": "https://www.nbcnewyork.com/?rss=y"
   },
   {
-    "id": "boston.com",
+    "id": "81",
     "title": "Boston.com",
     "rssUrl": "https://www.boston.com/feed/"
   },
   {
-    "id": "ktla",
+    "id": "82",
     "title": "KTLA",
     "rssUrl": "https://ktla.com/feed/"
   },
   {
-    "id": "abc13houston",
+    "id": "83",
     "title": "ABC13 Houston",
     "rssUrl": "https://abc13.com/feed/"
   },
   {
-    "id": "kxannews",
+    "id": "84",
     "title": "KXAN News",
     "rssUrl": "https://www.kxan.com/feed/"
   },
   {
-    "id": "nbc-chicago",
+    "id": "85",
     "title": "NBC - Chicago",
     "rssUrl": "https://www.nbcchicago.com/?rss=y"
   },
   {
-    "id": "fox31-denver",
+    "id": "86",
     "title": "FOX31 - Denver",
     "rssUrl": "https://kdvr.com/feed/"
   },
   {
-    "id": "thenation-politics",
+    "id": "87",
     "title": "The Nation - Politics",
     "rssUrl": "https://www.thenation.com/subject/politics/feed/"
   },
   {
-    "id": "propublica",
+    "id": "88",
     "title": "ProPublica",
     "rssUrl": "https://www.propublica.org/feeds/propublica/main"
   },
   {
-    "id": "slate-newsandpolitics",
+    "id": "89",
     "title": "Slate - News and Politics",
     "rssUrl": "https://slate.com/feeds/news-and-politics.rss"
   },
   {
-    "id": "foreignpolicymagazine",
+    "id": "90",
     "title": "Foreign Policy Magazine",
     "rssUrl": "https://foreignpolicy.com/feed/"
   },
   {
-    "id": "investing.com",
-    "title": "Investing.com",
-    "rssUrl": "https://www.investing.com/rss/news.rss"
-  },
-  {
-    "id": "financialtimes",
+    "id": "92",
     "title": "Financial Times",
     "rssUrl": "https://www.ft.com/rss/home"
   },
   {
-    "id": "fortune",
+    "id": "93",
     "title": "Fortune",
     "rssUrl": "https://fortune.com/feed/fortune-feeds/?id=3230629"
+  },
+  {
+    "id": "94",
+    "title": "MIT News - Artificial intelligence",
+    "rssUrl": "https://news.mit.edu/rss/topic/artificial-intelligence2"
   }
 ]
