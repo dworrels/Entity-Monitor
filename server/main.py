@@ -8,6 +8,8 @@ import json
 import feedparser
 import requests
 import time
+import ollama
+import math
 import newspaper
 import tldextract
 import concurrent.futures
@@ -206,14 +208,14 @@ def find_article_image(entry, source, brandfetch_api_key):
     
     # Use newspaper4k to extract image
     if not image_url and "link" in entry:
-        try: 
-            article = newspaper.article(entry["link"])
-            article.download()
-            article.parse()
-            if article.top_image:
-                image_url = article.top_image
-        except Exception as e:
-            print(f"Error extracting image with newspaper4k for {entry.link}: {e}")
+        # try: 
+        article = newspaper.article(entry["link"])
+        article.download()
+        article.parse()
+        if article.top_image:
+            image_url = article.top_image
+        # 
+            # print(f"Error extracting image with newspaper4k for {entry.link}: {e}")
 
     # enclosure tag
     if not image_url and "enclosures" in entry and entry.enclosures:
