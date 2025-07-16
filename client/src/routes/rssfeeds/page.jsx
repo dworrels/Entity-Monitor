@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Trash2, SquarePen } from "lucide-react";
 
 const RSSFeedsPage = () => {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const [showModal, setShowModal] = useState(false);
     const [data, setData] = useState([]);
     const [modalMode, setModalMode] = useState("add");
@@ -12,6 +12,7 @@ const RSSFeedsPage = () => {
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [sourceToDelete, setSourceToDelete] = useState(null);
     const [search, setSearch] = useState("");
+    const [error, setError] = useState("");
 
     const handleAddSource = async (source) => {
         try {
@@ -20,20 +21,23 @@ const RSSFeedsPage = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(source),
             });
-            // Refresh the data table after adding a new source
+            const result = await res.json();
             if (!res.ok) {
-                throw new Error("Failed to add source");
+                setError(result.error || "Failed to add source");
+                return false;
             }
-
-            const updatedSources = await res.json();
-            setData(updatedSources);
-        } catch (err) {
-            console.error("Error adding source:", err);
+            setData(result);
+            setError("");
+            return true;
+        } catch {
+            setError("Error adding source");
+            return false;
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
         const formData = new FormData(e.target);
         const newSource = {
             id: editSource?.id || formData.get("title").toLowerCase().replace(/\s+/g, ""),
@@ -41,14 +45,17 @@ const RSSFeedsPage = () => {
             rssUrl: formData.get("rssUrl"),
         };
 
+        let success;
         if (editSource) {
-            handleUpdateSource(newSource);
+            success = await handleUpdateSource(newSource);
         } else {
-            handleAddSource(newSource);
+            success = await handleAddSource(newSource);
         }
-        setShowModal(false);
-        setEditSource(null);
-        e.target.reset();
+        if (success) {
+            setShowModal(false);
+            setEditSource(null);
+            e.target.reset();
+        }
     };
 
     useEffect(() => {
@@ -64,22 +71,29 @@ const RSSFeedsPage = () => {
         setEditSource(row);
         setModalMode("edit");
         setShowModal(true);
+        setError("");
     };
 
     const handleUpdateSource = async (updatedSource) => {
-        const res = await fetch(`${API_BASE_URL}/api/sources/${updatedSource.id}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedSource),
-        });
-
-        if (res.ok) {
-            const updatedList = await res.json();
-            setData(updatedList);
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/sources/${updatedSource.id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedSource),
+            });
+            const result = await res.json();
+            if (res.ok) {
+                setError(result.error || "Update Failed");
+                return false;
+            }
+            setData(result);
+            setError("");
             setShowModal(false);
             setEditSource(null);
-        } else {
-            console.error("Update Failed");
+            return true;
+        } catch {
+            setError("Update Failed");
+            return false;
         }
     };
 
@@ -136,25 +150,23 @@ const RSSFeedsPage = () => {
         },
     ];
 
-    const filteredData = data.filter(source =>
-        source.title.toLowerCase().includes(search.toLowerCase())
-    );
+    const filteredData = data.filter((source) => source.title.toLowerCase().includes(search.toLowerCase()));
 
     return (
         <div className="flex flex-col gap-y-4">
             <div className="flex flex-row gap-x-12">
                 <h1 className="title">RSS Feeds</h1>
                 <input
-                    className="flex h-[40px] w-40 p-1 items-center justify-center rounded-lg border-0 border-slate-500" 
+                    className="flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 p-1"
                     type="text"
                     placeholder="Search source title..."
                     value={search}
-                    onChange={e => setSearch(e.target.value)}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
 
                 {/* Add Feed Button */}
                 <button
-                    className="flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600 ml-auto"
+                    className="ml-auto flex h-[40px] w-40 items-center justify-center rounded-lg border-0 border-slate-500 bg-blue-500 p-3 text-slate-100 transition-colors hover:bg-blue-600"
                     onClick={() => {
                         setShowModal(true);
                         setModalMode("add");
@@ -167,10 +179,16 @@ const RSSFeedsPage = () => {
                 {/* Add Feed Modal Component */}
                 <Modal
                     isVisible={showModal}
-                    onClose={() => setShowModal(false)}
+                    onClose={() => {
+                        setShowModal(false);
+                        setEditSource(null);
+                        setError("");
+                    }}
                 >
                     <div className="p-6">
                         <h3 className="mb-5 text-xl font-semibold text-gray-900">{editSource ? "Edit RSS Feed" : "Add New RSS Feed"}</h3>
+
+                        {error && <div className="mb-4 block text-sm font-medium text-red-500">{error}</div>}
                         <form onSubmit={handleSubmit}>
                             <div className="mb-4">
                                 <label className="mb-2 block text-sm font-medium text-gray-700">Feed Title</label>

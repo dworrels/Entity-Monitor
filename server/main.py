@@ -8,6 +8,7 @@ import json
 import feedparser
 import requests
 import time
+import newspaper
 import tldextract
 import concurrent.futures
 from dateutil import parser as dateparser
@@ -37,11 +38,24 @@ PROJECTS_FILE = os.path.join("projects", "projects.json")
 def add_source():
     new_source = request.get_json()
 
-    if not new_source or "title" not in new_source or "rssUrl" not in new_source:
-        return jsonify({"error": "Invalid data"}), 400
+    # Clean Up title and rssUrl
+    title = new_source["title"] = new_source["title"].strip() if new_source else ""
+    rss_url = new_source["rssUrl"] = new_source["rssUrl"].strip() if new_source else ""
 
-    # Assign an ID based on the title if not provided
-    new_source.setdefault("id", new_source["title"].lower().replace(" ", ""))
+    # Check for required fields
+    if not title or not rss_url:
+        return jsonify({"error": "Feed title and RSS feed URL are required."}), 400
+
+    # Validate rssUrl
+    if not (rss_url.startswith("https://") or rss_url.startswith("http://")):
+        return (
+            jsonify(
+                {
+                    "error": "RSS feed URL is invalid. It must start with 'https://' or 'http://'"
+                }
+            ),
+            400,
+        )
 
     # Load existing sources
     if os.path.exists(SOURCE_FILE):
@@ -49,6 +63,16 @@ def add_source():
             sources = json.load(f)
     else:
         sources = []
+
+    # Check for duplicate rssUrl (case insensitive, trimmed)
+    for s in sources:
+        if s.get("rssUrl", "").strip().lower() == rss_url.lower():
+            return jsonify({"error": "This RSS feed URL already exists."}), 400
+
+    # assign a unique numeric ID
+    existing_ids = {int(s["id"]) for s in sources if str(s.get("id", "")).isdigit()}
+    next_id = str(max(existing_ids) + 1) if existing_ids else "1"
+    new_source["id"] = next_id
 
     sources.append(new_source)
 
@@ -114,7 +138,6 @@ def update_source(source_id):
     return jsonify(sources), 200
 
 
-
 def get_brandfetch_logo(domain, api_key):
     try:
         url = f"https://api.brandfetch.io/v2/search/{domain}"
@@ -129,18 +152,14 @@ def get_brandfetch_logo(domain, api_key):
                     for fmt in logo.get("formats", []):
                         if fmt.get("format") == "svg" and fmt.get("src"):
                             return fmt["src"]
-                if "icon" in data[0]:        
+                if "icon" in data[0]:
                     return data[0]["icon"]
         return ""
     except Exception as e:
         print(f"Brandfetch error for {domain}: {e}")
         return ""
 
-# clean CBS images
-def clean_cbs_image_url(url: str) -> str:
-    if "cbsnewsstatic.com" in url:
-        return re.sub(r"thumbnail/\d+x\d+/", "", url)
-    return url
+brandfetch_cache = {}
 
 # Get image from feed entry or Brandfetch
 def find_article_image(entry, source, brandfetch_api_key):
@@ -184,63 +203,84 @@ def find_article_image(entry, source, brandfetch_api_key):
                 if match:
                     image_url = match.group(1)
                     break
+    
+    # Use newspaper4k to extract image
+    if not image_url and "link" in entry:
+        try: 
+            article = newspaper.article(entry["link"])
+            article.download()
+            article.parse()
+            if article.top_image:
+                image_url = article.top_image
+        except Exception as e:
+            print(f"Error extracting image with newspaper4k for {entry.link}: {e}")
 
     # enclosure tag
     if not image_url and "enclosures" in entry and entry.enclosures:
-        image_url = entry.enclosures[0].get("url", "") or entry.enclosures[0].get("href", "")
+        image_url = entry.enclosures[0].get("url", "") or entry.enclosures[0].get(
+            "href", ""
+        )
 
     # Fallback: parse raw XML for <image> tag
-    if not image_url and "rssUrl" in source:
-        rss_url = source["rssUrl"]
-        response = requests.get(rss_url)
-        parser = etree.XMLParser(recover=True)
-        root = etree.fromstring(response.content, parser=parser)
-        for item in root.findall(".//item"):
-            # Match the entry's link to the item's link in the XML
-            if item.findtext("link") == entry.link:
-                image_url = item.findtext("image")
-                if image_url:
-                    break
-        
+    # if not image_url and "rssUrl" in source:
+    #     print(f"Starting RAW XML parse for {source.get('title', source.get('rssUrl', ''))}")
+    #     xml_start = time.time()
+    #     rss_url = source["rssUrl"]
+    #     response = requests.get(rss_url)
+    #     parser = etree.XMLParser(recover=True)
+    #     root = etree.fromstring(response.content, parser=parser)
+    #     for item in root.findall(".//item"):
+    #         # Match the entry's link to the item's link in the XML
+    #         if item.findtext("link") == entry.link:
+    #             image_url = item.findtext("image")
+    #             if image_url:
+    #                 break
+    #     xml_elapsed = time.time() - xml_start
+    #     print(f"RAW XML parse for {source.get('title', source.get('rssUrl', ''))} took {xml_elapsed:.2f} seconds")
 
     # Brandfetch fallback
     if not image_url:
         ext = tldextract.extract(entry.link)
         domain = f"{ext.domain}.{ext.suffix}"
-        image_url = get_brandfetch_logo(domain, brandfetch_api_key)
+        if domain in brandfetch_cache:
+            image_url = brandfetch_cache[domain]
+        else:
+            image_url = get_brandfetch_logo(domain, brandfetch_api_key)
+            brandfetch_cache[domain] = image_url
         if not image_url:
             image_url = "https://placehold.co/160x90?text=No+Image"
 
-    # Clean specific known patterns
-    image_url = clean_cbs_image_url(image_url)
-
     return image_url
+
 
 def fetch_feed(source):
     try:
         # write and count feeds being fetched
-        print(f"Fetching: {source.get('title', source.get('rssUrl', 'Unknown Feed'))}") 
+        print(f"Fetching: {source.get('title', source.get('rssUrl', 'Unknown Feed'))}")
         start = time.time()
         feed = feedparser.parse(source["rssUrl"])
         elapsed = time.time() - start
         if elapsed > 5:
-            print(f"WARNING Slow Feed ({elapsed:.2f}s): {source['title']} - {source['rssUrl']}")
+            print(
+                f"WARNING Slow Feed ({elapsed:.2f}s): {source['title']} - {source['rssUrl']}"
+            )
         articles = []
         for entry in feed.entries:
             image_url = find_article_image(entry, source, brandfetch_api_key)
-            articles.append({
-                "title": entry.title,
-                "link": entry.link,
-                "description": getattr(entry, "description", ""),
-                "source": source.get("title", ""),
-                "published": entry.published if "published" in entry else "",
-                "image": image_url,
-            })
+            articles.append(
+                {
+                    "title": entry.title,
+                    "link": entry.link,
+                    "description": getattr(entry, "description", ""),
+                    "source": source.get("title", ""),
+                    "published": entry.published if "published" in entry else "",
+                    "image": image_url,
+                }
+            )
         return articles
     except Exception as e:
         print(f"Error parsing feed {source['rssUrl']}: {e}")
         return []
-
 
 # Background refresh
 def fetch_and_save_articles():
@@ -253,7 +293,7 @@ def fetch_and_save_articles():
         sources = []
 
     all_articles = []
-    
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         results = list(executor.map(fetch_feed, sources))
         for articles in results:
@@ -271,6 +311,7 @@ def fetch_and_save_articles():
         except Exception:
             pass
         return datetime(1970, 1, 1, tzinfo=timezone.utc)
+
     # print all articles with published date
     print(f"All dates parsed")
 
@@ -289,6 +330,7 @@ def fetch_and_save_articles():
         json.dump(unique_articles, f, indent=2)
     print(f"Finished fetching articles in {time.time() - start:.2f} seconds")
 
+
 # Parse articles for Home page
 @app.route("/api/articles", methods=["GET"])
 def get_articles():
@@ -301,6 +343,7 @@ def get_articles():
     return jsonify(articles)
 
     # Sort latest feeds by date published
+
 
 def parse_date_safe(date_str):
     try:
@@ -353,6 +396,7 @@ def add_project():
 
     return jsonify(new_project), 201
 
+
 # Instagram API
 @app.route("/api/proxy-image")
 def proxy_image():
@@ -362,10 +406,14 @@ def proxy_image():
     try:
         resp = requests.get(url, timeout=10)
         resp.raise_for_status()
-        return send_file(BytesIO(resp.content), mimetype=resp.headers.get("content-type", "image/jpeg"))
+        return send_file(
+            BytesIO(resp.content),
+            mimetype=resp.headers.get("content-type", "image/jpeg"),
+        )
     except Exception as e:
         print("proxy error:", e)
         return "Error fetching image", 500
+
 
 @app.route("/api/instagram/posts", methods=["GET"])
 def get_instagram_posts():
@@ -375,21 +423,23 @@ def get_instagram_posts():
 
     try:
         url = "https://instagram120.p.rapidapi.com/api/instagram/posts"
-        payload = {
-            "username": username,
-            "maxId": ""
-        }
+        payload = {"username": username, "maxId": ""}
         headers = {
             "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
             "x-rapidapi-host": "instagram120.p.rapidapi.com",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
         response = requests.post(url, json=payload, headers=headers, timeout=10)
         try:
             data = response.json()
         except Exception:
             print("Non-JSON response from Instagram API:", response.text)
-            return jsonify({"error": "Instagram API did not return JSON", "raw": response.text}), 500
+            return (
+                jsonify(
+                    {"error": "Instagram API did not return JSON", "raw": response.text}
+                ),
+                500,
+            )
 
         # --- FIX: handle result.edges structure ---
         edges = data.get("result", {}).get("edges", [])
@@ -405,49 +455,63 @@ def get_instagram_posts():
             image_url = ""
             first_candidate_url = ""
             image_versions2 = node.get("image_versions2", {})
-            candidates = image_versions2.get("candidates", []) if isinstance(image_versions2, dict) else []
+            candidates = (
+                image_versions2.get("candidates", [])
+                if isinstance(image_versions2, dict)
+                else []
+            )
             if candidates and isinstance(candidates, list):
                 first_candidate_url = candidates[0].get("url", "")
                 image_url = first_candidate_url
 
             taken_at_str = ""
-            if isinstance(taken_at, int) or (isinstance(taken_at, str) and taken_at.isdigit()):
-                taken_at_str = datetime.utcfromtimestamp(int(taken_at)).isoformat() + "Z"
+            if isinstance(taken_at, int) or (
+                isinstance(taken_at, str) and taken_at.isdigit()
+            ):
+                taken_at_str = (
+                    datetime.utcfromtimestamp(int(taken_at)).isoformat() + "Z"
+                )
             else:
                 taken_at_str = taken_at
 
-            posts.append({
-                "text": text,
-                "image": image_url,
-                "taken_at": taken_at_str,
-                "first_url": first_candidate_url
-            })
+            posts.append(
+                {
+                    "text": text,
+                    "image": image_url,
+                    "taken_at": taken_at_str,
+                    "first_url": first_candidate_url,
+                }
+            )
         return jsonify({"posts": posts})
     except Exception as e:
         print("error in /api/instagram/posts:", e)
         return jsonify({"error": str(e)}), 500
 
-# X API 
+
+# X API
 @app.route("/api/x/posts", methods=["GET"])
 def get_x_posts():
     username = request.args.get("username")
     if not username:
         return jsonify({"error": "Missing username"}), 400
-    
+
     try:
         url = "https://twitter-api45.p.rapidapi.com/usermedia.php"
         querystring = {"screenname": username}
         headers = {
             "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
-            "x-rapidapi-host": "twitter-api45.p.rapidapi.com"
+            "x-rapidapi-host": "twitter-api45.p.rapidapi.com",
         }
-        response = requests.get(url, headers = headers, params=querystring, timeout=10)
+        response = requests.get(url, headers=headers, params=querystring, timeout=10)
         try:
             data = response.json()
         except Exception:
             print("Non-JSON respnse from X API:", response.text)
-            return jsonify({"error": "X API did not return JSON", "raw": response.text}), 500
-        
+            return (
+                jsonify({"error": "X API did not return JSON", "raw": response.text}),
+                500,
+            )
+
         timeline = data.get("timeline", [])
         posts = []
         for item in timeline:
@@ -457,47 +521,58 @@ def get_x_posts():
 
             media = item.get("media", {})
             if "photo" in media and isinstance(media["photo"], list) and media["photo"]:
-                media_url = media["photo"][0].get("media_url_https") or media["photo"][0].get("media_url", "")
+                media_url = media["photo"][0].get("media_url_https") or media["photo"][
+                    0
+                ].get("media_url", "")
 
-            elif "video" in media and isinstance(media["video"], list) and media["video"]:
-                media_url = media["video"][0].get("media_url_https") or media["video"][0].get("media_url", "")
+            elif (
+                "video" in media and isinstance(media["video"], list) and media["video"]
+            ):
+                media_url = media["video"][0].get("media_url_https") or media["video"][
+                    0
+                ].get("media_url", "")
 
-            print({
-                "text": text,
-                "image": media_url,
-                "taken_at": taken_at,
-                "first_url": media_url,
-            })
+            print(
+                {
+                    "text": text,
+                    "image": media_url,
+                    "taken_at": taken_at,
+                    "first_url": media_url,
+                }
+            )
 
-            posts.append({
-                "text": text,
-                "image": media_url,
-                "taken_at": taken_at,
-                "first_url": media_url,
-                "username": username,
-                "link": f"https://x.com/{username}/status/{item.get('tweet_id', '')}"
-            })
+            posts.append(
+                {
+                    "text": text,
+                    "image": media_url,
+                    "taken_at": taken_at,
+                    "first_url": media_url,
+                    "username": username,
+                    "link": f"https://x.com/{username}/status/{item.get('tweet_id', '')}",
+                }
+            )
 
         return jsonify({"posts": posts})
     except Exception as e:
         print("error in /api/x/posts:", e)
         return jsonify({"error": str(e)}), 500
 
-# Reddit API 
+
+# Reddit API
 @app.route("/api/reddit", methods=["GET"])
 def get_reddit():
     query = request.args.get("query", "")
     subreddit = request.args.get("subreddit", "")
     if not query:
         return jsonify({"error": "Missing query"}), 400
-        
+
     url = "https://reddit3.p.rapidapi.com/v1/reddit/search"
 
     querystring = {
         "search": query,
         "filter": "posts",
         "timefilter": "all",
-        "sortType": "relevance"
+        "sortType": "relevance",
     }
 
     if subreddit:
@@ -505,27 +580,30 @@ def get_reddit():
 
     headers = {
         "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
-        "x-rapidapi-host": "reddit3.p.rapidapi.com"
+        "x-rapidapi-host": "reddit3.p.rapidapi.com",
     }
 
-    try: 
+    try:
         resp = requests.get(url, headers=headers, params=querystring, timeout=10)
         resp.raise_for_status()
         data = resp.json()
         posts = []
-            
+
         for post in data.get("body", []):
-            posts.append({
-                "title": post.get("title"),
-                "subreddit": post.get("subreddit"),
-                "user": post.get("author"),
-                "selftext": post.get("selftext"),
-                "permalink": f"https://reddit.com{post.get('permalink', '')}"
-            })
+            posts.append(
+                {
+                    "title": post.get("title"),
+                    "subreddit": post.get("subreddit"),
+                    "user": post.get("author"),
+                    "selftext": post.get("selftext"),
+                    "permalink": f"https://reddit.com{post.get('permalink', '')}",
+                }
+            )
         return jsonify({"posts": posts})
     except Exception as e:
         print("Reddit API error:", e)
         return jsonify({"error": str(e)}), 500
+
 
 # Run Flask app and scheduler
 if __name__ == "__main__":
