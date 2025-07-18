@@ -463,5 +463,25 @@
     "id": "94",
     "title": "MIT News - Artificial intelligence",
     "rssUrl": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+  },
+  {
+    "id": "95",
+    "title": "The Indian Express - World",
+    "rssUrl": "https://indianexpress.com/section/world/feed/"
+  },
+  {
+    "id": "96",
+    "title": "The Indian Express - Politics",
+    "rssUrl": "https://indianexpress.com/section/political-pulse/feed/"
+  },
+  {
+    "id": "97",
+    "title": "Github - AI & ML",
+    "rssUrl": "https://github.blog/ai-and-ml/feed/"
+  },
+  {
+    "id": "98",
+    "title": "Github - Generative AI",
+    "rssUrl": "https://github.blog/ai-and-ml/generative-ai/feed/"
   }
 ]

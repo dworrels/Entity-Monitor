@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { matchesBooleanSearch } from "../../utils/booleanSearch";
 import ContentCard from "../../components/ContentCard";
 import HorizontalCard from "../../components/HorizontalCard";
@@ -36,6 +36,20 @@ const ProjectDetailPage = () => {
     const [forumsSubreddit, setForumsSubreddit] = useState("");
     const [forumsSearched, setForumsSearched] = useState(false);
 
+    // daily report
+    const [dailyReport, setDailyReport] = useState(null);
+    const [reportLoading, setReportLoading] = useState(false);
+
+    const filteredArticles = useMemo(
+        () => 
+            articles.filter((article) =>
+                matchesBooleanSearch(
+                    (article.title || "") + " " + (article.description || ""), 
+                    project?.keyword),
+    ), 
+    [articles, project?.keyword]
+);
+
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/projects`)
             .then((res) => res.json())
@@ -49,33 +63,32 @@ const ProjectDetailPage = () => {
             .then((data) => setArticles(data))
             .finally(() => setLoading(false));
     }, [projectid]);
-    
+
     // Start of social tab
     const handleSocialSearch = (e) => {
-    e.preventDefault();
-    setSocialLoading(true);
+        e.preventDefault();
+        setSocialLoading(true);
 
-    let url = "";
-    if (selectedSite === "instagram") {
-        url = `${API_BASE_URL}/api/instagram/posts?username=${encodeURIComponent(socialSearch)}`;
-    } else if (selectedSite === "x") {
-        url = `${API_BASE_URL}/api/x/posts?username=${encodeURIComponent(socialSearch)}`;
-    } else {
-        url = `${API_BASE_URL}/api/social?site=${selectedSite}&username=${encodeURIComponent(socialSearch)}`;
-    }
+        let url = "";
+        if (selectedSite === "instagram") {
+            url = `${API_BASE_URL}/api/instagram/posts?username=${encodeURIComponent(socialSearch)}`;
+        } else if (selectedSite === "x") {
+            url = `${API_BASE_URL}/api/x/posts?username=${encodeURIComponent(socialSearch)}`;
+        } else {
+            url = `${API_BASE_URL}/api/social?site=${selectedSite}&username=${encodeURIComponent(socialSearch)}`;
+        }
 
-    fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-            setSocialResults(data.posts || []);
-        })
-        .finally(() => setSocialLoading(false));
-};
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => {
+                setSocialResults(data.posts || []);
+            })
+            .finally(() => setSocialLoading(false));
+    };
 
     // Start of forums tab
     useEffect(() => {
         setForumsSearch(project?.keyword || "");
-
     }, [project]);
 
     const handleForumsSearch = (e) => {
@@ -83,22 +96,36 @@ const ProjectDetailPage = () => {
         setRedditLoading(true);
         setForumsSearched(true);
         let url = `${API_BASE_URL}/api/reddit?query=${encodeURIComponent(forumsSearch)}`;
-        if (forumsSubreddit) { 
+        if (forumsSubreddit) {
             url += `&subreddit=${encodeURIComponent(forumsSubreddit)}`;
         }
         fetch(url)
-            .then(res => res.json())
-            .then(data => setRedditResults(data.posts || []))
+            .then((res) => res.json())
+            .then((data) => setRedditResults(data.posts || []))
             .finally(() => setRedditLoading(false));
     };
 
+    const articleLinks = useMemo(() => filteredArticles.map(a => a.link), [filteredArticles]);
+
+    // Fetch daily report when the reports tab is active
+    useEffect(() => {
+        if (activeTab === "reports" && project && articleLinks.length > 0) {
+            setReportLoading(true);
+            fetch(`${API_BASE_URL}/api/projects/${project.id}/daily_report`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    article_links: articleLinks
+                })
+            })
+                .then((res) => res.json())
+                .then((data) => setDailyReport(data))
+                .finally(() => setReportLoading(false));
+        }
+    }, [activeTab, project, articleLinks]);
 
     if (loading) return <div>Loading...</div>;
     if (!project) return <div>Project not found</div>;
-
-    const filteredArticles = articles.filter((article) =>
-        matchesBooleanSearch((article.title || "") + " " + (article.description || ""), project.keyword),
-    );
 
     return (
         <div className="p-6">
@@ -237,40 +264,67 @@ const ProjectDetailPage = () => {
                         onSubmit={handleForumsSearch}
                     >
                         <div className="relative flex-1">
-                            <Search 
+                            <Search
                                 className="absolute top-1/2 left-2 -translate-y-1/2 text-slate-400"
                                 size={18}
                             />
                         </div>
-                            <input 
-                                type="text"
-                                className="w-full rounded border border-slate-300 py-2 pl-8"
-                                placeholder="Search Reddit..."
-                                value={forumsSearch}
-                                onChange={(e) => setForumsSubreddit(e.target.value)}
-                            />
-                            <button
-                                type="submit"
-                                className="rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
-                                disabled={redditLoading}
-                            >
-                                {redditLoading ? "Searching..." : "Search"}
-                            </button>
+                        <input
+                            type="text"
+                            className="w-full rounded border border-slate-300 py-2 pl-8"
+                            placeholder="Search Reddit..."
+                            value={forumsSearch}
+                            onChange={(e) => setForumsSubreddit(e.target.value)}
+                        />
+                        <button
+                            type="submit"
+                            className="rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
+                            disabled={redditLoading}
+                        >
+                            {redditLoading ? "Searching..." : "Search"}
+                        </button>
                     </form>
                     {redditLoading && <div>Loading Reddit posts...</div>}
-                    {!redditLoading && forumsSearched&& redditResults.length === 0 && (
-                        <div>No Reddit posts found for this query.</div>
-                    )}
+                    {!redditLoading && forumsSearched && redditResults.length === 0 && <div>No Reddit posts found for this query.</div>}
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {redditResults.map((post, idx) => (
-                            <ForumsCard key={idx} post={post} />
+                            <ForumsCard
+                                key={idx}
+                                post={post}
+                            />
                         ))}
                     </div>
                 </div>
             )}
             {activeTab === "reports" && (
                 <div>
-                    <div className="mt-8 text-gray-500">Reports content here</div>
+                    {reportLoading && <div>Loading daily report...</div>}
+                    {!reportLoading && dailyReport && (
+                        <div className="prose max-w-none rounded bg-white p-6 shadow">
+                            <h2 className="mb-2 text-xl font-bold">
+                                {dailyReport.project} Daily Report ({dailyReport.date})
+                            </h2>
+                            <div className="mb-4 text-gray-600">{dailyReport.article_count} articles summarized</div>
+                            <div className="whitespace-pre-line">{dailyReport.report}</div>
+                            {/* Optionally show summaries for each article */}
+                            <details className="mt-6">
+                                <summary className="cursor-pointer text-blue-600">Show individual article summaries</summary>
+                                <div className="mt-2 text-sm whitespace-pre-line">
+                                    {dailyReport.summaries &&
+                                        dailyReport.summaries.map((s, i) => (
+                                            <div
+                                                key={i}
+                                                className="mb-4"
+                                            >
+                                                {s}
+                                            </div>
+                                        ))}
+                                </div>
+                            </details>
+                        </div>
+                    )}
+                    {!reportLoading && dailyReport && dailyReport.message && <div>{dailyReport.message}</div>}
+                    {!reportLoading && !dailyReport && <div>No daily report available.</div>}
                 </div>
             )}
         </div>

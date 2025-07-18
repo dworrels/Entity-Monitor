@@ -14,6 +14,7 @@ import newspaper
 import tldextract
 import concurrent.futures
 from dateutil import parser as dateparser
+from collections import defaultdict
 from datetime import datetime, timezone
 from apscheduler.schedulers.background import BackgroundScheduler
 import threading
@@ -161,7 +162,9 @@ def get_brandfetch_logo(domain, api_key):
         print(f"Brandfetch error for {domain}: {e}")
         return ""
 
+
 brandfetch_cache = {}
+
 
 # Get image from feed entry or Brandfetch
 def find_article_image(entry, source, brandfetch_api_key):
@@ -205,17 +208,17 @@ def find_article_image(entry, source, brandfetch_api_key):
                 if match:
                     image_url = match.group(1)
                     break
-    
+
     # Use newspaper4k to extract image
     if not image_url and "link" in entry:
-        # try: 
+        # try:
         article = newspaper.article(entry["link"])
         article.download()
         article.parse()
         if article.top_image:
             image_url = article.top_image
-        # 
-            # print(f"Error extracting image with newspaper4k for {entry.link}: {e}")
+        #
+        # print(f"Error extracting image with newspaper4k for {entry.link}: {e}")
 
     # enclosure tag
     if not image_url and "enclosures" in entry and entry.enclosures:
@@ -283,6 +286,7 @@ def fetch_feed(source):
     except Exception as e:
         print(f"Error parsing feed {source['rssUrl']}: {e}")
         return []
+
 
 # Background refresh
 def fetch_and_save_articles():
@@ -399,7 +403,7 @@ def add_project():
     return jsonify(new_project), 201
 
 
-# Instagram API
+# Instagram image proxy
 @app.route("/api/proxy-image")
 def proxy_image():
     url = request.args.get("url")
@@ -417,6 +421,7 @@ def proxy_image():
         return "Error fetching image", 500
 
 
+# Instagram API
 @app.route("/api/instagram/posts", methods=["GET"])
 def get_instagram_posts():
     username = request.args.get("username")
@@ -431,7 +436,7 @@ def get_instagram_posts():
             "x-rapidapi-host": "instagram120.p.rapidapi.com",
             "Content-Type": "application/json",
         }
-        response = requests.post(url, json=payload, headers=headers, timeout=10)
+        response = requests.post(url, json=payload, headers=headers)
         try:
             data = response.json()
         except Exception:
@@ -605,6 +610,160 @@ def get_reddit():
     except Exception as e:
         print("Reddit API error:", e)
         return jsonify({"error": str(e)}), 500
+
+
+#### OLLAMA Summarization
+
+
+def split_text_into_chunks(text, chunk_size=400, overlap=50):
+    words = text.split()
+    chunks = []
+    i = 0
+    while i < len(words):
+        chunk = words[i : i + chunk_size]
+        chunks.append(" ".join(chunk))
+        if i + chunk_size >= len(words):
+            break
+        i += chunk_size - overlap
+    return chunks
+
+
+def summarize_with_mistral(prompt, model="mistral"):
+    client = ollama.Client()
+    response = client.generate(model=model, prompt=prompt)
+    return response.response.strip()
+
+
+def summarize_article(title, text, published):
+    # Chunk and summarize each article
+    if len(text.split()) < 1000:
+        prompt = f"Title: {title}\nDate: {published}\n\n{text}\n\nSummarize this article in detail."
+        return summarize_with_mistral(prompt)
+    chunk_size = 1000
+    overlap = 0
+    chunks = split_text_into_chunks(text, chunk_size, overlap)
+    chunk_summaries = []
+    for idx, chunk in enumerate(chunks):
+        prompt = (
+            f"Title: {title}\nDate: {published}\n\n"
+            f"Article chunk {idx+1} of {len(chunks)}:\n{chunk}\n\n"
+            "Summarize this chunk in detail."
+        )
+        summary = summarize_with_mistral(prompt)
+        chunk_summaries.append(summary)
+
+    # merge summaries
+    merge_prompt = (
+        f"Title: {title}\nDate: {published}\n\n"
+        "Here are the summaries of each chunk of a long article:\n\n"
+        + "\n\n".join(
+            f"Chunk {i+1} summary:\n{cs}" for i, cs in enumerate(chunk_summaries)
+        )
+        + "\n\nCombine these into a single, coherent, non-repetitive summary of the full article."
+    )
+    return summarize_with_mistral(merge_prompt)
+
+
+def get_full_text_or_description(article):
+    try:
+        art = newspaper.article(article["link"])
+        art.download()
+        art.parse()
+        if art.text and len(art.text) > 100:
+            return art.text
+    except Exception as e:
+        print(f"newspaper4k error for {article['link']}: {e}")
+    return article.get("description", "")
+
+
+@app.route("/api/projects/<project_id>/daily_report", methods=["POST"])
+def generate_daily_report(project_id):
+    print("generate_daily_report called")
+    # Get project
+    if os.path.exists(PROJECTS_FILE):
+        with open(PROJECTS_FILE, "r") as f:
+            projects = json.load(f)
+    else:
+        return jsonify({"error": "No projects found"}), 404
+    project = next((p for p in projects if p["id"] == project_id), None)
+    if not project:
+        return jsonify({"error": "Project not found"}), 404
+
+    today = datetime.now(timezone.utc).date()
+    if os.path.exists(ARTICLES_FILE):
+        with open(ARTICLES_FILE, "r") as f:
+            articles = json.load(f)
+    else:
+        articles = []
+
+    # Get filtered article links from frontend
+    data = request.get_json()
+    article_links = set(data.get("article_links", []))
+
+    # Only use articles that are in the provided list and published today
+    def is_today(article):
+        try:
+            dt = dateparser.parse(article.get("published", ""))
+            return dt and dt.date() == today
+        except Exception:
+            return False
+
+    todays_articles = [
+        a for a in articles if a["link"] in article_links and is_today(a)
+    ]
+
+    print(f"Number of articles used for daily report: {len(todays_articles)}")
+
+    if not todays_articles:
+        return jsonify({"message": "No articles found for today's date."})
+
+    def summarize_one_article(article):
+        start = time.time()
+        full_text = get_full_text_or_description(article)
+        summary = summarize_article(article["title"], full_text, article["published"])
+        print(f"Summarized article '{article['title']}' in {time.time() - start:.2f}s")
+        return f"Source: {article.get('source', 'Unknown')}\nTitle: {article['title']}\nDate: {article['published']}\nSummary:\n{summary}\n"
+
+    # In your endpoint  :
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        summaries = list(executor.map(summarize_one_article, todays_articles))
+
+    merge_prompt = (
+        f"Project: {project['name']}\nDate: {today}\n\n"
+        "Here are summaries of today's articles:\n\n"
+        + "\n\n".join(
+            f"Article {i+1}:\n{summary}" for i, summary in enumerate(summaries)
+        )
+        + "\n\nUsing only the information provided in the summaries above, generate a clean, professional, and consistently formatted report for analysts. Do not use any outside knowledge. For each article, use the following format:\n\n"
+        "Title: [Insert title from summary if present]\n"
+        "Source: [Insert source if present]\n"
+        "Date: [Insert date from summary if present]\n\n"
+        "SUMMARY OF KEY FACTS\n"
+        "- [Bullet points of key facts from the summary]\n\n"
+        "KEY ENTITIES MENTIONED\n"
+        "People: [List names without bullet points]\n"
+        "Organizations: [Organizations]\n"
+        "Locations: [Places]\n\n"
+        "THEMES AND CONTEXT\n"
+        "[Topics or background from the summary]\n\n"
+        "POTENTIAL IMPLICATIONS\n"
+        "[List any implications that are described in the summaries. Avoid using bullet points.]\n\n"
+        "Repeat this format for each article. Only use information found in the summaries above. Do not add outside knowledge."
+    )
+
+    start = time.time()
+    daily_report = summarize_with_mistral(merge_prompt)
+    print(f"Daily report generated in {time.time() - start:.2f}s")
+
+    return jsonify(
+        {
+            "date": str(today),
+            "project": project["name"],
+            "article_count": len(todays_articles),
+            "report": daily_report,
+            "summaries": summaries,
+        }
+    )
 
 
 # Run Flask app and scheduler
