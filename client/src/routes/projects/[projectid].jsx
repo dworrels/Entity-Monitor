@@ -13,6 +13,7 @@ const SOCIAL_SITES = [
     { label: "Instagram", value: "instagram" },
     { label: "X", value: "x" },
     { label: "Facebook", value: "facebook" },
+    { label: "LinkedIn", value: "linkedin" },
 ];
 
 const ProjectDetailPage = () => {
@@ -73,7 +74,9 @@ const ProjectDetailPage = () => {
         if (selectedSite === "instagram") {
             url = `${API_BASE_URL}/api/instagram/posts?username=${encodeURIComponent(socialSearch)}`;
         } else if (selectedSite === "x") {
-            url = `${API_BASE_URL}/api/x/posts?username=${encodeURIComponent(socialSearch)}`;
+            url = `${API_BASE_URL}/api/x/posts?query=${encodeURIComponent(socialSearch)}`;
+        } else if (selectedSite === "linkedin") {
+            url = `${API_BASE_URL}/api/linkedin/posts?query=${encodeURIComponent(socialSearch)}`;
         } else {
             url = `${API_BASE_URL}/api/social?site=${selectedSite}&username=${encodeURIComponent(socialSearch)}`;
         }
@@ -85,6 +88,13 @@ const ProjectDetailPage = () => {
             })
             .finally(() => setSocialLoading(false));
     };
+
+    useEffect(() => {
+        // Autofill the search bar with the search query when X is selected
+        if ((selectedSite === "x" || selectedSite === "linkedin") && project?.keyword) {
+            setSocialSearch(project.keyword)
+        }
+    }, [selectedSite, project?.keyword]);
 
     // Start of forums tab
     useEffect(() => {

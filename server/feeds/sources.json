@@ -155,11 +155,6 @@
     "rssUrl": "https://www.aljazeera.com/xml/rss/all.xml"
   },
   {
-    "id": "32",
-    "title": "Buzzfeed - World",
-    "rssUrl": "https://www.buzzfeed.com/world.xml"
-  },
-  {
     "id": "33",
     "title": "Times of India",
     "rssUrl": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms"
@@ -483,5 +478,10 @@
     "id": "98",
     "title": "Github - Generative AI",
     "rssUrl": "https://github.blog/ai-and-ml/generative-ai/feed/"
+  },
+  {
+    "id": "99",
+    "title": "The Globe and Mail - World",
+    "rssUrl": "https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/world/"
   }
 ]

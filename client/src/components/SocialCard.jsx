@@ -26,17 +26,17 @@ const SocialCard = ({ post }) => {
             <div className="px-6 py-4 flex-1 flex flex-col">
                 {/* Only show username/link if available */}
                 {post.username && (
-                    <a
-                        href={post.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mb-2 text-xl font-bold hover:underline"
-                    >
-                        @{post.username}
+    <a
+        href={post.url || post.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mb-2 text-xl font-bold hover:underline"
+    >
+        @{post.username}
                     </a>
                 )}
                 <p className="text-base text-gray-700 overflow-hidden text-ellipsis line-clamp-5">
-                    {post.text || post.content}
+                    {post.text || post.caption || post.content}
                 </p>
             </div>
             <div className="px-6 pt-4 pb-2 flex flex-col item-start gap-1">

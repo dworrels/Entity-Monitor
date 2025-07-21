@@ -9,18 +9,17 @@ import feedparser
 import requests
 import time
 import ollama
-import math
 import newspaper
 import tldextract
 import concurrent.futures
 from dateutil import parser as dateparser
-from collections import defaultdict
 from datetime import datetime, timezone
+from groq import Groq, RateLimitError
+# from langchain_google_genai import ChatGoogleGenerativeAI
 from apscheduler.schedulers.background import BackgroundScheduler
 import threading
 from dotenv import load_dotenv
 from io import BytesIO
-from lxml import etree
 
 brandfetch_api_key = os.environ.get("BRANDFETCH_API_KEY")
 
@@ -260,8 +259,8 @@ def find_article_image(entry, source, brandfetch_api_key):
 
 def fetch_feed(source):
     try:
-        # write and count feeds being fetched
-        print(f"Fetching: {source.get('title', source.get('rssUrl', 'Unknown Feed'))}")
+        # write feeds being fetched
+        # print(f"Fetching: {source.get('title', source.get('rssUrl', 'Unknown Feed'))}")
         start = time.time()
         feed = feedparser.parse(source["rssUrl"])
         elapsed = time.time() - start
@@ -402,6 +401,7 @@ def add_project():
 
     return jsonify(new_project), 201
 
+#### Start of Social Media API Endpoints
 
 # Instagram image proxy
 @app.route("/api/proxy-image")
@@ -420,150 +420,99 @@ def proxy_image():
         print("proxy error:", e)
         return "Error fetching image", 500
 
-
 # Instagram API
 @app.route("/api/instagram/posts", methods=["GET"])
 def get_instagram_posts():
     username = request.args.get("username")
+    count = request.args.get("count", "12")
     if not username:
         return jsonify({"error": "Missing username"}), 400
 
     try:
-        url = "https://instagram120.p.rapidapi.com/api/instagram/posts"
-        payload = {"username": username, "maxId": ""}
+        url = "https://instagram-scraper21.p.rapidapi.com/api/v1/posts"
+        querystring = {"username": username, "count": count}
         headers = {
             "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
-            "x-rapidapi-host": "instagram120.p.rapidapi.com",
-            "Content-Type": "application/json",
+            "x-rapidapi-host": "instagram-scraper21.p.rapidapi.com"
         }
-        response = requests.post(url, json=payload, headers=headers)
-        try:
-            data = response.json()
-        except Exception:
-            print("Non-JSON response from Instagram API:", response.text)
-            return (
-                jsonify(
-                    {"error": "Instagram API did not return JSON", "raw": response.text}
-                ),
-                500,
-            )
+        response = requests.get(url, headers=headers, params=querystring)
+        data = response.json()
 
-        # --- FIX: handle result.edges structure ---
-        edges = data.get("result", {}).get("edges", [])
-        if not isinstance(edges, list):
-            return jsonify({"error": "Unexpected API response", "raw": data}), 500
+        # Optionally save to file for debugging
+        # socialtest_path = os.path.join("debug", "socialtest.json")
+        # os.makedirs(os.path.dirname(socialtest_path), exist_ok=True)
+        # with open(socialtest_path, "w") as f:
+        #     json.dump(data, f, indent=2)
 
+        # Transform posts for frontend
         posts = []
-        for edge in edges:
-            node = edge.get("node", {})
-            caption = node.get("caption", {})
-            text = caption.get("text", "")
-            taken_at = node.get("taken_at", "")
+        for post in data.get("data", {}).get("posts", []):
+            caption = post.get("caption", "")
+            taken_at = post.get("taken_at_human_readable") or post.get("created_at_human_readable", "")
+            # Get first image url if available
             image_url = ""
-            first_candidate_url = ""
-            image_versions2 = node.get("image_versions2", {})
-            candidates = (
-                image_versions2.get("candidates", [])
-                if isinstance(image_versions2, dict)
-                else []
-            )
-            if candidates and isinstance(candidates, list):
-                first_candidate_url = candidates[0].get("url", "")
-                image_url = first_candidate_url
+            if isinstance(post.get("image"), list) and post["image"]:
+                image_url = post["image"][0].get("url", "")
+            # Fallback to video thumbnail if needed
+            elif isinstance(post.get("video"), list) and post["video"]:
+                image_url = post["video"][0].get("url", "")
+            link = post.get("link", "")
+            posts.append({
+                "text": caption,
+                "taken_at": taken_at,
+                "image": image_url,
+                "username": username,
+                "link": link,
+            })
 
-            taken_at_str = ""
-            if isinstance(taken_at, int) or (
-                isinstance(taken_at, str) and taken_at.isdigit()
-            ):
-                taken_at_str = (
-                    datetime.utcfromtimestamp(int(taken_at)).isoformat() + "Z"
-                )
-            else:
-                taken_at_str = taken_at
-
-            posts.append(
-                {
-                    "text": text,
-                    "image": image_url,
-                    "taken_at": taken_at_str,
-                    "first_url": first_candidate_url,
-                }
-            )
         return jsonify({"posts": posts})
     except Exception as e:
         print("error in /api/instagram/posts:", e)
         return jsonify({"error": str(e)}), 500
 
-
 # X API
 @app.route("/api/x/posts", methods=["GET"])
 def get_x_posts():
-    username = request.args.get("username")
-    if not username:
-        return jsonify({"error": "Missing username"}), 400
+    query = request.args.get("query")
+    if not query:
+        return jsonify({"error": "Missing query"}), 400
 
     try:
-        url = "https://twitter-api45.p.rapidapi.com/usermedia.php"
-        querystring = {"screenname": username}
+        url = "https://twitter-api45.p.rapidapi.com/search.php"
+        querystring = {"query": query, "search_type": "Top"}
         headers = {
             "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
             "x-rapidapi-host": "twitter-api45.p.rapidapi.com",
         }
         response = requests.get(url, headers=headers, params=querystring, timeout=10)
-        try:
-            data = response.json()
-        except Exception:
-            print("Non-JSON respnse from X API:", response.text)
-            return (
-                jsonify({"error": "X API did not return JSON", "raw": response.text}),
-                500,
-            )
+        data = response.json()
 
-        timeline = data.get("timeline", [])
+        # Optionally save to file for debugging
+        socialtest_path = os.path.join("feeds", "socialtest.json")
+        os.makedirs(os.path.dirname(socialtest_path), exist_ok=True)
+        with open(socialtest_path, "w") as f:
+            json.dump(data, f, indent=2)
+
+        # Transform posts for frontend
         posts = []
-        for item in timeline:
-            text = item.get("text", "")
-            taken_at = item.get("created_at", "")
-            media_url = ""
-
-            media = item.get("media", {})
-            if "photo" in media and isinstance(media["photo"], list) and media["photo"]:
-                media_url = media["photo"][0].get("media_url_https") or media["photo"][
-                    0
-                ].get("media_url", "")
-
-            elif (
-                "video" in media and isinstance(media["video"], list) and media["video"]
-            ):
-                media_url = media["video"][0].get("media_url_https") or media["video"][
-                    0
-                ].get("media_url", "")
-
-            print(
-                {
-                    "text": text,
-                    "image": media_url,
-                    "taken_at": taken_at,
-                    "first_url": media_url,
-                }
-            )
-
-            posts.append(
-                {
-                    "text": text,
-                    "image": media_url,
-                    "taken_at": taken_at,
-                    "first_url": media_url,
-                    "username": username,
-                    "link": f"https://x.com/{username}/status/{item.get('tweet_id', '')}",
-                }
-            )
+        for item in data.get("timeline", []):
+            if item.get("type") == "tweet":
+                tweet_id = item.get("tweet_id", "")
+                screen_name = item.get("screen_name", "")
+                tweet_url = f"https://twitter.com/{screen_name}/status/{tweet_id}" if screen_name and tweet_id else ""
+                posts.append({
+                    "username": screen_name,
+                    "created_at": item.get("created_at", ""),
+                    "text": item.get("text", ""),
+                    "image": item.get("media", {}).get("photo", [{}])[0].get("media_url_https", "") if "media" in item and "photo" in item["media"] and item["media"]["photo"] else "",
+                    "tweet_id": tweet_id,
+                    "url": tweet_url  # Add this line
+                })
 
         return jsonify({"posts": posts})
     except Exception as e:
         print("error in /api/x/posts:", e)
         return jsonify({"error": str(e)}), 500
-
 
 # Reddit API
 @app.route("/api/reddit", methods=["GET"])
@@ -611,9 +560,103 @@ def get_reddit():
         print("Reddit API error:", e)
         return jsonify({"error": str(e)}), 500
 
+# Facebook API
+
+# LinkedIn API
+@app.route("/api/linkedin/posts", methods=["GET"])
+def get_linkedin_posts():
+    query = request.args.get("query")
+    if not query:
+        return jsonify({"error": "Missing query"}), 400
+
+    url = "https://linkedin-api-data.p.rapidapi.com/post/search"
+    querystring = {"limit": "20", "offsite": "1", "query": query}
+    headers = {
+        "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
+        "x-rapidapi-host": "linkedin-api-data.p.rapidapi.com",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    try:
+        response = requests.get(url, headers=headers, params=querystring, timeout=10)
+        data = response.json()
+
+        # Defensive check for LinkedIn API errors or unexpected structure
+        if not data.get("success") or "data" not in data or "elements" not in data["data"]:
+            print("LinkedIn API returned unexpected structure or error:", json.dumps(data, indent=2))
+            return jsonify({"error": "LinkedIn API error or no results"}), 502
+
+        posts = []
+        for element in data["data"]["elements"]:
+            for item_obj in element.get("items", []):
+                item = item_obj.get("item", {})
+                update = item.get("searchFeedUpdate", {}).get("update", {})
+                actor = update.get("actor", {})
+
+                # Username/company name
+                username = ""
+                name_obj = actor.get("name", {})
+                username = name_obj.get("text", "")
+                # Fallback: company name from attributesV2
+                if not username and "attributesV2" in name_obj and name_obj["attributesV2"]:
+                    detail = name_obj["attributesV2"][0].get("detailData", {})
+                    company = detail.get("companyName", {})
+                    username = company.get("name", "")
+
+                # Caption
+                caption = update.get("commentary", {}).get("text", {}).get("text", "")
+
+                # Image (articleComponent or imageComponent)
+                image_url = ""
+                content = update.get("content", {})
+                if not isinstance(content, dict):
+                    content = {}
+
+                # Try articleComponent
+                article = content.get("articleComponent", {}) if content else {}
+                large_image = article.get("largeImage", {}) if article else {}
+                attributes = large_image.get("attributes", []) if large_image else []
+                if attributes and isinstance(attributes, list) and len(attributes) > 0:
+                    detail_data = attributes[0].get("detailData", {}) if attributes[0] else {}
+                    vector_image = detail_data.get("vectorImage", {}) if detail_data else {}
+                    root_url = vector_image.get("rootUrl", "") if vector_image else ""
+                    artifacts = vector_image.get("artifacts", []) if vector_image else []
+                    if root_url and isinstance(artifacts, list) and len(artifacts) > 0:
+                        image_url = root_url + artifacts[0].get("fileIdentifyingUrlPathSegment", "")
+
+                # Try imageComponent if articleComponent not present
+                if (
+                    not image_url
+                    and isinstance(content, dict)
+                    and "imageComponent" in content
+                    and content["imageComponent"]
+                ):
+                    images = content["imageComponent"].get("images", []) if content["imageComponent"] else []
+                    if images and isinstance(images, list) and len(images) > 0:
+                        attrs = images[0].get("attributes", []) if images[0] else []
+                        if attrs and isinstance(attrs, list) and len(attrs) > 0:
+                            detail_data = attrs[0].get("detailData", {}) if attrs[0] else {}
+                            vector_image = detail_data.get("vectorImage", {}) if detail_data else {}
+                            root_url = vector_image.get("rootUrl", "") if vector_image else ""
+                            artifacts = vector_image.get("artifacts", []) if vector_image else []
+                            if root_url and isinstance(artifacts, list) and len(artifacts) > 0:
+                                image_url = root_url + artifacts[0].get("fileIdentifyingUrlPathSegment", "")
+
+                post_url = update.get("socialContent", {}).get("shareUrl", "")
+
+                posts.append({
+                    "username": username,
+                    "caption": caption,
+                    "image": image_url,
+                    "url": post_url
+                })
+
+        return jsonify({"posts": posts})
+    except Exception as e:
+        print("error in /api/linkedin/posts:", e)
+        return jsonify({"error": str(e)}), 500
+
 
 #### OLLAMA Summarization
-
 
 def split_text_into_chunks(text, chunk_size=400, overlap=50):
     words = text.split()
@@ -634,11 +677,36 @@ def summarize_with_mistral(prompt, model="mistral"):
     return response.response.strip()
 
 
-def summarize_article(title, text, published):
+def summarize_with_groq(prompt, model="llama3-8b-8192"):
+    client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+    while True:
+        try:
+            chat_completion = client.chat.completions.create(
+                messages=[{"role": "user", "content": prompt}],
+                model=model,
+            )
+            return chat_completion.choices[0].message.content.strip()
+        except RateLimitError as e:
+            # Parse wait time from error message if possible, else default to 15s
+            print("Groq rate limit hit, waiting 15s...")
+            time.sleep(15)
+
+
+# LLM Model selection logic
+def summarize_with_model(prompt, model="mistral"):
+    if model.startswith("groq"):
+        # example model name: "groq/llama3-8b-8192"
+        groq_model = model.replace("groq-", "")
+        return summarize_with_groq(prompt, model=groq_model)
+    else:
+        return summarize_with_mistral(prompt, model=model)
+
+
+def summarize_article(title, text, published, model="groq"):
     # Chunk and summarize each article
     if len(text.split()) < 1000:
         prompt = f"Title: {title}\nDate: {published}\n\n{text}\n\nSummarize this article in detail."
-        return summarize_with_mistral(prompt)
+        return summarize_with_model(prompt, model=model)
     chunk_size = 1000
     overlap = 0
     chunks = split_text_into_chunks(text, chunk_size, overlap)
@@ -649,7 +717,7 @@ def summarize_article(title, text, published):
             f"Article chunk {idx+1} of {len(chunks)}:\n{chunk}\n\n"
             "Summarize this chunk in detail."
         )
-        summary = summarize_with_mistral(prompt)
+        summary = summarize_with_model(prompt, model=model)
         chunk_summaries.append(summary)
 
     # merge summaries
@@ -661,7 +729,7 @@ def summarize_article(title, text, published):
         )
         + "\n\nCombine these into a single, coherent, non-repetitive summary of the full article."
     )
-    return summarize_with_mistral(merge_prompt)
+    return summarize_with_model(merge_prompt, model=model)
 
 
 def get_full_text_or_description(article):
@@ -699,6 +767,7 @@ def generate_daily_report(project_id):
     # Get filtered article links from frontend
     data = request.get_json()
     article_links = set(data.get("article_links", []))
+    model = data.get("model", "groq-llama3-8b-8192")
 
     # Only use articles that are in the provided list and published today
     def is_today(article):
@@ -720,7 +789,9 @@ def generate_daily_report(project_id):
     def summarize_one_article(article):
         start = time.time()
         full_text = get_full_text_or_description(article)
-        summary = summarize_article(article["title"], full_text, article["published"])
+        summary = summarize_article(
+            article["title"], full_text, article["published"], model=model
+        )
         print(f"Summarized article '{article['title']}' in {time.time() - start:.2f}s")
         return f"Source: {article.get('source', 'Unknown')}\nTitle: {article['title']}\nDate: {article['published']}\nSummary:\n{summary}\n"
 
@@ -728,31 +799,33 @@ def generate_daily_report(project_id):
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         summaries = list(executor.map(summarize_one_article, todays_articles))
 
+    MAX_ARTICLES_PER_BATCH = 3  # or whatever fits in Groq's token limit
+    all_reports = []
+
+  # for i in range(0, len(summaries), MAX_ARTICLES_PER_BATCH):
+      # batch = summaries[i : i + MAX_ARTICLES_PER_BATCH]
     merge_prompt = (
-        f"Project: {project['name']}\nDate: {today}\n\n"
-        "Here are summaries of today's articles:\n\n"
-        + "\n\n".join(
-            f"Article {i+1}:\n{summary}" for i, summary in enumerate(summaries)
-        )
-        + "\n\nUsing only the information provided in the summaries above, generate a clean, professional, and consistently formatted report for analysts. Do not use any outside knowledge. For each article, use the following format:\n\n"
-        "Title: [Insert title from summary if present]\n"
-        "Source: [Insert source if present]\n"
-        "Date: [Insert date from summary if present]\n\n"
-        "SUMMARY OF KEY FACTS\n"
-        "- [Bullet points of key facts from the summary]\n\n"
-        "KEY ENTITIES MENTIONED\n"
-        "People: [List names without bullet points]\n"
-        "Organizations: [Organizations]\n"
-        "Locations: [Places]\n\n"
-        "THEMES AND CONTEXT\n"
-        "[Topics or background from the summary]\n\n"
-        "POTENTIAL IMPLICATIONS\n"
-        "[List any implications that are described in the summaries. Avoid using bullet points.]\n\n"
-        "Repeat this format for each article. Only use information found in the summaries above. Do not add outside knowledge."
-    )
+    f"Project: {project['name']}\nDate: {today}\n\n"
+    "Below are summaries of today's articles:\n\n"
+    + "\n\n".join(f"Article {i+1}:\n{summary}" for i, summary in enumerate(summaries)) +
+    "\n\nUsing only the information provided above, write a single, professional daily briefing in paragraph form. "
+    "Begin directly with the summary. Do not use a title or heading at the start. "
+    "The briefing should include:\n"
+    "1. An introductory paragraph that summarizes the main themes of the day.\n"
+    "2. One to three concise paragraphs that elaborate on key developments and stories, without repeating information.\n"
+    "3. A final paragraph with the heading INSIGHT (in all caps), offering a synthesis of trends or implications strictly based on the article summaries.\n"
+    "Do not use bullet points, lists, or add any external knowledge. Keep the tone concise and informative."
+)
+
+
+
+    report = summarize_with_model(merge_prompt, model=model)
+    all_reports.append(report)
+
+    final_report = "\n\n---\n\n".join(all_reports)
 
     start = time.time()
-    daily_report = summarize_with_mistral(merge_prompt)
+    # daily_report = summarize_with_model(merge_prompt, model=model)
     print(f"Daily report generated in {time.time() - start:.2f}s")
 
     return jsonify(
@@ -760,7 +833,7 @@ def generate_daily_report(project_id):
             "date": str(today),
             "project": project["name"],
             "article_count": len(todays_articles),
-            "report": daily_report,
+            "report": final_report,
             "summaries": summaries,
         }
     )

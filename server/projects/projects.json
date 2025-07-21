@@ -16,5 +16,11 @@
     "keyword": "\"White House\"",
     "id": "1752853661184",
     "date": "2025-07-18"
+  },
+  {
+    "name": "Tesla not AI",
+    "keyword": "\"tesla\" AND NOT \"AI\"",
+    "id": "1753102892629",
+    "date": "2025-07-21"
   }
 ]
