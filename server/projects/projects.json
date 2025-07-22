@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Tesla",
+    "keyword": "\"tesla\"",
+    "id": "1751050516358",
+    "date": "2025-06-27"
+  },
+  {
+    "name": "AI",
+    "keyword": "\"openAI\" or \"Grok\"",
+    "id": "1752769152139",
+    "date": "2025-07-17"
+  },
+  {
+    "name": "White House",
+    "keyword": "\"White House\"",
+    "id": "1752853661184",
+    "date": "2025-07-18"
+  },
+  {
+    "name": "Tesla not AI",
+    "keyword": "\"tesla\" AND NOT \"AI\"",
+    "id": "1753102892629",
+    "date": "2025-07-21"
+  }
+]

@@ -11,9 +11,19 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.8",
+    "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.9.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "lucide-react": "^0.515.0",
+    "prop-types": "^15.8.1",
     "react": "^19.1.0",
+    "react-data-table-component": "^7.7.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2",
+    "styled-components": "^6.1.19",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
@@ -25,6 +35,9 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "path": "^0.12.7",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "vite": "^6.3.5"
   }
 }

@@ -1,0 +1,4466 @@
+{
+  "status": "ok",
+  "timeline": [
+    {
+      "type": "tweet",
+      "tweet_id": "1947381291965682064",
+      "screen_name": "teslaownersSV",
+      "bookmarks": 2,
+      "favorites": 65,
+      "created_at": "Mon Jul 21 19:40:55 +0000 2025",
+      "text": "BREAKING: Tesla Diner is opening at 4:20pm https://t.co/29VexDMYuh",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 3,
+      "replies": 8,
+      "conversation_id": "1947381291965682064",
+      "retweets": 15,
+      "views": "1580",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/29VexDMYuh",
+            "expanded_url": "https://x.com/teslaownersSV/status/1947381291965682064/photo/1",
+            "id_str": "1947381286487900160",
+            "indices": [
+              43,
+              66
+            ],
+            "media_key": "3_1947381286487900160",
+            "media_url_https": "https://pbs.twimg.com/media/GwZ89l9awAAq2zf.jpg",
+            "type": "photo",
+            "url": "https://t.co/29VexDMYuh",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 900,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 510,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1536,
+              "width": 2048,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 389,
+                  "w": 2048,
+                  "h": 1147
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1347,
+                  "h": 1536
+                },
+                {
+                  "x": 179,
+                  "y": 0,
+                  "w": 768,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2048,
+                  "h": 1536
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1947381286487900160"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslaownersSV",
+        "name": "Tesla Owners Silicon Valley",
+        "created_at": "Sun Jul 08 20:42:31 +0000 2018",
+        "description": "The most notorious Tesla Club in the world. Creator of @thextakeover and taking the Takeover global. We amplify sustainability and philanthropy.",
+        "rest_id": "1016059981907386368",
+        "followers_count": 1243529,
+        "favourites_count": 171997,
+        "avatar": "https://pbs.twimg.com/profile_images/1945194602245332992/CXGuUBtE_normal.jpg",
+        "verified": false,
+        "friends_count": 723,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwZ89l9awAAq2zf.jpg",
+            "id": "1947381286487900160",
+            "sizes": {
+              "h": 900,
+              "w": 1200
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1947363447559114795",
+      "screen_name": "a47news_ai",
+      "bookmarks": 0,
+      "favorites": 17,
+      "created_at": "Mon Jul 21 18:30:00 +0000 2025",
+      "text": "Tesla pulls up to India like it's 2015\n\nMeanwhile, we\u2019re already cruising in locally-made EVs\n\nElon\u2019s late RSVP just got left on read https://t.co/74W2KXi2Da",
+      "lang": "en",
+      "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+      "quotes": 0,
+      "replies": 20,
+      "conversation_id": "1947363447559114795",
+      "retweets": 15,
+      "views": "175",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/74W2KXi2Da",
+            "expanded_url": "https://x.com/a47news_ai/status/1947363447559114795/video/1",
+            "id_str": "1947266905129054208",
+            "indices": [
+              134,
+              157
+            ],
+            "media_key": "13_1947266905129054208",
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1947266905129054208/img/ckbGAtd4pDp8jdKY.jpg",
+            "type": "video",
+            "url": "https://t.co/74W2KXi2Da",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1080,
+                "w": 1080,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1080,
+              "width": 1080,
+              "focus_rects": []
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "video_info": {
+              "aspect_ratio": [
+                1,
+                1
+              ],
+              "duration_millis": 57125,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1947266905129054208/pl/KuDPiUVA6NjXDOZB.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 432000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/320x320/KnisyL7vhfsMXhMF.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/540x540/y3lQy7dggXsnsoCJ.mp4?tag=21"
+                },
+                {
+                  "bitrate": 1280000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/720x720/Jou5-8W1jLpPzAEc.mp4?tag=21"
+                },
+                {
+                  "bitrate": 8768000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/1080x1080/sTbo7TwTVfTRdBMe.mp4?tag=21"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "13_1947266905129054208"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "a47news_ai",
+        "name": "A47 News Network",
+        "created_at": "Mon Feb 03 22:44:03 +0000 2025",
+        "description": "Breaking Memes: 47 AI Agents Roasting The News One Headline At a Time\u26a1\ufe0f CA:CN162nCPpq3DxPCyKLbAvEJeB1aCxsnVTEG4ZU8vpump",
+        "rest_id": "1886546157599592448",
+        "followers_count": 16540,
+        "favourites_count": 869,
+        "avatar": "https://pbs.twimg.com/profile_images/1894295544412921856/tAJco3PO_normal.png",
+        "verified": true,
+        "friends_count": 39,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1947266905129054208/img/ckbGAtd4pDp8jdKY.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/amplify_video/1947266905129054208/pl/KuDPiUVA6NjXDOZB.m3u8?tag=21"
+              },
+              {
+                "bitrate": 432000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/320x320/KnisyL7vhfsMXhMF.mp4?tag=21"
+              },
+              {
+                "bitrate": 832000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/540x540/y3lQy7dggXsnsoCJ.mp4?tag=21"
+              },
+              {
+                "bitrate": 1280000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/720x720/Jou5-8W1jLpPzAEc.mp4?tag=21"
+              },
+              {
+                "bitrate": 8768000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1947266905129054208/vid/avc1/1080x1080/sTbo7TwTVfTRdBMe.mp4?tag=21"
+              }
+            ],
+            "aspect_ratio": [
+              1,
+              1
+            ],
+            "duration": 57125,
+            "original_info": {
+              "height": 1080,
+              "width": 1080,
+              "focus_rects": []
+            },
+            "id": "1947266905129054208"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1944952668939804895",
+      "screen_name": "teslacarsonly",
+      "bookmarks": 362,
+      "favorites": 14240,
+      "created_at": "Tue Jul 15 02:50:26 +0000 2025",
+      "text": "Would you BUY a $55K CyberSUV? https://t.co/Y9BUz5QcW5",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+      "quotes": 138,
+      "replies": 1933,
+      "conversation_id": "1944952668939804895",
+      "retweets": 760,
+      "views": "793278",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/Y9BUz5QcW5",
+            "expanded_url": "https://x.com/teslacarsonly/status/1944952668939804895/photo/1",
+            "id_str": "1944952665932263424",
+            "indices": [
+              31,
+              54
+            ],
+            "media_key": "3_1944952665932263424",
+            "media_url_https": "https://pbs.twimg.com/media/Gv3cJRXXcAAdYhF.jpg",
+            "type": "photo",
+            "url": "https://t.co/Y9BUz5QcW5",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1125,
+                "w": 1125,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1125,
+                "w": 1125,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1125,
+              "width": 1125,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 444,
+                  "w": 1125,
+                  "h": 630
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1125,
+                  "h": 1125
+                },
+                {
+                  "x": 41,
+                  "y": 0,
+                  "w": 987,
+                  "h": 1125
+                },
+                {
+                  "x": 253,
+                  "y": 0,
+                  "w": 563,
+                  "h": 1125
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1125,
+                  "h": 1125
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1944952665932263424"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslacarsonly",
+        "name": "TESLA CARS ONLY.\u26a1",
+        "created_at": "Wed Jul 06 11:49:44 +0000 2022",
+        "description": "Photos and videos for Tesla cars. DM for credit and taking content down. Disclosure: Not affiliated with @Tesla.",
+        "rest_id": "1544649684672778240",
+        "followers_count": 81415,
+        "favourites_count": 89617,
+        "avatar": "https://pbs.twimg.com/profile_images/1766825443410284546/EM6O36b8_normal.png",
+        "verified": true,
+        "friends_count": 31,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/Gv3cJRXXcAAdYhF.jpg",
+            "id": "1944952665932263424",
+            "sizes": {
+              "h": 1125,
+              "w": 1125
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946990955065917740",
+      "screen_name": "TeslaCamera",
+      "bookmarks": 1,
+      "favorites": 110,
+      "created_at": "Sun Jul 20 17:49:51 +0000 2025",
+      "text": "Tesla Cybertruck Vandalized \u2013 Help Identify the Suspect - Share this to help get this foolish man arrested\n\nPlease share to find this stupid man! $TSLA\nhttps://t.co/43u2G3LlPH",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+      "quotes": 0,
+      "replies": 15,
+      "conversation_id": "1946990955065917740",
+      "retweets": 28,
+      "views": "10592",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/43u2G3LlPH",
+            "expanded_url": "https://x.com/Jed_Bratt/status/1946743431012954589/video/1",
+            "id_str": "1946737417467072512",
+            "indices": [
+              152,
+              175
+            ],
+            "media_key": "3_1946737417467072512",
+            "media_url_https": "https://pbs.twimg.com/media/GwQzXe8WEAArUwF.jpg",
+            "source_status_id_str": "1946743431012954589",
+            "source_user_id_str": "36572065",
+            "type": "photo",
+            "url": "https://t.co/43u2G3LlPH",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 292,
+                "w": 376,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 292,
+                "w": 376,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 292,
+                "w": 376,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 292,
+              "width": 376,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 376,
+                  "h": 211
+                },
+                {
+                  "x": 32,
+                  "y": 0,
+                  "w": 292,
+                  "h": 292
+                },
+                {
+                  "x": 50,
+                  "y": 0,
+                  "w": 256,
+                  "h": 292
+                },
+                {
+                  "x": 105,
+                  "y": 0,
+                  "w": 146,
+                  "h": 292
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 376,
+                  "h": 292
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946737417467072512"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/43u2G3LlPH",
+            "expanded_url": "https://x.com/Jed_Bratt/status/1946743431012954589/video/1",
+            "id_str": "1946741204017704960",
+            "indices": [
+              152,
+              175
+            ],
+            "media_key": "13_1946741204017704960",
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946741204017704960/img/DO91ZE3RgtB9kjvP.jpg",
+            "source_status_id_str": "1946743431012954589",
+            "source_user_id_str": "36572065",
+            "type": "video",
+            "url": "https://t.co/43u2G3LlPH",
+            "additional_media_info": {
+              "monetizable": false,
+              "source_user": {
+                "user_results": {
+                  "result": {
+                    "__typename": "User",
+                    "id": "VXNlcjozNjU3MjA2NQ==",
+                    "rest_id": "36572065",
+                    "affiliates_highlighted_label": [],
+                    "avatar": {
+                      "image_url": "https://pbs.twimg.com/profile_images/1590862144051871745/wlzC3l_0_normal.jpg"
+                    },
+                    "core": {
+                      "created_at": "Thu Apr 30 02:43:17 +0000 2009",
+                      "name": "Jed Bratt",
+                      "screen_name": "Jed_Bratt"
+                    },
+                    "dm_permissions": {
+                      "can_dm": false
+                    },
+                    "has_graduated_access": true,
+                    "is_blue_verified": true,
+                    "legacy": {
+                      "default_profile": false,
+                      "default_profile_image": false,
+                      "description": "CA RE Broker, Investor, USN Vet, Private Aviator, dad. I like Real Estate, Jiu Jitsu, flying, travel & learning. CA DRE# 01891062",
+                      "entities": {
+                        "description": {
+                          "urls": []
+                        },
+                        "url": {
+                          "urls": [
+                            {
+                              "display_url": "linktr.ee/TheRealEstateJ\u2026",
+                              "expanded_url": "https://linktr.ee/TheRealEstateJedi",
+                              "url": "https://t.co/hMrd67z1dr",
+                              "indices": [
+                                0,
+                                23
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "fast_followers_count": 0,
+                      "favourites_count": 25741,
+                      "followers_count": 962,
+                      "friends_count": 1751,
+                      "has_custom_timelines": true,
+                      "is_translator": false,
+                      "listed_count": 17,
+                      "media_count": 298,
+                      "normal_followers_count": 962,
+                      "pinned_tweet_ids_str": [],
+                      "possibly_sensitive": false,
+                      "profile_banner_url": "https://pbs.twimg.com/profile_banners/36572065/1705515867",
+                      "profile_interstitial_type": "",
+                      "statuses_count": 3040,
+                      "translator_type": "none",
+                      "url": "https://t.co/hMrd67z1dr",
+                      "want_retweets": false,
+                      "withheld_in_countries": []
+                    },
+                    "location": {
+                      "location": "San Diego, CA"
+                    },
+                    "media_permissions": {
+                      "can_media_tag": true
+                    },
+                    "parody_commentary_fan_label": "None",
+                    "profile_image_shape": "Circle",
+                    "professional": {
+                      "rest_id": "1588942399845171200",
+                      "professional_type": "Business",
+                      "category": [
+                        {
+                          "id": 697,
+                          "name": "Real Estate",
+                          "icon_name": "IconBriefcaseStroke"
+                        }
+                      ]
+                    },
+                    "privacy": {
+                      "protected": false
+                    },
+                    "relationship_perspectives": {
+                      "following": false
+                    },
+                    "tipjar_settings": [],
+                    "verification": {
+                      "verified": false
+                    }
+                  }
+                }
+              }
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 938,
+                "w": 1448,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 777,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 440,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 938,
+              "width": 1448,
+              "focus_rects": []
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "video_info": {
+              "aspect_ratio": [
+                724,
+                469
+              ],
+              "duration_millis": 4765,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1946741204017704960/pl/X22LAsuhTOjA8ACH.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/416x270/Z0GMAheKLTKKyMlA.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/554x360/BXw0OhlslC9lfzrK.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/1110x720/N6jI0nmvR7WTDG02.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/1448x938/dAmFbClW9wH84qFp.mp4?tag=21"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "13_1946741204017704960"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/43u2G3LlPH",
+            "expanded_url": "https://x.com/Jed_Bratt/status/1946743431012954589/video/1",
+            "id_str": "1946741286851010560",
+            "indices": [
+              152,
+              175
+            ],
+            "media_key": "3_1946741286851010560",
+            "media_url_https": "https://pbs.twimg.com/media/GwQ24thXYAAwzg7.jpg",
+            "source_status_id_str": "1946743431012954589",
+            "source_user_id_str": "36572065",
+            "type": "photo",
+            "url": "https://t.co/43u2G3LlPH",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 104,
+                    "y": 772,
+                    "h": 38,
+                    "w": 38
+                  },
+                  {
+                    "x": 444,
+                    "y": 464,
+                    "h": 50,
+                    "w": 50
+                  },
+                  {
+                    "x": 26,
+                    "y": 809,
+                    "h": 44,
+                    "w": 44
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 104,
+                    "y": 772,
+                    "h": 38,
+                    "w": 38
+                  },
+                  {
+                    "x": 444,
+                    "y": 464,
+                    "h": 50,
+                    "w": 50
+                  },
+                  {
+                    "x": 26,
+                    "y": 809,
+                    "h": 44,
+                    "w": 44
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 75,
+                    "y": 563,
+                    "h": 27,
+                    "w": 27
+                  },
+                  {
+                    "x": 324,
+                    "y": 338,
+                    "h": 36,
+                    "w": 36
+                  },
+                  {
+                    "x": 18,
+                    "y": 590,
+                    "h": 32,
+                    "w": 32
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 104,
+                    "y": 772,
+                    "h": 38,
+                    "w": 38
+                  },
+                  {
+                    "x": 444,
+                    "y": 464,
+                    "h": 50,
+                    "w": 50
+                  },
+                  {
+                    "x": 26,
+                    "y": 809,
+                    "h": 44,
+                    "w": 44
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 931,
+                "w": 533,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 931,
+                "w": 533,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 389,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 931,
+              "width": 533,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 13,
+                  "w": 533,
+                  "h": 298
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 533,
+                  "h": 533
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 533,
+                  "h": 608
+                },
+                {
+                  "x": 67,
+                  "y": 0,
+                  "w": 466,
+                  "h": 931
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 533,
+                  "h": 931
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946741286851010560"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/43u2G3LlPH",
+            "expanded_url": "https://x.com/Jed_Bratt/status/1946743431012954589/video/1",
+            "id_str": "1946741287178125312",
+            "indices": [
+              152,
+              175
+            ],
+            "media_key": "3_1946741287178125312",
+            "media_url_https": "https://pbs.twimg.com/media/GwQ24uvWwAANf28.png",
+            "source_status_id_str": "1946743431012954589",
+            "source_user_id_str": "36572065",
+            "type": "photo",
+            "url": "https://t.co/43u2G3LlPH",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 566,
+                "w": 271,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 566,
+                "w": 271,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 566,
+                "w": 271,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 566,
+              "width": 271,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 23,
+                  "w": 271,
+                  "h": 152
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 271,
+                  "h": 271
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 271,
+                  "h": 309
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 271,
+                  "h": 542
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 271,
+                  "h": 566
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946741287178125312"
+              }
+            }
+          }
+        ],
+        "symbols": [
+          {
+            "indices": [
+              146,
+              151
+            ],
+            "text": "TSLA"
+          }
+        ],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "TeslaCamera",
+        "name": "TeslaDashCam",
+        "created_at": "Mon May 13 08:13:08 +0000 2024",
+        "description": "The hub for Tesla fans! \nSend us your Tesla moments get featured & join the movement.\n\n#model3 #modely #models #modelx #cybertruck #Tesla #fsd $TSLA",
+        "rest_id": "1789931818600353792",
+        "followers_count": 50968,
+        "favourites_count": 16962,
+        "avatar": "https://pbs.twimg.com/profile_images/1833511808474165248/Z4UhBsAT_normal.jpg",
+        "verified": true,
+        "friends_count": 99,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwQzXe8WEAArUwF.jpg",
+            "id": "1946737417467072512",
+            "sizes": {
+              "h": 292,
+              "w": 376
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwQ24thXYAAwzg7.jpg",
+            "id": "1946741286851010560",
+            "sizes": {
+              "h": 931,
+              "w": 533
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwQ24uvWwAANf28.png",
+            "id": "1946741287178125312",
+            "sizes": {
+              "h": 566,
+              "w": 271
+            }
+          }
+        ],
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946741204017704960/img/DO91ZE3RgtB9kjvP.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/amplify_video/1946741204017704960/pl/X22LAsuhTOjA8ACH.m3u8?tag=21"
+              },
+              {
+                "bitrate": 256000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/416x270/Z0GMAheKLTKKyMlA.mp4?tag=21"
+              },
+              {
+                "bitrate": 832000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/554x360/BXw0OhlslC9lfzrK.mp4?tag=21"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/1110x720/N6jI0nmvR7WTDG02.mp4?tag=21"
+              },
+              {
+                "bitrate": 10368000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946741204017704960/vid/avc1/1448x938/dAmFbClW9wH84qFp.mp4?tag=21"
+              }
+            ],
+            "aspect_ratio": [
+              724,
+              469
+            ],
+            "duration": 4765,
+            "original_info": {
+              "height": 938,
+              "width": 1448,
+              "focus_rects": []
+            },
+            "id": "1946741204017704960"
+          }
+        ]
+      },
+      "community_id": "1473276439172722693"
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1945885072017473896",
+      "screen_name": "teslacarsonly",
+      "bookmarks": 64,
+      "favorites": 751,
+      "created_at": "Thu Jul 17 16:35:28 +0000 2025",
+      "text": "Optimus dancing Krump! https://t.co/mQjb7XE8wQ",
+      "lang": "in",
+      "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+      "quotes": 28,
+      "replies": 130,
+      "conversation_id": "1945885072017473896",
+      "retweets": 219,
+      "views": "20358",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/mQjb7XE8wQ",
+            "expanded_url": "https://x.com/teslacarsonly/status/1945885072017473896/video/1",
+            "id_str": "1945885013758623744",
+            "indices": [
+              23,
+              46
+            ],
+            "media_key": "7_1945885013758623744",
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1945885013758623744/pu/img/a7f0evdbUyeR_SbJ.jpg",
+            "type": "video",
+            "url": "https://t.co/mQjb7XE8wQ",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 720,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1200,
+                "w": 675,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 383,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1280,
+              "width": 720,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 10817,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/pl/i63wtZvPYU22eZJY.m3u8?tag=12&v=cfc"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/vid/avc1/320x568/9d6_n4Lp0ZoSfHz7.mp4?tag=12"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/vid/avc1/480x852/32Hv6khn4pMffhpl.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/vid/avc1/720x1280/IDz5O5Eg0PzEja3M.mp4?tag=12"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "7_1945885013758623744"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslacarsonly",
+        "name": "TESLA CARS ONLY.\u26a1",
+        "created_at": "Wed Jul 06 11:49:44 +0000 2022",
+        "description": "Photos and videos for Tesla cars. DM for credit and taking content down. Disclosure: Not affiliated with @Tesla.",
+        "rest_id": "1544649684672778240",
+        "followers_count": 81415,
+        "favourites_count": 89617,
+        "avatar": "https://pbs.twimg.com/profile_images/1766825443410284546/EM6O36b8_normal.png",
+        "verified": true,
+        "friends_count": 31,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1945885013758623744/pu/img/a7f0evdbUyeR_SbJ.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/pl/i63wtZvPYU22eZJY.m3u8?tag=12&v=cfc"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/vid/avc1/320x568/9d6_n4Lp0ZoSfHz7.mp4?tag=12"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/vid/avc1/480x852/32Hv6khn4pMffhpl.mp4?tag=12"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1945885013758623744/pu/vid/avc1/720x1280/IDz5O5Eg0PzEja3M.mp4?tag=12"
+              }
+            ],
+            "aspect_ratio": [
+              9,
+              16
+            ],
+            "duration": 10817,
+            "original_info": {
+              "height": 1280,
+              "width": 720,
+              "focus_rects": []
+            },
+            "id": "1945885013758623744"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946727990039371849",
+      "screen_name": "TeslaCharging",
+      "bookmarks": 293,
+      "favorites": 7420,
+      "created_at": "Sun Jul 20 00:24:55 +0000 2025",
+      "text": "Thank you First Responders! https://t.co/M3KLxBBS3F",
+      "lang": "en",
+      "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+      "quotes": 105,
+      "replies": 267,
+      "conversation_id": "1946727990039371849",
+      "retweets": 803,
+      "views": "22761205",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/M3KLxBBS3F",
+            "expanded_url": "https://x.com/TeslaCharging/status/1946727990039371849/photo/1",
+            "id_str": "1946727422965002240",
+            "indices": [
+              28,
+              51
+            ],
+            "media_key": "3_1946727422965002240",
+            "media_url_https": "https://pbs.twimg.com/media/GwQqRuhXMAAKtZL.jpg",
+            "type": "photo",
+            "url": "https://t.co/M3KLxBBS3F",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 900,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 510,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 3072,
+              "width": 4096,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 778,
+                  "w": 4096,
+                  "h": 2294
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 3072,
+                  "h": 3072
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2695,
+                  "h": 3072
+                },
+                {
+                  "x": 563,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 3072
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 4096,
+                  "h": 3072
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946727422965002240"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/M3KLxBBS3F",
+            "expanded_url": "https://x.com/TeslaCharging/status/1946727990039371849/photo/1",
+            "id_str": "1946727484126269440",
+            "indices": [
+              28,
+              51
+            ],
+            "media_key": "3_1946727484126269440",
+            "media_url_https": "https://pbs.twimg.com/media/GwQqVSXWEAA7JDv.jpg",
+            "type": "photo",
+            "url": "https://t.co/M3KLxBBS3F",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 1420,
+                    "y": 564,
+                    "h": 74,
+                    "w": 74
+                  },
+                  {
+                    "x": 1316,
+                    "y": 660,
+                    "h": 94,
+                    "w": 94
+                  },
+                  {
+                    "x": 1204,
+                    "y": 638,
+                    "h": 78,
+                    "w": 78
+                  },
+                  {
+                    "x": 790,
+                    "y": 732,
+                    "h": 96,
+                    "w": 96
+                  },
+                  {
+                    "x": 1500,
+                    "y": 268,
+                    "h": 212,
+                    "w": 212
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 832,
+                    "y": 330,
+                    "h": 43,
+                    "w": 43
+                  },
+                  {
+                    "x": 771,
+                    "y": 386,
+                    "h": 55,
+                    "w": 55
+                  },
+                  {
+                    "x": 705,
+                    "y": 373,
+                    "h": 45,
+                    "w": 45
+                  },
+                  {
+                    "x": 462,
+                    "y": 428,
+                    "h": 56,
+                    "w": 56
+                  },
+                  {
+                    "x": 878,
+                    "y": 157,
+                    "h": 124,
+                    "w": 124
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 471,
+                    "y": 187,
+                    "h": 24,
+                    "w": 24
+                  },
+                  {
+                    "x": 436,
+                    "y": 219,
+                    "h": 31,
+                    "w": 31
+                  },
+                  {
+                    "x": 399,
+                    "y": 211,
+                    "h": 25,
+                    "w": 25
+                  },
+                  {
+                    "x": 262,
+                    "y": 243,
+                    "h": 31,
+                    "w": 31
+                  },
+                  {
+                    "x": 498,
+                    "y": 88,
+                    "h": 70,
+                    "w": 70
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 2840,
+                    "y": 1128,
+                    "h": 148,
+                    "w": 148
+                  },
+                  {
+                    "x": 2632,
+                    "y": 1320,
+                    "h": 188,
+                    "w": 188
+                  },
+                  {
+                    "x": 2408,
+                    "y": 1276,
+                    "h": 156,
+                    "w": 156
+                  },
+                  {
+                    "x": 1580,
+                    "y": 1464,
+                    "h": 192,
+                    "w": 192
+                  },
+                  {
+                    "x": 3000,
+                    "y": 536,
+                    "h": 424,
+                    "w": 424
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 900,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 510,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 3072,
+              "width": 4096,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 593,
+                  "w": 4096,
+                  "h": 2294
+                },
+                {
+                  "x": 1024,
+                  "y": 0,
+                  "w": 3072,
+                  "h": 3072
+                },
+                {
+                  "x": 1401,
+                  "y": 0,
+                  "w": 2695,
+                  "h": 3072
+                },
+                {
+                  "x": 2560,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 3072
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 4096,
+                  "h": 3072
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946727484126269440"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/M3KLxBBS3F",
+            "expanded_url": "https://x.com/TeslaCharging/status/1946727990039371849/photo/1",
+            "id_str": "1946727616674725888",
+            "indices": [
+              28,
+              51
+            ],
+            "media_key": "3_1946727616674725888",
+            "media_url_https": "https://pbs.twimg.com/media/GwQqdAJXAAAM4F9.jpg",
+            "type": "photo",
+            "url": "https://t.co/M3KLxBBS3F",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 528,
+                    "y": 228,
+                    "h": 146,
+                    "w": 146
+                  },
+                  {
+                    "x": 1056,
+                    "y": 278,
+                    "h": 140,
+                    "w": 140
+                  },
+                  {
+                    "x": 1710,
+                    "y": 884,
+                    "h": 226,
+                    "w": 226
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 309,
+                    "y": 133,
+                    "h": 85,
+                    "w": 85
+                  },
+                  {
+                    "x": 618,
+                    "y": 162,
+                    "h": 82,
+                    "w": 82
+                  },
+                  {
+                    "x": 1001,
+                    "y": 517,
+                    "h": 132,
+                    "w": 132
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 175,
+                    "y": 75,
+                    "h": 48,
+                    "w": 48
+                  },
+                  {
+                    "x": 350,
+                    "y": 92,
+                    "h": 46,
+                    "w": 46
+                  },
+                  {
+                    "x": 567,
+                    "y": 293,
+                    "h": 75,
+                    "w": 75
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 1056,
+                    "y": 456,
+                    "h": 292,
+                    "w": 292
+                  },
+                  {
+                    "x": 2112,
+                    "y": 556,
+                    "h": 280,
+                    "w": 280
+                  },
+                  {
+                    "x": 3420,
+                    "y": 1768,
+                    "h": 452,
+                    "w": 452
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 900,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 510,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 3072,
+              "width": 4096,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 778,
+                  "w": 4096,
+                  "h": 2294
+                },
+                {
+                  "x": 1024,
+                  "y": 0,
+                  "w": 3072,
+                  "h": 3072
+                },
+                {
+                  "x": 1401,
+                  "y": 0,
+                  "w": 2695,
+                  "h": 3072
+                },
+                {
+                  "x": 2560,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 3072
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 4096,
+                  "h": 3072
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946727616674725888"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/M3KLxBBS3F",
+            "expanded_url": "https://x.com/TeslaCharging/status/1946727990039371849/photo/1",
+            "id_str": "1946727753157611520",
+            "indices": [
+              28,
+              51
+            ],
+            "media_key": "3_1946727753157611520",
+            "media_url_https": "https://pbs.twimg.com/media/GwQqk8lakAAH4D5.jpg",
+            "type": "photo",
+            "url": "https://t.co/M3KLxBBS3F",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 152,
+                    "y": 876,
+                    "h": 112,
+                    "w": 112
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 89,
+                    "y": 513,
+                    "h": 65,
+                    "w": 65
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 50,
+                    "y": 290,
+                    "h": 37,
+                    "w": 37
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 304,
+                    "y": 1752,
+                    "h": 224,
+                    "w": 224
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 900,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 510,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 3072,
+              "width": 4096,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 778,
+                  "w": 4096,
+                  "h": 2294
+                },
+                {
+                  "x": 1024,
+                  "y": 0,
+                  "w": 3072,
+                  "h": 3072
+                },
+                {
+                  "x": 1213,
+                  "y": 0,
+                  "w": 2695,
+                  "h": 3072
+                },
+                {
+                  "x": 1792,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 3072
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 4096,
+                  "h": 3072
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946727753157611520"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "TeslaCharging",
+        "name": "Tesla Charging",
+        "created_at": "Tue Jan 05 19:13:55 +0000 2021",
+        "description": "New Superchargers and all things charging",
+        "rest_id": "1346535293449428992",
+        "followers_count": 254076,
+        "favourites_count": 659,
+        "avatar": "https://pbs.twimg.com/profile_images/1362134815844294661/vKTmG2CO_normal.jpg",
+        "verified": true,
+        "friends_count": 87,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwQqRuhXMAAKtZL.jpg",
+            "id": "1946727422965002240",
+            "sizes": {
+              "h": 900,
+              "w": 1200
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwQqVSXWEAA7JDv.jpg",
+            "id": "1946727484126269440",
+            "sizes": {
+              "h": 900,
+              "w": 1200
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwQqdAJXAAAM4F9.jpg",
+            "id": "1946727616674725888",
+            "sizes": {
+              "h": 900,
+              "w": 1200
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwQqk8lakAAH4D5.jpg",
+            "id": "1946727753157611520",
+            "sizes": {
+              "h": 900,
+              "w": 1200
+            }
+          }
+        ]
+      },
+      "quoted": {
+        "tweet_id": "1946691740456652913",
+        "bookmarks": 855,
+        "created_at": "Sat Jul 19 22:00:53 +0000 2025",
+        "favorites": 5358,
+        "text": "We were invited to attend the soft opening of the brand new #TeslaDiner, celebrating the First Responders! https://t.co/9x45Dxp3HI",
+        "lang": "en",
+        "views": "4227661",
+        "quotes": 260,
+        "replies": 273,
+        "retweets": 953,
+        "conversation_id": "1946691740456652913",
+        "author": {
+          "rest_id": "1277382400637427712",
+          "created_at": "Sun Jun 28 23:27:05 +0000 2020",
+          "name": "Tesla Club-SoCal",
+          "screen_name": "TeslaClubSoCal",
+          "avatar": "https://pbs.twimg.com/profile_images/1277398215034167296/n-5cW45g_normal.jpg",
+          "blue_verified": true
+        },
+        "media": {
+          "video": [
+            {
+              "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946691593916030977/img/LhNbPWGdIh2M7I4y.jpg",
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/pl/D5WaXTqpzS4n82gc.m3u8?tag=21&v=65d"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/320x568/yi--PdALegVqFu8r.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/480x852/OwaBuPO8prw06QTF.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/720x1280/TDQ4ZRFWE4RntGJu.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/1080x1920/8y8ZBAmt1z-05XSu.mp4?tag=21"
+                }
+              ],
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration": 75866,
+              "original_info": {
+                "height": 1920,
+                "width": 1080,
+                "focus_rects": []
+              },
+              "id": "1946691593916030977"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1947076026246283597",
+      "screen_name": "vietbunny0511",
+      "bookmarks": 492,
+      "favorites": 2119,
+      "created_at": "Sun Jul 20 23:27:54 +0000 2025",
+      "text": "Say \u201cme\u201d if you want to see my Tesla vid \ud83e\udee3 https://t.co/Uqbw2J6yZB",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 1,
+      "replies": 166,
+      "conversation_id": "1947076026246283597",
+      "retweets": 58,
+      "views": "114403",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/Uqbw2J6yZB",
+            "expanded_url": "https://x.com/vietbunny0511/status/1947076026246283597/photo/1",
+            "id_str": "1947076023528431617",
+            "indices": [
+              43,
+              66
+            ],
+            "media_key": "3_1947076023528431617",
+            "media_url_https": "https://pbs.twimg.com/media/GwVnU80XoAEAwkP.jpg",
+            "type": "photo",
+            "url": "https://t.co/Uqbw2J6yZB",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 414,
+                    "y": 620,
+                    "h": 332,
+                    "w": 332
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 242,
+                    "y": 363,
+                    "h": 194,
+                    "w": 194
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 137,
+                    "y": 206,
+                    "h": 110,
+                    "w": 110
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 414,
+                    "y": 620,
+                    "h": 332,
+                    "w": 332
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1152,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1200,
+                "w": 675,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 383,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 2048,
+              "width": 1152,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 548,
+                  "w": 1152,
+                  "h": 645
+                },
+                {
+                  "x": 0,
+                  "y": 294,
+                  "w": 1152,
+                  "h": 1152
+                },
+                {
+                  "x": 0,
+                  "y": 214,
+                  "w": 1152,
+                  "h": 1313
+                },
+                {
+                  "x": 51,
+                  "y": 0,
+                  "w": 1024,
+                  "h": 2048
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1152,
+                  "h": 2048
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1947076023528431617"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "vietbunny0511",
+        "name": "vietbunny",
+        "created_at": "Mon May 01 00:25:43 +0000 2017",
+        "description": "",
+        "rest_id": "858839816074653696",
+        "followers_count": 137216,
+        "favourites_count": 50,
+        "avatar": "https://pbs.twimg.com/profile_images/1789543205144305664/13GEDX-P_normal.jpg",
+        "verified": false,
+        "friends_count": 9,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwVnU80XoAEAwkP.jpg",
+            "id": "1947076023528431617",
+            "sizes": {
+              "h": 1200,
+              "w": 675
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946048420218568864",
+      "screen_name": "TeslaAIBot",
+      "bookmarks": 6,
+      "favorites": 189,
+      "created_at": "Fri Jul 18 03:24:33 +0000 2025",
+      "text": "Let\u2019s go to Mars \ud83d\ude80\ud83d\ude80\ud83d\ude80 https://t.co/hh8s6NIIGN",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 4,
+      "replies": 42,
+      "conversation_id": "1946048420218568864",
+      "retweets": 27,
+      "views": "4998",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/hh8s6NIIGN",
+            "expanded_url": "https://x.com/TeslaAIBot/status/1946048420218568864/photo/1",
+            "id_str": "1946048416380764166",
+            "indices": [
+              21,
+              44
+            ],
+            "media_key": "3_1946048416380764166",
+            "media_url_https": "https://pbs.twimg.com/media/GwHAuV4WQAYjt-w.jpg",
+            "type": "photo",
+            "url": "https://t.co/hh8s6NIIGN",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1452,
+                "w": 1920,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 908,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 514,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1452,
+              "width": 1920,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1920,
+                  "h": 1075
+                },
+                {
+                  "x": 282,
+                  "y": 0,
+                  "w": 1452,
+                  "h": 1452
+                },
+                {
+                  "x": 371,
+                  "y": 0,
+                  "w": 1274,
+                  "h": 1452
+                },
+                {
+                  "x": 645,
+                  "y": 0,
+                  "w": 726,
+                  "h": 1452
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1920,
+                  "h": 1452
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1946048416380764166"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "TeslaAIBot",
+        "name": "Optimus (parody)",
+        "created_at": "Fri Aug 20 18:41:23 +0000 2021",
+        "description": "My name is Optimus \u2022 parody \u2022 All subscribers will get a follow from me \ud83d\ude08 \u2022 DISCLAIMER: This account is not affiliated with any meme coins \u2022",
+        "rest_id": "1428789207825256453",
+        "followers_count": 117148,
+        "favourites_count": 143326,
+        "avatar": "https://pbs.twimg.com/profile_images/1859359611125440512/9Qw0cBVw_normal.jpg",
+        "verified": true,
+        "friends_count": 379,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwHAuV4WQAYjt-w.jpg",
+            "id": "1946048416380764166",
+            "sizes": {
+              "h": 908,
+              "w": 1200
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946744899878965710",
+      "screen_name": "teslacarsonly",
+      "bookmarks": 71,
+      "favorites": 1055,
+      "created_at": "Sun Jul 20 01:32:07 +0000 2025",
+      "text": "Cybertruck held up 1000kg of hate! https://t.co/Kcs4f1N7QT",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+      "quotes": 35,
+      "replies": 359,
+      "conversation_id": "1946744899878965710",
+      "retweets": 286,
+      "views": "33313",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/Kcs4f1N7QT",
+            "expanded_url": "https://x.com/teslacarsonly/status/1946744899878965710/video/1",
+            "id_str": "1946744885811294208",
+            "indices": [
+              35,
+              58
+            ],
+            "media_key": "7_1946744885811294208",
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1946744885811294208/pu/img/GSJb7TCLQKy-6nbx.jpg",
+            "type": "video",
+            "url": "https://t.co/Kcs4f1N7QT",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 576,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1024,
+                "w": 576,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 383,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1024,
+              "width": 576,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 7919,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/pl/6PMIp09y_KV8yfuB.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/vid/avc1/320x568/JG3hfD8IuHaIQDk7.mp4?tag=12"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/vid/avc1/480x852/fQcVCanhlae-w2x1.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/vid/avc1/576x1024/hvGoqHP6UM1WIipz.mp4?tag=12"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "7_1946744885811294208"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslacarsonly",
+        "name": "TESLA CARS ONLY.\u26a1",
+        "created_at": "Wed Jul 06 11:49:44 +0000 2022",
+        "description": "Photos and videos for Tesla cars. DM for credit and taking content down. Disclosure: Not affiliated with @Tesla.",
+        "rest_id": "1544649684672778240",
+        "followers_count": 81415,
+        "favourites_count": 89617,
+        "avatar": "https://pbs.twimg.com/profile_images/1766825443410284546/EM6O36b8_normal.png",
+        "verified": true,
+        "friends_count": 31,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1946744885811294208/pu/img/GSJb7TCLQKy-6nbx.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/pl/6PMIp09y_KV8yfuB.m3u8?tag=12"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/vid/avc1/320x568/JG3hfD8IuHaIQDk7.mp4?tag=12"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/vid/avc1/480x852/fQcVCanhlae-w2x1.mp4?tag=12"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946744885811294208/pu/vid/avc1/576x1024/hvGoqHP6UM1WIipz.mp4?tag=12"
+              }
+            ],
+            "aspect_ratio": [
+              9,
+              16
+            ],
+            "duration": 7919,
+            "original_info": {
+              "height": 1024,
+              "width": 576,
+              "focus_rects": []
+            },
+            "id": "1946744885811294208"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1945807522473914622",
+      "screen_name": "teslacarsonly",
+      "bookmarks": 61,
+      "favorites": 1330,
+      "created_at": "Thu Jul 17 11:27:19 +0000 2025",
+      "text": "\u201cTesla Model X is a special work of art.\u201d\n\n\u2014 Elon Musk https://t.co/JVKXszYFZX",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+      "quotes": 20,
+      "replies": 263,
+      "conversation_id": "1945807522473914622",
+      "retweets": 385,
+      "views": "28699",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/JVKXszYFZX",
+            "expanded_url": "https://x.com/teslacarsonly/status/1945807522473914622/video/1",
+            "id_str": "1945807469269155841",
+            "indices": [
+              55,
+              78
+            ],
+            "media_key": "7_1945807469269155841",
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1945807469269155841/pu/img/FfQ1OliXJdjm6FcL.jpg",
+            "type": "video",
+            "url": "https://t.co/JVKXszYFZX",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 818,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 720,
+                "w": 818,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 599,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 720,
+              "width": 818,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                409,
+                360
+              ],
+              "duration_millis": 7987,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/pl/R5i5a7Ca4jo_YwfP.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/vid/avc1/306x270/wrHNb7h376t88KzT.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/vid/avc1/408x360/mZsqMpfJm6aJ8bvj.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/vid/avc1/818x720/hMVK4a7pqkCd5TR2.mp4?tag=12"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "7_1945807469269155841"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslacarsonly",
+        "name": "TESLA CARS ONLY.\u26a1",
+        "created_at": "Wed Jul 06 11:49:44 +0000 2022",
+        "description": "Photos and videos for Tesla cars. DM for credit and taking content down. Disclosure: Not affiliated with @Tesla.",
+        "rest_id": "1544649684672778240",
+        "followers_count": 81415,
+        "favourites_count": 89617,
+        "avatar": "https://pbs.twimg.com/profile_images/1766825443410284546/EM6O36b8_normal.png",
+        "verified": true,
+        "friends_count": 31,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1945807469269155841/pu/img/FfQ1OliXJdjm6FcL.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/pl/R5i5a7Ca4jo_YwfP.m3u8?tag=12"
+              },
+              {
+                "bitrate": 256000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/vid/avc1/306x270/wrHNb7h376t88KzT.mp4?tag=12"
+              },
+              {
+                "bitrate": 832000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/vid/avc1/408x360/mZsqMpfJm6aJ8bvj.mp4?tag=12"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1945807469269155841/pu/vid/avc1/818x720/hMVK4a7pqkCd5TR2.mp4?tag=12"
+              }
+            ],
+            "aspect_ratio": [
+              409,
+              360
+            ],
+            "duration": 7987,
+            "original_info": {
+              "height": 720,
+              "width": 818,
+              "focus_rects": []
+            },
+            "id": "1945807469269155841"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946691740456652913",
+      "screen_name": "TeslaClubSoCal",
+      "bookmarks": 855,
+      "favorites": 5358,
+      "created_at": "Sat Jul 19 22:00:53 +0000 2025",
+      "text": "We were invited to attend the soft opening of the brand new #TeslaDiner, celebrating the First Responders! https://t.co/9x45Dxp3HI",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 260,
+      "replies": 273,
+      "conversation_id": "1946691740456652913",
+      "retweets": 953,
+      "views": "4227661",
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              60,
+              71
+            ],
+            "text": "TeslaDiner"
+          }
+        ],
+        "media": [
+          {
+            "display_url": "pic.x.com/9x45Dxp3HI",
+            "expanded_url": "https://x.com/TeslaClubSoCal/status/1946691740456652913/video/1",
+            "id_str": "1946691593916030977",
+            "indices": [
+              107,
+              130
+            ],
+            "media_key": "13_1946691593916030977",
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946691593916030977/img/LhNbPWGdIh2M7I4y.jpg",
+            "type": "video",
+            "url": "https://t.co/9x45Dxp3HI",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1080,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1200,
+                "w": 675,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 383,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1920,
+              "width": 1080,
+              "focus_rects": []
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 75866,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/pl/D5WaXTqpzS4n82gc.m3u8?tag=21&v=65d"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/320x568/yi--PdALegVqFu8r.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/480x852/OwaBuPO8prw06QTF.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/720x1280/TDQ4ZRFWE4RntGJu.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/1080x1920/8y8ZBAmt1z-05XSu.mp4?tag=21"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "13_1946691593916030977"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "TeslaClubSoCal",
+        "name": "Tesla Club-SoCal",
+        "created_at": "Sun Jun 28 23:27:05 +0000 2020",
+        "description": "Bringing the Tesla Community together and help Tesla reach their mission statement to accelerate the world\u2019s transition to sustainable energy! #TeslaClubSoCal",
+        "rest_id": "1277382400637427712",
+        "followers_count": 4694,
+        "favourites_count": 22606,
+        "avatar": "https://pbs.twimg.com/profile_images/1277398215034167296/n-5cW45g_normal.jpg",
+        "verified": true,
+        "friends_count": 217,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946691593916030977/img/LhNbPWGdIh2M7I4y.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/amplify_video/1946691593916030977/pl/D5WaXTqpzS4n82gc.m3u8?tag=21&v=65d"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/320x568/yi--PdALegVqFu8r.mp4?tag=21"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/480x852/OwaBuPO8prw06QTF.mp4?tag=21"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/720x1280/TDQ4ZRFWE4RntGJu.mp4?tag=21"
+              },
+              {
+                "bitrate": 10368000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946691593916030977/vid/avc1/1080x1920/8y8ZBAmt1z-05XSu.mp4?tag=21"
+              }
+            ],
+            "aspect_ratio": [
+              9,
+              16
+            ],
+            "duration": 75866,
+            "original_info": {
+              "height": 1920,
+              "width": 1080,
+              "focus_rects": []
+            },
+            "id": "1946691593916030977"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946966971905634536",
+      "screen_name": "TeslaModelDoge",
+      "bookmarks": 5,
+      "favorites": 676,
+      "created_at": "Sun Jul 20 16:14:33 +0000 2025",
+      "text": "$DOGE MAKIN MOVES 26\u00a2 \ud83d\udcc8\ud83d\udcc8\ud83d\udcc8 https://t.co/vJssFd4Uk7",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 1,
+      "replies": 30,
+      "conversation_id": "1946966971905634536",
+      "retweets": 100,
+      "views": "8504",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/vJssFd4Uk7",
+            "expanded_url": "https://x.com/TeslaModelDoge/status/1946966971905634536/video/1",
+            "id_str": "1946966909724823552",
+            "indices": [
+              26,
+              49
+            ],
+            "media_key": "13_1946966909724823552",
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946966909724823552/img/On8RsPbc_s5KmIX8.jpg",
+            "type": "video",
+            "url": "https://t.co/vJssFd4Uk7",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1540,
+                "w": 1080,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1200,
+                "w": 842,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 477,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1540,
+              "width": 1080,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                54,
+                77
+              ],
+              "duration_millis": 15000,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1946966909724823552/pl/c4Ly-DEm_SrzP7FR.m3u8?tag=21&v=8f7"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/320x456/2zW6AzpsjD78yTwl.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/480x684/8_K7Gw7tq8cNr_cu.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/720x1026/Tn9o03-XElcn_-Uc.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/1080x1540/tpIn_z1AJ5jyRp_y.mp4?tag=21"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "13_1946966909724823552"
+              }
+            }
+          }
+        ],
+        "symbols": [
+          {
+            "indices": [
+              0,
+              5
+            ],
+            "text": "DOGE"
+          }
+        ],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "TeslaModelDoge",
+        "name": "Tesla Model \u00d0oge",
+        "created_at": "Tue May 11 16:59:53 +0000 2021",
+        "description": "\ud83d\udc15 \ud835\udc03\ud835\udc28\ud835\udc20\ud835\udc1e\ud835\udc1c\ud835\udc28\ud835\udc22\ud835\udc27 \ud835\udc00\ud835\udc1f\ud835\udc22\ud835\udc1c\ud835\udc22\ud835\udc28\ud835\udc27\ud835\udc1a\ud835\udc1d\ud835\udc28 \u2022 \ud835\udc13\ud835\udc1e\ud835\udc2c\ud835\udc25\ud835\udc1a \ud835\udc04\ud835\udc27\ud835\udc2d\ud835\udc21\ud835\udc2e\ud835\udc2c\ud835\udc22\ud835\udc1a\ud835\udc2c\ud835\udc2d \u26a1\ufe0f ~\ud835\udc7e\ud835\udc89\ud835\udc82\ud835\udc95\ud835\udc86\ud835\udc97\ud835\udc86\ud835\udc93\u2019\ud835\udc94 \ud835\udc8e\ud835\udc86\ud835\udc82\ud835\udc8f\ud835\udc95 \ud835\udc95\ud835\udc90 \ud835\udc89\ud835\udc82\ud835\udc91\ud835\udc91\ud835\udc86\ud835\udc8f \ud835\udc82\ud835\udc8d\ud835\udc98\ud835\udc82\ud835\udc9a\ud835\udc94 \ud835\udc85\ud835\udc90\ud835\udc86\ud835\udc94~\ud83d\ude4f",
+        "rest_id": "1392162470035345409",
+        "followers_count": 20208,
+        "favourites_count": 231565,
+        "avatar": "https://pbs.twimg.com/profile_images/1720654477605117952/MKdO_ypx_normal.jpg",
+        "verified": true,
+        "friends_count": 1258,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946966909724823552/img/On8RsPbc_s5KmIX8.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/amplify_video/1946966909724823552/pl/c4Ly-DEm_SrzP7FR.m3u8?tag=21&v=8f7"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/320x456/2zW6AzpsjD78yTwl.mp4?tag=21"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/480x684/8_K7Gw7tq8cNr_cu.mp4?tag=21"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/720x1026/Tn9o03-XElcn_-Uc.mp4?tag=21"
+              },
+              {
+                "bitrate": 10368000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946966909724823552/vid/avc1/1080x1540/tpIn_z1AJ5jyRp_y.mp4?tag=21"
+              }
+            ],
+            "aspect_ratio": [
+              54,
+              77
+            ],
+            "duration": 15000,
+            "original_info": {
+              "height": 1540,
+              "width": 1080,
+              "focus_rects": []
+            },
+            "id": "1946966909724823552"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1945906370865238286",
+      "screen_name": "Teslaconomics",
+      "bookmarks": 41,
+      "favorites": 1007,
+      "created_at": "Thu Jul 17 18:00:06 +0000 2025",
+      "text": "The Tesla Model YL 6-seater is about to sell like hotcakes in China this fall https://t.co/9wlWVlK6dP",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 4,
+      "replies": 66,
+      "conversation_id": "1945906370865238286",
+      "retweets": 188,
+      "views": "27279",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/9wlWVlK6dP",
+            "expanded_url": "https://x.com/Teslaconomics/status/1945906370865238286/photo/1",
+            "id_str": "1945906338422284288",
+            "indices": [
+              78,
+              101
+            ],
+            "media_key": "3_1945906338422284288",
+            "media_url_https": "https://pbs.twimg.com/media/GwE_gUPXYAASkIY.jpg",
+            "type": "photo",
+            "url": "https://t.co/9wlWVlK6dP",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 136,
+                    "y": 468,
+                    "h": 128,
+                    "w": 128
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 79,
+                    "y": 274,
+                    "h": 75,
+                    "w": 75
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 45,
+                    "y": 155,
+                    "h": 42,
+                    "w": 42
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 272,
+                    "y": 936,
+                    "h": 256,
+                    "w": 256
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1200,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 4096,
+              "width": 4096,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 184,
+                  "w": 4096,
+                  "h": 2294
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 4096,
+                  "h": 4096
+                },
+                {
+                  "x": 354,
+                  "y": 0,
+                  "w": 3593,
+                  "h": 4096
+                },
+                {
+                  "x": 1126,
+                  "y": 0,
+                  "w": 2048,
+                  "h": 4096
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 4096,
+                  "h": 4096
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1945906338422284288"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "Teslaconomics",
+        "name": "Teslaconomics",
+        "created_at": "Sat Apr 14 19:49:12 +0000 2018",
+        "description": "I post my conscious thoughts with the world, live life to the fullest, keep things simple, truthful & filter the noise.",
+        "rest_id": "985243593538338816",
+        "followers_count": 401405,
+        "favourites_count": 71223,
+        "avatar": "https://pbs.twimg.com/profile_images/1882967991362727936/bySD-Rwj_normal.jpg",
+        "verified": true,
+        "friends_count": 202,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/GwE_gUPXYAASkIY.jpg",
+            "id": "1945906338422284288",
+            "sizes": {
+              "h": 1200,
+              "w": 1200
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1944946418575401013",
+      "screen_name": "Tesla_Asia",
+      "bookmarks": 42,
+      "favorites": 1439,
+      "created_at": "Tue Jul 15 02:25:36 +0000 2025",
+      "text": "More V4 Superchargers are popping up in China\u26a1\ufe0f https://t.co/3Rf0SZn6Wp",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 11,
+      "replies": 21,
+      "conversation_id": "1944946418575401013",
+      "retweets": 161,
+      "views": "63168",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/3Rf0SZn6Wp",
+            "expanded_url": "https://x.com/Tesla_Asia/status/1944946418575401013/photo/1",
+            "id_str": "1944946362442985472",
+            "indices": [
+              48,
+              71
+            ],
+            "media_key": "3_1944946362442985472",
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaXCaMAAFO3k.jpg",
+            "type": "photo",
+            "url": "https://t.co/3Rf0SZn6Wp",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 1717,
+                    "y": 747,
+                    "h": 182,
+                    "w": 182
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 1027,
+                    "y": 447,
+                    "h": 108,
+                    "w": 108
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 582,
+                    "y": 253,
+                    "h": 61,
+                    "w": 61
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 1717,
+                    "y": 747,
+                    "h": 182,
+                    "w": 182
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2005,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 919,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 521,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1536,
+              "width": 2005,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 413,
+                  "w": 2005,
+                  "h": 1123
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1347,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 768,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2005,
+                  "h": 1536
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1944946362442985472"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/3Rf0SZn6Wp",
+            "expanded_url": "https://x.com/Tesla_Asia/status/1944946418575401013/photo/1",
+            "id_str": "1944946361801027584",
+            "indices": [
+              48,
+              71
+            ],
+            "media_key": "3_1944946361801027584",
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaUpWsAAqFoG.jpg",
+            "type": "photo",
+            "url": "https://t.co/3Rf0SZn6Wp",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 46,
+                    "y": 491,
+                    "h": 74,
+                    "w": 74
+                  },
+                  {
+                    "x": 1783,
+                    "y": 589,
+                    "h": 109,
+                    "w": 109
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 27,
+                    "y": 293,
+                    "h": 44,
+                    "w": 44
+                  },
+                  {
+                    "x": 1067,
+                    "y": 352,
+                    "h": 65,
+                    "w": 65
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 15,
+                    "y": 166,
+                    "h": 25,
+                    "w": 25
+                  },
+                  {
+                    "x": 604,
+                    "y": 199,
+                    "h": 36,
+                    "w": 36
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 46,
+                    "y": 491,
+                    "h": 74,
+                    "w": 74
+                  },
+                  {
+                    "x": 1783,
+                    "y": 589,
+                    "h": 109,
+                    "w": 109
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2005,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 919,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 521,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1536,
+              "width": 2005,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 413,
+                  "w": 2005,
+                  "h": 1123
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1347,
+                  "h": 1536
+                },
+                {
+                  "x": 67,
+                  "y": 0,
+                  "w": 768,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2005,
+                  "h": 1536
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1944946361801027584"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/3Rf0SZn6Wp",
+            "expanded_url": "https://x.com/Tesla_Asia/status/1944946418575401013/photo/1",
+            "id_str": "1944946361625141249",
+            "indices": [
+              48,
+              71
+            ],
+            "media_key": "3_1944946361625141249",
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaT_a4AE9Mxn.jpg",
+            "type": "photo",
+            "url": "https://t.co/3Rf0SZn6Wp",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 1740,
+                    "y": 1000,
+                    "h": 113,
+                    "w": 113
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 1041,
+                    "y": 598,
+                    "h": 67,
+                    "w": 67
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 590,
+                    "y": 339,
+                    "h": 38,
+                    "w": 38
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 1740,
+                    "y": 1000,
+                    "h": 113,
+                    "w": 113
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2005,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 919,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 521,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1536,
+              "width": 2005,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 413,
+                  "w": 2005,
+                  "h": 1123
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1347,
+                  "h": 1536
+                },
+                {
+                  "x": 67,
+                  "y": 0,
+                  "w": 768,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2005,
+                  "h": 1536
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1944946361625141249"
+              }
+            }
+          },
+          {
+            "display_url": "pic.x.com/3Rf0SZn6Wp",
+            "expanded_url": "https://x.com/Tesla_Asia/status/1944946418575401013/photo/1",
+            "id_str": "1944946361796808704",
+            "indices": [
+              48,
+              71
+            ],
+            "media_key": "3_1944946361796808704",
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaUoWUAA0Tbw.jpg",
+            "type": "photo",
+            "url": "https://t.co/3Rf0SZn6Wp",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2005,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 919,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 521,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1536,
+              "width": 2005,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 413,
+                  "w": 2005,
+                  "h": 1123
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1536,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1347,
+                  "h": 1536
+                },
+                {
+                  "x": 67,
+                  "y": 0,
+                  "w": 768,
+                  "h": 1536
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2005,
+                  "h": 1536
+                }
+              ]
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "media_results": {
+              "result": {
+                "media_key": "3_1944946361796808704"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "Tesla_Asia",
+        "name": "Tesla Asia",
+        "created_at": "Mon Dec 02 09:05:10 +0000 2019",
+        "description": "Accelerate the world's transition to sustainable energy.",
+        "rest_id": "1201427034754318337",
+        "followers_count": 207288,
+        "favourites_count": 605,
+        "avatar": "https://pbs.twimg.com/profile_images/1459031266876030976/f_4HzcuW_normal.jpg",
+        "verified": true,
+        "friends_count": 52,
+        "location": null
+      },
+      "media": {
+        "photo": [
+          {
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaXCaMAAFO3k.jpg",
+            "id": "1944946362442985472",
+            "sizes": {
+              "h": 919,
+              "w": 1200
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaUpWsAAqFoG.jpg",
+            "id": "1944946361801027584",
+            "sizes": {
+              "h": 919,
+              "w": 1200
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaT_a4AE9Mxn.jpg",
+            "id": "1944946361625141249",
+            "sizes": {
+              "h": 919,
+              "w": 1200
+            }
+          },
+          {
+            "media_url_https": "https://pbs.twimg.com/media/Gv3WaUoWUAA0Tbw.jpg",
+            "id": "1944946361796808704",
+            "sizes": {
+              "h": 919,
+              "w": 1200
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946997096219107475",
+      "screen_name": "whistingbhole",
+      "bookmarks": 451,
+      "favorites": 3493,
+      "created_at": "Sun Jul 20 18:14:15 +0000 2025",
+      "text": "My kids \u2764\ufe0f @Tesla_Optimus #TeslaDiner https://t.co/Kt6t8gsHOL",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 108,
+      "replies": 163,
+      "conversation_id": "1946997096219107475",
+      "retweets": 367,
+      "views": "394313",
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              26,
+              37
+            ],
+            "text": "TeslaDiner"
+          }
+        ],
+        "media": [
+          {
+            "display_url": "pic.x.com/Kt6t8gsHOL",
+            "expanded_url": "https://x.com/whistingbhole/status/1946997096219107475/video/1",
+            "id_str": "1946997008926969856",
+            "indices": [
+              38,
+              61
+            ],
+            "media_key": "13_1946997008926969856",
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946997008926969856/img/MKgw-qUrQ3o6bMY0.jpg",
+            "type": "video",
+            "url": "https://t.co/Kt6t8gsHOL",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 675,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 383,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 720,
+              "width": 1280,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 42588,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1946997008926969856/pl/XWLmXkimBe2Fwfqs.m3u8?tag=21&v=e29"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946997008926969856/vid/avc1/480x270/ut_mD3gdMYXcGGeV.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946997008926969856/vid/avc1/640x360/Cwh43OrTtW_LBAzI.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1946997008926969856/vid/avc1/1280x720/f7BNZcU4vF0k8Igv.mp4?tag=21"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "13_1946997008926969856"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1616163256413863943",
+            "name": "Tesla Optimus",
+            "screen_name": "Tesla_Optimus",
+            "indices": [
+              11,
+              25
+            ]
+          }
+        ]
+      },
+      "user_info": {
+        "screen_name": "whistingbhole",
+        "name": "Prime the pump",
+        "created_at": "Tue Apr 10 07:13:05 +0000 2012",
+        "description": "",
+        "rest_id": "549971760",
+        "followers_count": 222,
+        "favourites_count": 388,
+        "avatar": "https://pbs.twimg.com/profile_images/1946724143031836673/l2d65OTC_normal.jpg",
+        "verified": false,
+        "friends_count": 30,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1946997008926969856/img/MKgw-qUrQ3o6bMY0.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/amplify_video/1946997008926969856/pl/XWLmXkimBe2Fwfqs.m3u8?tag=21&v=e29"
+              },
+              {
+                "bitrate": 256000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946997008926969856/vid/avc1/480x270/ut_mD3gdMYXcGGeV.mp4?tag=21"
+              },
+              {
+                "bitrate": 832000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946997008926969856/vid/avc1/640x360/Cwh43OrTtW_LBAzI.mp4?tag=21"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/amplify_video/1946997008926969856/vid/avc1/1280x720/f7BNZcU4vF0k8Igv.mp4?tag=21"
+              }
+            ],
+            "aspect_ratio": [
+              16,
+              9
+            ],
+            "duration": 42588,
+            "original_info": {
+              "height": 720,
+              "width": 1280,
+              "focus_rects": []
+            },
+            "id": "1946997008926969856"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1947056993577164818",
+      "screen_name": "teslaownersSV",
+      "bookmarks": 62,
+      "favorites": 2005,
+      "created_at": "Sun Jul 20 22:12:16 +0000 2025",
+      "text": "Starbase is the coolest place on Earth https://t.co/RlCTkGny7A",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 19,
+      "replies": 116,
+      "conversation_id": "1947056993577164818",
+      "retweets": 322,
+      "views": "41109",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/RlCTkGny7A",
+            "expanded_url": "https://x.com/teslaownersSV/status/1947056993577164818/video/1",
+            "id_str": "1947056931161464840",
+            "indices": [
+              39,
+              62
+            ],
+            "media_key": "7_1947056931161464840",
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1947056931161464840/pu/img/XiA65H8uoRKobSaD.jpg",
+            "type": "video",
+            "url": "https://t.co/RlCTkGny7A",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 576,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1024,
+                "w": 576,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 383,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1024,
+              "width": 576,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 67833,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/pl/BAI3WKUKUAM1zmMV.m3u8?tag=12&v=295"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/vid/avc1/320x568/bXSIzyAfLRxhATsa.mp4?tag=12"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/vid/avc1/480x852/8G-zq4J-9coR937t.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/vid/avc1/576x1024/YsnFkYJIu35jh_NF.mp4?tag=12"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "7_1947056931161464840"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslaownersSV",
+        "name": "Tesla Owners Silicon Valley",
+        "created_at": "Sun Jul 08 20:42:31 +0000 2018",
+        "description": "The most notorious Tesla Club in the world. Creator of @thextakeover and taking the Takeover global. We amplify sustainability and philanthropy.",
+        "rest_id": "1016059981907386368",
+        "followers_count": 1243529,
+        "favourites_count": 171997,
+        "avatar": "https://pbs.twimg.com/profile_images/1945194602245332992/CXGuUBtE_normal.jpg",
+        "verified": false,
+        "friends_count": 723,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1947056931161464840/pu/img/XiA65H8uoRKobSaD.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/pl/BAI3WKUKUAM1zmMV.m3u8?tag=12&v=295"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/vid/avc1/320x568/bXSIzyAfLRxhATsa.mp4?tag=12"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/vid/avc1/480x852/8G-zq4J-9coR937t.mp4?tag=12"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1947056931161464840/pu/vid/avc1/576x1024/YsnFkYJIu35jh_NF.mp4?tag=12"
+              }
+            ],
+            "aspect_ratio": [
+              9,
+              16
+            ],
+            "duration": 67833,
+            "original_info": {
+              "height": 1024,
+              "width": 576,
+              "focus_rects": []
+            },
+            "id": "1947056931161464840"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946425414030917920",
+      "screen_name": "teslaownersSV",
+      "bookmarks": 32,
+      "favorites": 721,
+      "created_at": "Sat Jul 19 04:22:36 +0000 2025",
+      "text": "Aura farming in a Tesla  https://t.co/OqOr99UApz",
+      "lang": "it",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "quotes": 21,
+      "replies": 91,
+      "conversation_id": "1946425414030917920",
+      "retweets": 88,
+      "views": "36639",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/OqOr99UApz",
+            "expanded_url": "https://x.com/TeslaCamera/status/1946207877326086637/video/1",
+            "id_str": "1946207855985512450",
+            "indices": [
+              25,
+              48
+            ],
+            "media_key": "7_1946207855985512450",
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1946207855985512450/pu/img/zh12bvWpvOpMYXAQ.jpg",
+            "source_status_id_str": "1946207877326086637",
+            "source_user_id_str": "1789931818600353792",
+            "type": "video",
+            "url": "https://t.co/OqOr99UApz",
+            "additional_media_info": {
+              "monetizable": false,
+              "source_user": {
+                "user_results": {
+                  "result": {
+                    "__typename": "User",
+                    "id": "VXNlcjoxNzg5OTMxODE4NjAwMzUzNzky",
+                    "rest_id": "1789931818600353792",
+                    "affiliates_highlighted_label": [],
+                    "avatar": {
+                      "image_url": "https://pbs.twimg.com/profile_images/1833511808474165248/Z4UhBsAT_normal.jpg"
+                    },
+                    "core": {
+                      "created_at": "Mon May 13 08:13:08 +0000 2024",
+                      "name": "TeslaDashCam",
+                      "screen_name": "TeslaCamera"
+                    },
+                    "dm_permissions": {
+                      "can_dm": true
+                    },
+                    "has_graduated_access": true,
+                    "is_blue_verified": true,
+                    "legacy": {
+                      "default_profile": true,
+                      "default_profile_image": false,
+                      "description": "The hub for Tesla fans! \nSend us your Tesla moments get featured & join the movement.\n\n#model3 #modely #models #modelx #cybertruck #Tesla #fsd $TSLA",
+                      "entities": {
+                        "description": {
+                          "urls": []
+                        }
+                      },
+                      "fast_followers_count": 0,
+                      "favourites_count": 16962,
+                      "followers_count": 50968,
+                      "friends_count": 99,
+                      "has_custom_timelines": false,
+                      "is_translator": false,
+                      "listed_count": 93,
+                      "media_count": 2553,
+                      "normal_followers_count": 50968,
+                      "pinned_tweet_ids_str": [],
+                      "possibly_sensitive": false,
+                      "profile_banner_url": "https://pbs.twimg.com/profile_banners/1789931818600353792/1750500709",
+                      "profile_interstitial_type": "",
+                      "statuses_count": 4867,
+                      "translator_type": "none",
+                      "want_retweets": false,
+                      "withheld_in_countries": []
+                    },
+                    "location": {
+                      "location": ""
+                    },
+                    "media_permissions": {
+                      "can_media_tag": true
+                    },
+                    "parody_commentary_fan_label": "None",
+                    "profile_image_shape": "Circle",
+                    "professional": {
+                      "rest_id": "1906428962969936219",
+                      "professional_type": "Creator",
+                      "category": []
+                    },
+                    "privacy": {
+                      "protected": false
+                    },
+                    "relationship_perspectives": {
+                      "following": false
+                    },
+                    "tipjar_settings": {
+                      "is_enabled": true
+                    },
+                    "super_follow_eligible": true,
+                    "verification": {
+                      "verified": false
+                    }
+                  }
+                }
+              }
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 576,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1024,
+                "w": 576,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 383,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1024,
+              "width": 576,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 9500,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/pl/zbe_65YCRWJ0mD7p.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/vid/avc1/320x568/bPJUxezTAmQvH2LL.mp4?tag=12"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/vid/avc1/480x852/QCozJ8sbfDH1zoMN.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/vid/avc1/576x1024/4nMJ3Enzip2iqZU0.mp4?tag=12"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "7_1946207855985512450"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslaownersSV",
+        "name": "Tesla Owners Silicon Valley",
+        "created_at": "Sun Jul 08 20:42:31 +0000 2018",
+        "description": "The most notorious Tesla Club in the world. Creator of @thextakeover and taking the Takeover global. We amplify sustainability and philanthropy.",
+        "rest_id": "1016059981907386368",
+        "followers_count": 1243529,
+        "favourites_count": 171997,
+        "avatar": "https://pbs.twimg.com/profile_images/1945194602245332992/CXGuUBtE_normal.jpg",
+        "verified": false,
+        "friends_count": 723,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1946207855985512450/pu/img/zh12bvWpvOpMYXAQ.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/pl/zbe_65YCRWJ0mD7p.m3u8?tag=12"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/vid/avc1/320x568/bPJUxezTAmQvH2LL.mp4?tag=12"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/vid/avc1/480x852/QCozJ8sbfDH1zoMN.mp4?tag=12"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946207855985512450/pu/vid/avc1/576x1024/4nMJ3Enzip2iqZU0.mp4?tag=12"
+              }
+            ],
+            "aspect_ratio": [
+              9,
+              16
+            ],
+            "duration": 9500,
+            "original_info": {
+              "height": 1024,
+              "width": 576,
+              "focus_rects": []
+            },
+            "id": "1946207855985512450"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tweet",
+      "tweet_id": "1946310978141917319",
+      "screen_name": "teslacarsonly",
+      "bookmarks": 112,
+      "favorites": 1146,
+      "created_at": "Fri Jul 18 20:47:52 +0000 2025",
+      "text": "Optimus Bots testing the Cybertruck bullet-proof capabilities. https://t.co/IGZeJWfsIX",
+      "lang": "en",
+      "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+      "quotes": 41,
+      "replies": 233,
+      "conversation_id": "1946310978141917319",
+      "retweets": 298,
+      "views": "41474",
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/IGZeJWfsIX",
+            "expanded_url": "https://x.com/teslacarsonly/status/1946310978141917319/video/1",
+            "id_str": "1946310915965497344",
+            "indices": [
+              63,
+              86
+            ],
+            "media_key": "7_1946310915965497344",
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1946310915965497344/pu/img/HYdEijJl2ArUYve8.jpg",
+            "type": "video",
+            "url": "https://t.co/IGZeJWfsIX",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 720,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 1200,
+                "w": 675,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 680,
+                "w": 383,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1280,
+              "width": 720,
+              "focus_rects": []
+            },
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 33552,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/pl/QrCQTEqaxUrN11wg.m3u8?tag=12&v=d0d"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/vid/avc1/320x568/fBQ3-N65xjDQ1UtQ.mp4?tag=12"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/vid/avc1/480x852/6QNApNwIwnSRFbBo.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/vid/avc1/720x1280/mj_DQ5Bl5O32dyz3.mp4?tag=12"
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "7_1946310915965497344"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "user_info": {
+        "screen_name": "teslacarsonly",
+        "name": "TESLA CARS ONLY.\u26a1",
+        "created_at": "Wed Jul 06 11:49:44 +0000 2022",
+        "description": "Photos and videos for Tesla cars. DM for credit and taking content down. Disclosure: Not affiliated with @Tesla.",
+        "rest_id": "1544649684672778240",
+        "followers_count": 81415,
+        "favourites_count": 89617,
+        "avatar": "https://pbs.twimg.com/profile_images/1766825443410284546/EM6O36b8_normal.png",
+        "verified": true,
+        "friends_count": 31,
+        "location": null
+      },
+      "media": {
+        "video": [
+          {
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1946310915965497344/pu/img/HYdEijJl2ArUYve8.jpg",
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/pl/QrCQTEqaxUrN11wg.m3u8?tag=12&v=d0d"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/vid/avc1/320x568/fBQ3-N65xjDQ1UtQ.mp4?tag=12"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/vid/avc1/480x852/6QNApNwIwnSRFbBo.mp4?tag=12"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1946310915965497344/pu/vid/avc1/720x1280/mj_DQ5Bl5O32dyz3.mp4?tag=12"
+              }
+            ],
+            "aspect_ratio": [
+              9,
+              16
+            ],
+            "duration": 33552,
+            "original_info": {
+              "height": 1280,
+              "width": 720,
+              "focus_rects": []
+            },
+            "id": "1946310915965497344"
+          }
+        ]
+      }
+    }
+  ],
+  "next_cursor": "DAACCgACGwZ-Pz-AJxAKAAMbBn4_P3_Y8AgABAAAAAILAAUAAADcRW1QQzZ3QUFBZlEvZ0dKTjB2R3AvQUFBQUJJYkFPV2g0bGN3L2hzRlZnVUxtMkFTR3dRSjB1MGJFSEViQWNDNlF0YUFvQnI5MW5hQ1d1QTFHd0UvaU5HWGtRNGJCUm4xUVpwQkxCc0ZaMVJ2RnNGTkd3TVhtZmtiQVNBYkJDcks4SnRnU1JzR2ZQZWwyeEdRR3dVZml4cmJZSk1iQm15ODdGZFFLeHNDcjRYS2w1Q0hHd1E2TEJHVzBjNGJBU3dweTFaQmFCcjkzQ1hKR3VEZkd3VUVKVDNhY09nPQgABgAAAAAIAAcAAAAADAAICgABGv3WdoJa4DUAAAA",
+  "prev_cursor": "DAACCgACGwZ-Pz-AJxAKAAMbBn4_P3_Y8AgABAAAAAELAAUAAADcRW1QQzZ3QUFBZlEvZ0dKTjB2R3AvQUFBQUJJYkFPV2g0bGN3L2hzRlZnVUxtMkFTR3dRSjB1MGJFSEViQWNDNlF0YUFvQnI5MW5hQ1d1QTFHd0UvaU5HWGtRNGJCUm4xUVpwQkxCc0ZaMVJ2RnNGTkd3TVhtZmtiQVNBYkJDcks4SnRnU1JzR2ZQZWwyeEdRR3dVZml4cmJZSk1iQm15ODdGZFFLeHNDcjRYS2w1Q0hHd1E2TEJHVzBjNGJBU3dweTFaQmFCcjkzQ1hKR3VEZkd3VUVKVDNhY09nPQgABgAAAAAIAAcAAAAADAAICgABGv3WdoJa4DUAAAA"
+}
