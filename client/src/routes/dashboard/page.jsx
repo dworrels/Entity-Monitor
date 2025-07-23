@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import ContentCard from "../../components/ContentCard";
 import Modal from "../../components/Modal";
 import { matchesBooleanSearch } from "../../utils/booleanSearch";
+import { Plus } from "lucide-react";
 
 const PAGE_SIZE = 12;
 
@@ -90,7 +91,7 @@ const DashboardPage = () => {
                 onClick={handleOpenModal}
                 disabled={!search}
             >
-                + Create Project
+                <Plus size={18}/> Create Project
             </button>
             </div>
             

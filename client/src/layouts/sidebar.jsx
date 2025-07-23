@@ -6,10 +6,10 @@ import { navbarLinks } from "../constants";
 import { cn } from "../utils/cn";
 
 import favicon from "/public/favicon.ico";
-import { ChevronLeft, Search, X } from "lucide-react";
+import { ChevronLeft, Search, Command } from "lucide-react";
 import PropTypes from "prop-types";
 
-export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch }, ref) => {
+export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch, onSearchBarClick }, ref) => {
     return (
         <aside
             ref={ref}
@@ -19,40 +19,39 @@ export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch 
                 collapsed ? "max-md:left-full" : "max-md:left-0",
             )}
         >
-            <div className="flex items-center gap-x-3 p-3 justify-between">
+            <div className="flex items-center justify-between gap-x-3 p-3">
                 {collapsed ? (
                     <button
-                        className="mx-auto btn-ghost size-10 flex-items-center justify-center"
+                        className="btn-ghost flex-items-center mx-auto size-10 justify-center"
                         onClick={() => setCollapsed(false)}
                         aria-label="Open Sidebar"
                     >
                         <ChevronLeft className="rotate-180" />
                     </button>
                 ) : (
-                <>
-                <img
-                    src={favicon}
-                    alt="Logo"
-                    className="h-8 w-8"
-                />
-                <p className="text-lg font-medium text-slate-900 transition-colors">TrackRSS</p>
-                
-                <button
-                    className="ml-auto btn-ghost size-10"
-                    onClick={() => setCollapsed(true)}
-                    aria-label="Close sidebar"
-                >
-                    <ChevronLeft />
-                </button>
-                </>
+                    <>
+                        <img
+                            src={favicon}
+                            alt="Logo"
+                            className="h-8 w-8"
+                        />
+                        <p className="text-lg font-medium text-slate-900 transition-colors">TrackRSS</p>
+
+                        <button
+                            className="btn-ghost ml-auto size-10"
+                            onClick={() => setCollapsed(true)}
+                            aria-label="Close sidebar"
+                        >
+                            <ChevronLeft />
+                        </button>
+                    </>
                 )}
             </div>
             <div className="flex w-full flex-col gap-y-4 overflow-x-hidden overflow-y-auto p-3 [scrollbar-width:_thin]">
-                
                 <div className="relative w-full max-w-xs">
                     <Search
                         size={20}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 text-slate-500"
+                        className="absolute top-1/2 left-2 -translate-y-1/2 text-slate-500"
                     />
                     <input
                         type="text"
@@ -60,19 +59,16 @@ export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch 
                         id="search"
                         // search placeholder
                         placeholder="Search..."
-                        className="w-full bg-transparent text-slate-900 outline-0 placeholder:text-slate-500 pl-8 pr-8"
+                        className="w-full bg-transparent pr-8 pl-8 text-slate-900 outline-0 placeholder:text-slate-500"
                         value={search}
-                        onChange={e => setSearch(e.target.value)}
+                        onChange={(e) => setSearch(e.target.value)}
+                        onFocus={onSearchBarClick}
+                        readOnly
                     />
-                    {search && (
-                        <button
-                            type="button"
-                            className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-slate-200"
-                            onClick={() => setSearch("")}
-                            aria-label="Clear Search"
-                        >
-                            <X size={16} className="text-slate-500" />
-                        </button>
+                    {!collapsed && (
+                        <div className="absolute top-1/2 right-2 flex -translate-y-1/2 items-center p-1 text-slate-500">
+                            <Command size={15} /> K
+                        </div>
                     )}
                 </div>
 
@@ -81,7 +77,7 @@ export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch 
                         key={navbarLink.title}
                         className={cn("sidebar-group", collapsed && "md:items-center")}
                     >
-                        <p className={cn("sidebar-group-title", collapsed && "md:w-[45px]")}>{navbarLink.title}</p>
+                        {!collapsed && <p className={cn("sidebar-group-title", collapsed && "md:w-[45px]")}>{navbarLink.title}</p>}
                         {navbarLink.links.map((link) => (
                             <NavLink
                                 key={link.label}
@@ -105,8 +101,9 @@ export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch 
 Sidebar.displayName = "Sidebar";
 
 Sidebar.propTypes = {
-    collapsed: PropTypes.bool,    
+    collapsed: PropTypes.bool,
     setCollapsed: PropTypes.func,
     search: PropTypes.string,
     setSearch: PropTypes.func,
+    onSearchBarClick: PropTypes.func,
 };

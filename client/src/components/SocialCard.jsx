@@ -41,7 +41,7 @@ const SocialCard = ({ post }) => {
             </div>
             <div className="px-6 pt-4 pb-2 flex flex-col item-start gap-1">
                 <span className="full mr-2 mb-2 inline-block rounded bg-gray-200 px-3 oy-1 text-sm font-semibold text-gray-700">
-                    {formatToEST(post.taken_at || post.timestamp)}
+                    {formatToEST(post.taken_at || post.timestamp || post.created_at)}
                 </span>
             </div>
         </div>
