@@ -374,7 +374,6 @@ const ProjectDetailPage = () => {
             )}
             {activeTab === "Chats" && !reportLoading && !dailyReport && (
                 <div>
-                    <h2 className="mb-2 text-xl font-bold">Chat Search</h2>
                     <form
                         className="mb-6 flex items-center gap-2"
                         onSubmit={handleTelegramSearch}

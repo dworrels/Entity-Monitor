@@ -13,7 +13,8 @@ import newspaper
 import tldextract
 import concurrent.futures
 from dateutil import parser as dateparser
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
+from semantic_search import semantic_search, build_index
 from zoneinfo import ZoneInfo
 from groq import Groq, RateLimitError
 
@@ -361,6 +362,8 @@ def fetch_and_save_articles():
 
     with open(ARTICLES_FILE, "w") as f:
         json.dump(unique_articles, f, indent=2)
+    from semantic_search import build_index
+    build_index()
     print(f"Finished fetching articles in {time.time() - start:.2f} seconds")
 
     if os.path.exists(PROJECTS_FILE):
@@ -390,6 +393,20 @@ def fetch_and_save_articles():
                 save_project_report(project["id"], report_data)
 
 
+@app.route("/api/articles/semantic_search", methods=["POST"])
+def api_semantic_search():
+    print("api_semantic_search endpoint called")
+    try:
+        data = request.get_json()
+        query = data.get("query", "")
+        top_k = int(data.get("top_k", 10))
+        results = semantic_search(query, top_k)
+        return jsonify(results)
+    except Exception as e:
+        print("Semantic search error:", e)
+        import traceback; traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
 # Parse articles for Home page
 @app.route("/api/articles", methods=["GET"])
 def get_articles():
@@ -401,9 +418,8 @@ def get_articles():
         articles = []
     return jsonify(articles)
 
-    # Sort latest feeds by date published
 
-
+# Sort latest feeds by date published
 def parse_date_safe(date_str):
     try:
         dt = dateparser.parse(date_str)
@@ -962,13 +978,18 @@ def summarize_with_mistral(prompt, model="mistral"):
     return response.response.strip()
 
 
-def summarize_with_groq(prompt, model="llama3-8b-8192"):
+def summarize_with_groq(prompt, model="groq-meta-llama/llama-4-scout-17b-16e-instruct"):
     client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
     while True:
         try:
             chat_completion = client.chat.completions.create(
                 messages=[{"role": "user", "content": prompt}],
                 model=model,
+                temperature=0,
+                max_completion_tokens=1024,
+                top_p=1,
+                stream=False,
+                stop=None,
             )
             return chat_completion.choices[0].message.content.strip()
         except RateLimitError as e:
@@ -987,7 +1008,7 @@ def summarize_with_model(prompt, model="mistral"):
         return summarize_with_mistral(prompt, model=model)
 
 
-def summarize_article(title, text, published, model="groq"):
+def summarize_article(title, text, published, model="groq-meta-llama/llama-4-scout-17b-16e-instruct"):
     # Chunk and summarize each article
     if len(text.split()) < 1000:
         prompt = f"Title: {title}\nDate: {published}\n\n{text}\n\nSummarize this article in detail."
@@ -1000,7 +1021,7 @@ def summarize_article(title, text, published, model="groq"):
         prompt = (
             f"Title: {title}\nDate: {published}\n\n"
             f"Article chunk {idx+1} of {len(chunks)}:\n{chunk}\n\n"
-            "Summarize this chunk in detail."
+            "Given the following article, write a detailed, single-paragraph summary without using bullet points."
         )
         summary = summarize_with_model(prompt, model=model)
         chunk_summaries.append(summary)
@@ -1067,7 +1088,7 @@ def generate_daily_report(project_id):
     # Get filtered article links from frontend
     data = request.get_json()
     article_links = set(data.get("article_links", []))
-    model = data.get("model", "groq-llama3-8b-8192")
+    model = data.get("model", "groq-meta-llama/llama-4-scout-17b-16e-instruct")
 
     # Only use articles that are in the provided list and published today
     def is_today(article):
@@ -1146,7 +1167,7 @@ def generate_daily_report(project_id):
 @app.route("/api/keyword_alert", methods=["POST"])
 def keyword_alert():
     data = request.json
-    print("📥 Keyword Alert Received:", data)
+    print("Keyword Alert Received:", data)
     # You could save this to a file or project feed here
     return jsonify({"status": "ok"}), 200
 
