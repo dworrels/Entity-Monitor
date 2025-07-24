@@ -2,6 +2,7 @@ import ProjectCard from "../../components/ProjectCard";
 import { useState, useEffect } from "react";
 import Modal from "../../components/Modal";
 import { useNavigate } from "react-router-dom";
+import { Plus } from "lucide-react";
 
 const ProjectPage = () => {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -91,7 +92,7 @@ const ProjectPage = () => {
                         setForm({ name: "", keyword: "" });
                     }}
                 >
-                    + Create Project
+                    <Plus size={18}/> Create Project
                 </button>
 
                 <Modal

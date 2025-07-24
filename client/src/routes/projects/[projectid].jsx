@@ -5,7 +5,9 @@ import ContentCard from "../../components/ContentCard";
 import HorizontalCard from "../../components/HorizontalCard";
 import { Settings, Search } from "lucide-react";
 import SocialCard from "../../components/SocialCard";
+import YouTubeCard from "../../components/YouTubeCard";
 import ForumsCard from "../../components/ForumsCard";
+import TelegramCard from "../../components/TelegramCard";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -14,6 +16,7 @@ const SOCIAL_SITES = [
     { label: "X", value: "x" },
     { label: "Facebook", value: "facebook" },
     { label: "LinkedIn", value: "linkedin" },
+    { label: "YouTube", value: "youtube" },
 ];
 
 const ProjectDetailPage = () => {
@@ -41,15 +44,14 @@ const ProjectDetailPage = () => {
     const [dailyReport, setDailyReport] = useState(null);
     const [reportLoading, setReportLoading] = useState(false);
 
+    const [telegramResults, setTelegramResults] = useState([]);
+    const [telegramSearch, setTelegramSearch] = useState("");
+    const [telegramLoading, setTelegramLoading] = useState(false);
+
     const filteredArticles = useMemo(
-        () => 
-            articles.filter((article) =>
-                matchesBooleanSearch(
-                    (article.title || "") + " " + (article.description || ""), 
-                    project?.keyword),
-    ), 
-    [articles, project?.keyword]
-);
+        () => articles.filter((article) => matchesBooleanSearch((article.title || "") + " " + (article.description || ""), project?.keyword)),
+        [articles, project?.keyword],
+    );
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/projects`)
@@ -75,8 +77,12 @@ const ProjectDetailPage = () => {
             url = `${API_BASE_URL}/api/instagram/posts?username=${encodeURIComponent(socialSearch)}`;
         } else if (selectedSite === "x") {
             url = `${API_BASE_URL}/api/x/posts?query=${encodeURIComponent(socialSearch)}`;
+        } else if (selectedSite === "facebook") {
+            url = `${API_BASE_URL}/api/facebook/posts?query=${encodeURIComponent(socialSearch)}`;
         } else if (selectedSite === "linkedin") {
             url = `${API_BASE_URL}/api/linkedin/posts?query=${encodeURIComponent(socialSearch)}`;
+        } else if (selectedSite === "youtube") {
+            url = `${API_BASE_URL}/api/youtube/videos?query=${encodeURIComponent(socialSearch)}`;
         } else {
             url = `${API_BASE_URL}/api/social?site=${selectedSite}&username=${encodeURIComponent(socialSearch)}`;
         }
@@ -91,8 +97,8 @@ const ProjectDetailPage = () => {
 
     useEffect(() => {
         // Autofill the search bar with the search query when X is selected
-        if ((selectedSite === "x" || selectedSite === "linkedin") && project?.keyword) {
-            setSocialSearch(project.keyword)
+        if ((selectedSite === "x" || selectedSite === "linkedin" || selectedSite === "facebook" || selectedSite === "youtube") && project?.keyword) {
+            setSocialSearch(project.keyword);
         }
     }, [selectedSite, project?.keyword]);
 
@@ -115,7 +121,23 @@ const ProjectDetailPage = () => {
             .finally(() => setRedditLoading(false));
     };
 
-    const articleLinks = useMemo(() => filteredArticles.map(a => a.link), [filteredArticles]);
+    const articleLinks = useMemo(() => filteredArticles.map((a) => a.link), [filteredArticles]);
+
+    const handleTelegramSearch = (e) => {
+        e.preventDefault();
+        setTelegramLoading(true);
+        fetch(`${API_BASE_URL}/api/telegram/search?query=${encodeURIComponent(telegramSearch)}`)
+            .then((res) => res.json())
+            .then((data) => setTelegramResults(data.results || []))
+            .finally(() => setTelegramLoading(false));
+    };
+
+    const CHAT_SOURCES = [
+        { label: "Telegram", value: "telegram" },
+        // Add more chat sources here if needed
+    ];
+
+    const [selectedChatSource, setSelectedChatSource] = useState(CHAT_SOURCES[0].value);
 
     // Fetch daily report when the reports tab is active
     useEffect(() => {
@@ -125,8 +147,8 @@ const ProjectDetailPage = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    article_links: articleLinks
-                })
+                    article_links: articleLinks,
+                }),
             })
                 .then((res) => res.json())
                 .then((data) => setDailyReport(data))
@@ -164,10 +186,16 @@ const ProjectDetailPage = () => {
                     Social Media
                 </button>
                 <button
-                    className={`px-4 font-semibold ${activeTab === "forums" ? "border-b-2 border-blue-500" : ""}`}
-                    onClick={() => setActiveTab("forums")}
+                    className={`px-4 font-semibold ${activeTab === "Forums" ? "border-b-2 border-blue-500" : ""}`}
+                    onClick={() => setActiveTab("Forums")}
                 >
                     Forums
+                </button>
+                <button
+                    className={`px-4 font-semibold ${activeTab === "Chats" ? "border-b-2 border-blue-500" : ""}`}
+                    onClick={() => setActiveTab("Chats")}
+                >
+                    Chats
                 </button>
                 <button
                     className={`px-4 font-semibold ${activeTab === "reports" ? "border-b-2 border-blue-500" : ""}`}
@@ -257,17 +285,24 @@ const ProjectDetailPage = () => {
 
                     {socialResults.length > 0 && (
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                            {socialResults.map((result, idx) => (
-                                <SocialCard
-                                    key={idx}
-                                    post={result}
-                                />
-                            ))}
+                            {selectedSite === "youtube"
+                                ? socialResults.map((result, idx) => (
+                                      <YouTubeCard
+                                          key={idx}
+                                          post={result}
+                                      />
+                                  ))
+                                : socialResults.map((result, idx) => (
+                                      <SocialCard
+                                          key={idx}
+                                          post={result}
+                                      />
+                                  ))}
                         </div>
                     )}
                 </div>
             )}
-            {activeTab === "forums" && (
+            {activeTab === "Forums" && (
                 <div>
                     <form
                         className="mb-6 flex items-center gap-2"
@@ -335,6 +370,55 @@ const ProjectDetailPage = () => {
                     )}
                     {!reportLoading && dailyReport && dailyReport.message && <div>{dailyReport.message}</div>}
                     {!reportLoading && !dailyReport && <div>No daily report available.</div>}
+                </div>
+            )}
+            {activeTab === "Chats" && !reportLoading && !dailyReport && (
+                <div>
+                    <h2 className="mb-2 text-xl font-bold">Chat Search</h2>
+                    <form
+                        className="mb-6 flex items-center gap-2"
+                        onSubmit={handleTelegramSearch}
+                    >
+                        <input
+                            type="text"
+                            className="w-full rounded border border-slate-300 py-2 pl-4"
+                            placeholder={`Search ${selectedChatSource === "telegram" ? "Telegram username or channel..." : "Chats..."}`}
+                            value={telegramSearch}
+                            onChange={(e) => setTelegramSearch(e.target.value)}
+                        />
+                        <select
+                            className="rounded border border-slate-300 bg-white px-3 py-2"
+                            value={selectedChatSource}
+                            onChange={(e) => setSelectedChatSource(e.target.value)}
+                        >
+                            {CHAT_SOURCES.map((source) => (
+                                <option
+                                    key={source.value}
+                                    value={source.value}
+                                >
+                                    {source.label}
+                                </option>
+                            ))}
+                        </select>
+                        <button
+                            type="submit"
+                            className="rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
+                            disabled={telegramLoading}
+                        >
+                            {telegramLoading ? "Searching..." : "Search"}
+                        </button>
+                    </form>
+                    {telegramLoading && <div>Loading Telegram results...</div>}
+                    {!telegramLoading && telegramResults.length === 0 && <div>No Telegram results found.</div>}
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {selectedChatSource === "telegram" &&
+                            telegramResults.map((result, idx) => (
+                                <TelegramCard
+                                    key={idx}
+                                    result={result}
+                                />
+                            ))}
+                    </div>
                 </div>
             )}
         </div>

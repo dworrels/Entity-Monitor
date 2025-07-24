@@ -1,7 +1,8 @@
 import DataTable from "react-data-table-component";
 import Modal from "../../components/Modal";
 import { useState, useEffect } from "react";
-import { Trash2, SquarePen } from "lucide-react";
+import { Trash2, SquarePen, Plus } from "lucide-react";
+
 
 const RSSFeedsPage = () => {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -173,7 +174,7 @@ const RSSFeedsPage = () => {
                         setEditSource(null);
                     }}
                 >
-                    + Add Feed
+                    <Plus size={18} /> Add Feed
                 </button>
 
                 {/* Add Feed Modal Component */}

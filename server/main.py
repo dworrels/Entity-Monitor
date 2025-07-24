@@ -13,13 +13,19 @@ import newspaper
 import tldextract
 import concurrent.futures
 from dateutil import parser as dateparser
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 from groq import Groq, RateLimitError
+
 # from langchain_google_genai import ChatGoogleGenerativeAI
 from apscheduler.schedulers.background import BackgroundScheduler
 import threading
 from dotenv import load_dotenv
 from io import BytesIO
+
+
+REPORTS_DIR = os.path.join("projects", "reports")
+os.makedirs(REPORTS_DIR, exist_ok=True)
 
 brandfetch_api_key = os.environ.get("BRANDFETCH_API_KEY")
 
@@ -287,6 +293,18 @@ def fetch_feed(source):
         return []
 
 
+def save_project_report(project_id, report_data):
+    report_file = os.path.join(REPORTS_DIR, f"{project_id}.json")
+    if os.path.exists(report_file):
+        with open(report_file, "r") as f:
+            reports = json.load(f)
+    else:
+        reports = []
+    reports.append(report_data)
+    with open(report_file, "w") as f:
+        json.dump(reports, f, indent=2)
+
+
 # Background refresh
 def fetch_and_save_articles():
     start = time.time()
@@ -331,9 +349,45 @@ def fetch_and_save_articles():
     unique_articles.sort(key=lambda x: parse_date_safe(x["published"]), reverse=True)
     print(f"all articles deduplicated")
 
+    # Load previous articles to find new ones
+    previous_articles = []
+    if os.path.exists(ARTICLES_FILE):
+        with open(ARTICLES_FILE, "r") as f:
+            previous_articles = json.load(f)
+    previous_links = {a["link"] for a in previous_articles}
+
+    # Find new articles
+    new_articles = [a for a in unique_articles if a["link"] not in previous_links]
+
     with open(ARTICLES_FILE, "w") as f:
         json.dump(unique_articles, f, indent=2)
     print(f"Finished fetching articles in {time.time() - start:.2f} seconds")
+
+    if os.path.exists(PROJECTS_FILE):
+        with open(PROJECTS_FILE, "r") as f:
+            projects = json.load(f)
+    else:
+        projects = []
+
+    for article in new_articles:
+        for project in projects:
+            if (
+                project["keyword"].lower()
+                in (article["title"] + " " + article.get("description", "")).lower()
+            ):
+                today = datetime.now(ZoneInfo("America/New_York")).date()
+                summary = summarize_article(
+                    article["title"],
+                    get_full_text_or_description(article),
+                    article["published"],
+                )
+                report_data = {
+                    "date": str(today),
+                    "project": project["name"],
+                    "article": article,
+                    "summary": summary,
+                }
+                save_project_report(project["id"], report_data)
 
 
 # Parse articles for Home page
@@ -401,7 +455,9 @@ def add_project():
 
     return jsonify(new_project), 201
 
+
 #### Start of Social Media API Endpoints
+
 
 # Instagram image proxy
 @app.route("/api/proxy-image")
@@ -420,6 +476,7 @@ def proxy_image():
         print("proxy error:", e)
         return "Error fetching image", 500
 
+
 # Instagram API
 @app.route("/api/instagram/posts", methods=["GET"])
 def get_instagram_posts():
@@ -432,8 +489,8 @@ def get_instagram_posts():
         url = "https://instagram-scraper21.p.rapidapi.com/api/v1/posts"
         querystring = {"username": username, "count": count}
         headers = {
-            "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
-            "x-rapidapi-host": "instagram-scraper21.p.rapidapi.com"
+            "x-rapidapi-key": os.environ.get("INSTAGRAM_API_KEY"),
+            "x-rapidapi-host": "instagram-scraper21.p.rapidapi.com",
         }
         response = requests.get(url, headers=headers, params=querystring)
         data = response.json()
@@ -448,7 +505,9 @@ def get_instagram_posts():
         posts = []
         for post in data.get("data", {}).get("posts", []):
             caption = post.get("caption", "")
-            taken_at = post.get("taken_at_human_readable") or post.get("created_at_human_readable", "")
+            taken_at = post.get("taken_at_human_readable") or post.get(
+                "created_at_human_readable", ""
+            )
             # Get first image url if available
             image_url = ""
             if isinstance(post.get("image"), list) and post["image"]:
@@ -457,18 +516,21 @@ def get_instagram_posts():
             elif isinstance(post.get("video"), list) and post["video"]:
                 image_url = post["video"][0].get("url", "")
             link = post.get("link", "")
-            posts.append({
-                "text": caption,
-                "taken_at": taken_at,
-                "image": image_url,
-                "username": username,
-                "link": link,
-            })
+            posts.append(
+                {
+                    "text": caption,
+                    "taken_at": taken_at,
+                    "image": image_url,
+                    "username": username,
+                    "link": link,
+                }
+            )
 
         return jsonify({"posts": posts})
     except Exception as e:
         print("error in /api/instagram/posts:", e)
         return jsonify({"error": str(e)}), 500
+
 
 # X API
 @app.route("/api/x/posts", methods=["GET"])
@@ -476,12 +538,11 @@ def get_x_posts():
     query = request.args.get("query")
     if not query:
         return jsonify({"error": "Missing query"}), 400
-
     try:
         url = "https://twitter-api45.p.rapidapi.com/search.php"
         querystring = {"query": query, "search_type": "Top"}
         headers = {
-            "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
+            "x-rapidapi-key": os.environ.get("X_API_KEY"),
             "x-rapidapi-host": "twitter-api45.p.rapidapi.com",
         }
         response = requests.get(url, headers=headers, params=querystring, timeout=10)
@@ -499,20 +560,35 @@ def get_x_posts():
             if item.get("type") == "tweet":
                 tweet_id = item.get("tweet_id", "")
                 screen_name = item.get("screen_name", "")
-                tweet_url = f"https://twitter.com/{screen_name}/status/{tweet_id}" if screen_name and tweet_id else ""
-                posts.append({
-                    "username": screen_name,
-                    "created_at": item.get("created_at", ""),
-                    "text": item.get("text", ""),
-                    "image": item.get("media", {}).get("photo", [{}])[0].get("media_url_https", "") if "media" in item and "photo" in item["media"] and item["media"]["photo"] else "",
-                    "tweet_id": tweet_id,
-                    "url": tweet_url  # Add this line
-                })
+                tweet_url = (
+                    f"https://twitter.com/{screen_name}/status/{tweet_id}"
+                    if screen_name and tweet_id
+                    else ""
+                )
+                posts.append(
+                    {
+                        "username": screen_name,
+                        "created_at": item.get("created_at", ""),
+                        "text": item.get("text", ""),
+                        "image": (
+                            item.get("media", {})
+                            .get("photo", [{}])[0]
+                            .get("media_url_https", "")
+                            if "media" in item
+                            and "photo" in item["media"]
+                            and item["media"]["photo"]
+                            else ""
+                        ),
+                        "tweet_id": tweet_id,
+                        "url": tweet_url,  # Add this line
+                    }
+                )
 
         return jsonify({"posts": posts})
     except Exception as e:
         print("error in /api/x/posts:", e)
         return jsonify({"error": str(e)}), 500
+
 
 # Reddit API
 @app.route("/api/reddit", methods=["GET"])
@@ -533,9 +609,8 @@ def get_reddit():
 
     if subreddit:
         querystring["subreddit"] = subreddit
-
     headers = {
-        "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
+        "x-rapidapi-key": os.environ.get("REDDIT_API_KEY"),
         "x-rapidapi-host": "reddit3.p.rapidapi.com",
     }
 
@@ -560,7 +635,81 @@ def get_reddit():
         print("Reddit API error:", e)
         return jsonify({"error": str(e)}), 500
 
+
 # Facebook API
+@app.route("/api/facebook/posts", methods=["GET"])
+def get_facebook_posts():
+    query = request.args.get("query")
+    from datetime import datetime, timedelta
+
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=120)).strftime("%Y-%m-%d")
+    if not query:
+        return jsonify({"error": "Missing query"}), 400
+
+    url = "https://facebook-realtimeapi.p.rapidapi.com/facebook/posts"
+    querystring = {"query": query, "start_date": start_date, "end_date": end_date}
+    headers = {
+        "x-rapidapi-key": os.environ.get("FACEBOOK_API_KEY"),
+        "x-rapidapi-host": "facebook-realtimeapi.p.rapidapi.com",
+    }
+    try:
+        response = requests.get(url, headers=headers, params=querystring, timeout=10)
+        data = response.json()
+
+        # Adjust extraction based on actual API response structure
+        edges = (
+            data.get("data", {})
+            .get("search_query", {})
+            .get("combined_results", {})
+            .get("edges", [])
+        )
+        posts = []
+        for edge in edges:
+            nt_bundle_attrs = (
+                edge.get("native_template_view", {})
+                .get("native_template_bundles", [{}])[0]
+                .get("nt_bundle_attributes", [])
+            )
+            for attr in nt_bundle_attrs:
+                story = attr.get("story_value", {})
+                # Username
+                username = ""
+                if story.get("actors"):
+                    username = story["actors"][0].get("name", "")
+                # Caption
+                caption = story.get("message", {}).get("text", "")
+                # Image
+                image = ""
+                attachments = story.get("attachments", [])
+                if attachments and "media" in attachments[0]:
+                    image = attachments[0]["media"].get("image", {}).get("uri", "")
+                elif attachments and "image" in attachments[0]:
+                    image = attachments[0]["image"].get("uri", "")
+                # Post URL
+                url = story.get("url", "")
+                # create post object
+                creation_time = story.get("creation_time", "")
+                created_at = (
+                    datetime.fromtimestamp(creation_time, ZoneInfo("America/New_York"))
+                    if creation_time
+                    else ""
+                )
+                posts.append(
+                    {
+                        "username": username,
+                        "caption": caption,
+                        "image": image,
+                        "url": url,
+                        "created_at": created_at,
+                    }
+                )
+
+        return jsonify({"posts": posts})
+    except Exception as e:
+        print("error in /api/facebook/posts:", e)
+        return jsonify({"error": str(e)}), 500
+
 
 # LinkedIn API
 @app.route("/api/linkedin/posts", methods=["GET"])
@@ -572,17 +721,24 @@ def get_linkedin_posts():
     url = "https://linkedin-api-data.p.rapidapi.com/post/search"
     querystring = {"limit": "20", "offsite": "1", "query": query}
     headers = {
-        "x-rapidapi-key": "2775a7ff29msh8148d70ff23fff3p131e90jsndb64d50686b8",
+        "x-rapidapi-key": os.environ.get("LINKEDIN_API_KEY"),
         "x-rapidapi-host": "linkedin-api-data.p.rapidapi.com",
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
     }
     try:
         response = requests.get(url, headers=headers, params=querystring, timeout=10)
         data = response.json()
 
         # Defensive check for LinkedIn API errors or unexpected structure
-        if not data.get("success") or "data" not in data or "elements" not in data["data"]:
-            print("LinkedIn API returned unexpected structure or error:", json.dumps(data, indent=2))
+        if (
+            not data.get("success")
+            or "data" not in data
+            or "elements" not in data["data"]
+        ):
+            print(
+                "LinkedIn API returned unexpected structure or error:",
+                json.dumps(data, indent=2),
+            )
             return jsonify({"error": "LinkedIn API error or no results"}), 502
 
         posts = []
@@ -597,7 +753,11 @@ def get_linkedin_posts():
                 name_obj = actor.get("name", {})
                 username = name_obj.get("text", "")
                 # Fallback: company name from attributesV2
-                if not username and "attributesV2" in name_obj and name_obj["attributesV2"]:
+                if (
+                    not username
+                    and "attributesV2" in name_obj
+                    and name_obj["attributesV2"]
+                ):
                     detail = name_obj["attributesV2"][0].get("detailData", {})
                     company = detail.get("companyName", {})
                     username = company.get("name", "")
@@ -616,12 +776,20 @@ def get_linkedin_posts():
                 large_image = article.get("largeImage", {}) if article else {}
                 attributes = large_image.get("attributes", []) if large_image else []
                 if attributes and isinstance(attributes, list) and len(attributes) > 0:
-                    detail_data = attributes[0].get("detailData", {}) if attributes[0] else {}
-                    vector_image = detail_data.get("vectorImage", {}) if detail_data else {}
+                    detail_data = (
+                        attributes[0].get("detailData", {}) if attributes[0] else {}
+                    )
+                    vector_image = (
+                        detail_data.get("vectorImage", {}) if detail_data else {}
+                    )
                     root_url = vector_image.get("rootUrl", "") if vector_image else ""
-                    artifacts = vector_image.get("artifacts", []) if vector_image else []
+                    artifacts = (
+                        vector_image.get("artifacts", []) if vector_image else []
+                    )
                     if root_url and isinstance(artifacts, list) and len(artifacts) > 0:
-                        image_url = root_url + artifacts[0].get("fileIdentifyingUrlPathSegment", "")
+                        image_url = root_url + artifacts[0].get(
+                            "fileIdentifyingUrlPathSegment", ""
+                        )
 
                 # Try imageComponent if articleComponent not present
                 if (
@@ -630,25 +798,49 @@ def get_linkedin_posts():
                     and "imageComponent" in content
                     and content["imageComponent"]
                 ):
-                    images = content["imageComponent"].get("images", []) if content["imageComponent"] else []
+                    images = (
+                        content["imageComponent"].get("images", [])
+                        if content["imageComponent"]
+                        else []
+                    )
                     if images and isinstance(images, list) and len(images) > 0:
                         attrs = images[0].get("attributes", []) if images[0] else []
                         if attrs and isinstance(attrs, list) and len(attrs) > 0:
-                            detail_data = attrs[0].get("detailData", {}) if attrs[0] else {}
-                            vector_image = detail_data.get("vectorImage", {}) if detail_data else {}
-                            root_url = vector_image.get("rootUrl", "") if vector_image else ""
-                            artifacts = vector_image.get("artifacts", []) if vector_image else []
-                            if root_url and isinstance(artifacts, list) and len(artifacts) > 0:
-                                image_url = root_url + artifacts[0].get("fileIdentifyingUrlPathSegment", "")
+                            detail_data = (
+                                attrs[0].get("detailData", {}) if attrs[0] else {}
+                            )
+                            vector_image = (
+                                detail_data.get("vectorImage", {})
+                                if detail_data
+                                else {}
+                            )
+                            root_url = (
+                                vector_image.get("rootUrl", "") if vector_image else ""
+                            )
+                            artifacts = (
+                                vector_image.get("artifacts", [])
+                                if vector_image
+                                else []
+                            )
+                            if (
+                                root_url
+                                and isinstance(artifacts, list)
+                                and len(artifacts) > 0
+                            ):
+                                image_url = root_url + artifacts[0].get(
+                                    "fileIdentifyingUrlPathSegment", ""
+                                )
 
                 post_url = update.get("socialContent", {}).get("shareUrl", "")
 
-                posts.append({
-                    "username": username,
-                    "caption": caption,
-                    "image": image_url,
-                    "url": post_url
-                })
+                posts.append(
+                    {
+                        "username": username,
+                        "caption": caption,
+                        "image": image_url,
+                        "url": post_url,
+                    }
+                )
 
         return jsonify({"posts": posts})
     except Exception as e:
@@ -656,7 +848,100 @@ def get_linkedin_posts():
         return jsonify({"error": str(e)}), 500
 
 
+# Youtube API
+@app.route("/api/youtube/videos", methods=["GET"])
+def get_youtube_videos():
+    query = request.args.get("query")
+    if not query:
+        return jsonify({"error": "Missing query"}), 400
+
+    url = "https://www.googleapis.com/youtube/v3/search"
+    params = {
+        "part": "snippet",
+        "q": query,
+        "type": "video",
+        "maxResults": 36,
+        "key": os.environ.get("YOUTUBE_API_KEY"),
+    }
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        data = response.json()
+        posts = []
+        for item in data.get("items", []):
+            title = item["snippet"]["title"]
+            video_id = item["id"]["videoId"]
+            channel_title = item["snippet"]["channelTitle"]
+            published_date = item["snippet"]["publishedAt"]
+            thumbnail_url = item["snippet"]["thumbnails"]["high"]["url"]
+            posts.append(
+                {
+                    "title": title,
+                    "channel": channel_title,
+                    "date": published_date,
+                    "url": f"https://www.youtube.com/watch?v={video_id}",
+                    "thumbnail": thumbnail_url,
+                }
+            )
+        return jsonify({"posts": posts})
+    except Exception as e:
+        print("error in /api/youtube/videos:", e)
+        return jsonify({"error": str(e)}), 500
+
+
+#
+
+
+# Telegram API
+@app.route("/api/telegram/search", methods=["GET"])
+def search_telegram():
+    query = request.args.get("query")
+    limit = request.args.get("limit", "10")
+    if not query:
+        return jsonify({"error": "Missing query"}), 400
+
+    url = "https://telegram-scraper-api.p.rapidapi.com/entity/search"
+    querystring = {"q": query, "limit": limit}
+    headers = {
+        "x-rapidapi-key": os.environ.get("TELEGRAM_API_KEY"),
+        "x-rapidapi-host": "telegram-scraper-api.p.rapidapi.com",
+    }
+    try:
+        response = requests.get(url, headers=headers, params=querystring, timeout=10)
+        data = response.json()
+        results = []
+
+        # Add chats
+        for chat in data.get("data", {}).get("chats", []):
+            results.append(
+                {
+                    "title": chat.get("title"),
+                    "username": chat.get("username"),
+                    "participantsCount": chat.get("participantsCount"),
+                }
+            )
+
+        # Add users (if you want to show users too)
+        for user in data.get("data", {}).get("users", []):
+            results.append(
+                {
+                    "title": user.get("firstName", ""),
+                    "username": user.get("username"),
+                    "participantsCount": None,
+                }
+            )
+
+        return jsonify({"results": results})
+    except Exception as e:
+        print("error in /api/telegram/search:", e)
+        return jsonify({"error": str(e)}), 500
+
+
+# WhatsApp API
+
+# Discord API
+
 #### OLLAMA Summarization
+
 
 def split_text_into_chunks(text, chunk_size=400, overlap=50):
     words = text.split()
@@ -757,7 +1042,22 @@ def generate_daily_report(project_id):
     if not project:
         return jsonify({"error": "Project not found"}), 404
 
-    today = datetime.now(timezone.utc).date()
+    today = datetime.now(ZoneInfo("America/New_York")).date()
+    report_file = os.path.join(REPORTS_DIR, f"{project_id}.json")
+
+    cached_report = None
+    if os.path.exists(report_file):
+        with open(report_file, "r") as f:
+            reports = json.load(f)
+        for rep in reports:
+            if rep.get("date") == str(today):
+                cached_report = rep
+                break
+
+    if cached_report:
+        print("Returning cached report for today")
+        return jsonify(cached_report)
+
     if os.path.exists(ARTICLES_FILE):
         with open(ARTICLES_FILE, "r") as f:
             articles = json.load(f)
@@ -802,41 +1102,53 @@ def generate_daily_report(project_id):
     MAX_ARTICLES_PER_BATCH = 3  # or whatever fits in Groq's token limit
     all_reports = []
 
-  # for i in range(0, len(summaries), MAX_ARTICLES_PER_BATCH):
-      # batch = summaries[i : i + MAX_ARTICLES_PER_BATCH]
+    # for i in range(0, len(summaries), MAX_ARTICLES_PER_BATCH):
+    # batch = summaries[i : i + MAX_ARTICLES_PER_BATCH]
     merge_prompt = (
-    f"Project: {project['name']}\nDate: {today}\n\n"
-    "Below are summaries of today's articles:\n\n"
-    + "\n\n".join(f"Article {i+1}:\n{summary}" for i, summary in enumerate(summaries)) +
-    "\n\nUsing only the information provided above, write a single, professional daily briefing in paragraph form. "
-    "Begin directly with the summary. Do not use a title or heading at the start. "
-    "The briefing should include:\n"
-    "1. An introductory paragraph that summarizes the main themes of the day.\n"
-    "2. One to three concise paragraphs that elaborate on key developments and stories, without repeating information.\n"
-    "3. A final paragraph with the heading INSIGHT (in all caps), offering a synthesis of trends or implications strictly based on the article summaries.\n"
-    "Do not use bullet points, lists, or add any external knowledge. Keep the tone concise and informative."
-)
-
-
+        f"Project: {project['name']}\nDate: {today}\n\n"
+        "Below are summaries of today's articles:\n\n"
+        + "\n\n".join(
+            f"Article {i+1}:\n{summary}" for i, summary in enumerate(summaries)
+        )
+        + "\n\nUsing only the information provided above, write a single, professional daily briefing in paragraph form. "
+        "Begin directly with the summary. Do not use a title or heading at the start. "
+        "The briefing should include:\n"
+        "1. An introductory paragraph that summarizes the main themes of the day.\n"
+        "2. One to three concise paragraphs that elaborate on key developments and stories, without repeating information.\n"
+        "3. A final paragraph with the heading INSIGHT (in all caps), offering a synthesis of trends or implications strictly based on the article summaries.\n"
+        "Do not use bullet points, lists, or add any external knowledge. Keep the tone concise and informative."
+    )
 
     report = summarize_with_model(merge_prompt, model=model)
-    all_reports.append(report)
 
-    final_report = "\n\n---\n\n".join(all_reports)
+    report_data = {
+        "date": str(today),
+        "project": project["name"],
+        "article_count": len(todays_articles),
+        "report": report,
+        "summaries": summaries,
+    }
 
-    start = time.time()
-    # daily_report = summarize_with_model(merge_prompt, model=model)
-    print(f"Daily report generated in {time.time() - start:.2f}s")
+    if os.path.exists(report_file):
+        with open(report_file, "r") as f:
+            reports = json.load(f)
+    else:
+        reports = []
+    reports.append(report_data)
+    with open(report_file, "w") as f:
+        json.dump(reports, f, indent=2)
 
-    return jsonify(
-        {
-            "date": str(today),
-            "project": project["name"],
-            "article_count": len(todays_articles),
-            "report": final_report,
-            "summaries": summaries,
-        }
-    )
+    print(f"Daily report generated and saved for {today}")
+
+    return jsonify(report_data)
+
+
+@app.route("/api/keyword_alert", methods=["POST"])
+def keyword_alert():
+    data = request.json
+    print("📥 Keyword Alert Received:", data)
+    # You could save this to a file or project feed here
+    return jsonify({"status": "ok"}), 200
 
 
 # Run Flask app and scheduler
