@@ -16,53 +16,5 @@
     "keyword": "\"White House\"",
     "id": "1752853661184",
     "date": "2025-07-18"
-  },
-  {
-    "name": "Tesla not AI",
-    "keyword": "\"tesla\" AND NOT \"AI\"",
-    "id": "1753102892629",
-    "date": "2025-07-21"
-  },
-  {
-    "name": "About AI",
-    "keyword": "\"AI\"",
-    "id": "1753325681555",
-    "date": "2025-07-23"
-  },
-  {
-    "name": "google",
-    "keyword": "google",
-    "id": "1753368827995",
-    "date": "2025-07-24"
-  },
-  {
-    "name": "United Health",
-    "keyword": "united health",
-    "id": "1753369550605",
-    "date": "2025-07-24"
-  },
-  {
-    "name": "Immigration",
-    "keyword": "immigration",
-    "id": "1753369718771",
-    "date": "2025-07-24"
-  },
-  {
-    "name": "Trump",
-    "keyword": "Trump",
-    "id": "1753369922945",
-    "date": "2025-07-24"
-  },
-  {
-    "name": "Tariffs",
-    "keyword": "\"tariffs\"",
-    "id": "1753370583147",
-    "date": "2025-07-24"
-  },
-  {
-    "name": "Thailand",
-    "keyword": "\"Thailand\"",
-    "id": "1753372142554",
-    "date": "2025-07-24"
   }
 ]

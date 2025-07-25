@@ -43,6 +43,7 @@ const ProjectDetailPage = () => {
     // daily report
     const [dailyReport, setDailyReport] = useState(null);
     const [reportLoading, setReportLoading] = useState(false);
+    const selectedModel = useState(localStorage.getItem("selectedModel") || "groq-meta-llama/llama-4-scout-17b-16e-instruct");
 
     const [telegramResults, setTelegramResults] = useState([]);
     const [telegramSearch, setTelegramSearch] = useState("");
@@ -148,13 +149,14 @@ const ProjectDetailPage = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     article_links: articleLinks,
+                    model: selectedModel
                 }),
             })
                 .then((res) => res.json())
                 .then((data) => setDailyReport(data))
                 .finally(() => setReportLoading(false));
         }
-    }, [activeTab, project, articleLinks]);
+    }, [activeTab, project, articleLinks, selectedModel]);
 
     if (loading) return <div>Loading...</div>;
     if (!project) return <div>Project not found</div>;

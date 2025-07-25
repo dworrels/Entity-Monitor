@@ -1066,19 +1066,6 @@ def generate_daily_report(project_id):
     today = datetime.now(ZoneInfo("America/New_York")).date()
     report_file = os.path.join(REPORTS_DIR, f"{project_id}.json")
 
-    cached_report = None
-    if os.path.exists(report_file):
-        with open(report_file, "r") as f:
-            reports = json.load(f)
-        for rep in reports:
-            if rep.get("date") == str(today):
-                cached_report = rep
-                break
-
-    if cached_report:
-        print("Returning cached report for today")
-        return jsonify(cached_report)
-
     if os.path.exists(ARTICLES_FILE):
         with open(ARTICLES_FILE, "r") as f:
             articles = json.load(f)
@@ -1101,6 +1088,21 @@ def generate_daily_report(project_id):
     todays_articles = [
         a for a in articles if a["link"] in article_links and is_today(a)
     ]
+
+    cached_report = None
+    if os.path.exists(report_file):
+        with open(report_file, "r") as f:
+            reports = json.load(f)
+        for rep in reports:
+            if rep.get("date") == str(today): # and rep.get("article_count") == len(todays_articles):
+                cached_report = rep
+                break
+
+    if cached_report:
+        print("Returning cached report for today")
+        return jsonify(cached_report)
+
+    
 
     print(f"Number of articles used for daily report: {len(todays_articles)}")
 

@@ -6,7 +6,7 @@ import { navbarLinks } from "../constants";
 import { cn } from "../utils/cn";
 
 import favicon from "/public/favicon.ico";
-import { ChevronLeft, Search, Command } from "lucide-react";
+import { ChevronLeft, Search, Command, Settings } from "lucide-react";
 import PropTypes from "prop-types";
 
 export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch, onSearchBarClick }, ref) => {
@@ -93,6 +93,19 @@ export const Sidebar = forwardRef(({ collapsed, setCollapsed, search, setSearch,
                         ))}
                     </nav>
                 ))}
+            </div>
+
+            <div className="mt-auto w-full p-3">
+                <NavLink
+                    to="/settings"
+                    className={cn(
+                        "sidebar-item flex items-center gap-2 rounded px-3 py-2 text-slate-700 hover:bg-slate-100",
+                        collapsed && "justify-center md:w-[45px]"
+                    )}
+                >
+                    <Settings size={22} className="flex-shrink-0" />
+                    {!collapsed && <span className="whitespace-nowrap">Settings</span>}
+                </NavLink>
             </div>
         </aside>
     );

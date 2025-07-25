@@ -52,31 +52,33 @@ const SearchModal = ({ open, onClose, search, setSearch, onSearch, recentSearche
                 </form>
                 {/* Filters */}
                 <div className="mb-10 flex gap-2 text-sm text-gray-600">
-                    {/* Boolean Toggle */}
-                        {/* ...input... */}
-                        <div className="mt-2 flex gap-2">
-                            <button
-                                type="button"
-                                className={`rounded px-3 py-1 ${searchType === "boolean" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-                                onClick={() => setSearchType("boolean")}
-                            >
-                                Boolean
-                            </button>
-                            <button
-                                type="button"
-                                className={`rounded px-3 py-1 ${searchType === "semantic" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-                                onClick={() => setSearchType("semantic")}
-                            >
-                                Semantic
-                            </button>
-                        </div>
                     {/* Date and Source Filters */}
+
                     <button className="flex items-center gap-1 rounded border px-2 py-1 hover:bg-gray-100">
                         <CalendarDays /> Date ▼
                     </button>
                     <button className="flex items-center gap-1 rounded border px-2 py-1 hover:bg-gray-100">
                         <Newspaper /> Source ▼
                     </button>
+
+                    {/* Boolean Toggle */}
+                    {/* ...input... */}
+                    <div className="ml-auto flex gap-2">
+                        <button
+                            type="button"
+                            className={`rounded px-3 py-1 ${searchType === "boolean" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+                            onClick={() => setSearchType("boolean")}
+                        >
+                            Boolean
+                        </button>
+                        <button
+                            type="button"
+                            className={`rounded px-3 py-1 ${searchType === "semantic" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+                            onClick={() => setSearchType("semantic")}
+                        >
+                            Semantic
+                        </button>
+                    </div>
                 </div>
                 {/* Recent Section */}
                 <div className="mb-3 flex items-center justify-between">
